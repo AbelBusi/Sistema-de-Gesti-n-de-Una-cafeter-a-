@@ -1,10 +1,13 @@
 package com.java.ventaCoffe.view.controller;
 
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -15,6 +18,9 @@ public class ControllerLogin implements Initializable {
 
     @FXML
     private Button BCrearCuenta;
+
+    @FXML
+    private Button BCuentaExistente;
 
     @FXML
     private Button BIngresar;
@@ -60,6 +66,45 @@ public class ControllerLogin implements Initializable {
 
     @FXML
     private TextField txtRespuesta;
+
+    public void cambiarForm(ActionEvent event){
+
+        TranslateTransition slider =new TranslateTransition();
+        if(event.getSource()==BRegistrarse){
+
+            slider.setNode(apEntrarRegistrarse);
+            slider.setToX(300);
+            slider.setDuration(Duration.seconds(.5));
+            slider.setOnFinished((ActionEvent e) ->{
+
+
+                BRegistrarse.setVisible(false);
+                BCuentaExistente.setVisible(true);
+            });
+
+            slider.play();
+
+
+        }else if(event.getSource()==BCuentaExistente){
+
+            slider.setNode(apEntrarRegistrarse);
+            slider.setToX(0);
+            slider.setDuration(Duration.seconds(.5));
+            slider.setOnFinished((ActionEvent e) ->{
+
+                BCuentaExistente.setVisible(false);
+                BRegistrarse.setVisible(true);
+
+            });
+
+            slider.play();
+
+
+        }
+
+    }
+
+
 
 
     @Override

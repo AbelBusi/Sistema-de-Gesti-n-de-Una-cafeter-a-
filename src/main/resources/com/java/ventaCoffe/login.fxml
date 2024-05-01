@@ -16,7 +16,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="apRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css">
+            <AnchorPane fx:id="apRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="LRegistrarse" layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="REGISTRARSE" textFill="#246861">
                      <font>
@@ -24,13 +24,13 @@
                      </font>
                   </Label>
                   <TextField fx:id="txtRegistrarseCorreo" layoutX="47.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
-                  <Button fx:id="BCrearCuenta" layoutX="47.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Registrarse" />
+                  <Button fx:id="BCrearCuenta" layoutX="47.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Crear cuenta" />
                   <PasswordField fx:id="txtRegistrarClave" layoutX="47.0" layoutY="163.0" prefHeight="30.0" prefWidth="220.0" promptText="clave" styleClass="textfield" stylesheets="@css/login.css" />
                   <ComboBox fx:id="comboPregunta" layoutX="47.0" layoutY="213.0" prefHeight="30.0" prefWidth="220.0" promptText="Pregunta" styleClass="textfield" stylesheets="@css/login.css" />
                   <TextField fx:id="txtRespuesta" layoutX="47.0" layoutY="258.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apIngresar" layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css">
+            <AnchorPane fx:id="apIngresar" layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css" AnchorPane.leftAnchor="300.0">
                <children>
                   <Label fx:id="LIngresarUsuario" layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="INGRESAR USUARIO" textFill="#246861">
                      <font>
@@ -42,19 +42,20 @@
                   <Hyperlink fx:id="hyClave" layoutX="47.0" layoutY="209.0" text="Has perdido tu clave" />
                   <PasswordField fx:id="txtClave" layoutX="47.0" layoutY="179.0" prefHeight="30.0" prefWidth="220.0" promptText="clave" styleClass="textfield" stylesheets="@css/login.css" />
                </children></AnchorPane>
-            <AnchorPane fx:id="apEntrarRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="gradient" stylesheets="@css/login.css">
+            <AnchorPane fx:id="apEntrarRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="gradient" stylesheets="@css/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="LCrearCuenta" layoutX="73.0" layoutY="296.0" prefHeight="23.0" prefWidth="171.0" text="CREAR CUENTA" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="BRegistrarse" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Registrarse" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="BRegistrarse" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" onAction="#cambiarForm" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Registrarse" AnchorPane.bottomAnchor="35.0" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/coffe.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="BCuentaExistente" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" onAction="#cambiarForm" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Ya tengo una cuenta" visible="false" />
                </children>
             </AnchorPane>
          </children>
