@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.java.ventaCoffe.view.controller.ControllerLogin">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane layoutY="-2.0" prefHeight="408.0" prefWidth="300.0" styleClass="gradient" stylesheets="@css/login.css">
+            <AnchorPane fx:id="apRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css">
                <children>
-                  <Label layoutX="73.0" layoutY="296.0" prefHeight="23.0" prefWidth="171.0" text="CREAR CUENTA" textFill="WHITE">
+                  <Label fx:id="LRegistrarse" layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="REGISTRARSE" textFill="#246861">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="41.0" layoutY="333.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Registrarse" />
-                  <FontAwesomeIconView fill="#f8f8f8" glyphName="COFFEE" layoutX="87.0" layoutY="201.0" selectionFill="#f8f8f8" size="10em" />
-               </children></AnchorPane>
-            <AnchorPane layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css">
+                  <TextField fx:id="txtRegistrarseCorreo" layoutX="47.0" layoutY="110.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
+                  <Button fx:id="BCrearCuenta" layoutX="47.0" layoutY="310.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Registrarse" />
+                  <PasswordField fx:id="txtRegistrarClave" layoutX="47.0" layoutY="163.0" prefHeight="30.0" prefWidth="220.0" promptText="clave" styleClass="textfield" stylesheets="@css/login.css" />
+                  <ComboBox fx:id="comboPregunta" layoutX="47.0" layoutY="213.0" prefHeight="30.0" prefWidth="220.0" promptText="Pregunta" styleClass="textfield" stylesheets="@css/login.css" />
+                  <TextField fx:id="txtRespuesta" layoutX="47.0" layoutY="258.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apIngresar" layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css">
                <children>
-                  <Label layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="INGRESAR USUARIO" textFill="#246861">
+                  <Label fx:id="LIngresarUsuario" layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="INGRESAR USUARIO" textFill="#246861">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="47.0" layoutY="125.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
-                  <TextField layoutX="47.0" layoutY="179.0" prefHeight="30.0" prefWidth="220.0" promptText="clave" styleClass="textfield" stylesheets="@css/login.css" />
-                  <Button layoutX="47.0" layoutY="252.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Ingresar" />
-                  <Hyperlink layoutX="47.0" layoutY="209.0" text="Has perdido tu clave" />
+                  <TextField fx:id="txtCorreo" layoutX="47.0" layoutY="125.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
+                  <Button fx:id="BIngresar" layoutX="47.0" layoutY="252.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Ingresar" />
+                  <Hyperlink fx:id="hyClave" layoutX="47.0" layoutY="209.0" text="Has perdido tu clave" />
+                  <PasswordField fx:id="txtClave" layoutX="47.0" layoutY="179.0" prefHeight="30.0" prefWidth="220.0" promptText="clave" styleClass="textfield" stylesheets="@css/login.css" />
                </children></AnchorPane>
+            <AnchorPane fx:id="apEntrarRegistrarse" prefHeight="408.0" prefWidth="300.0" styleClass="gradient" stylesheets="@css/login.css">
+               <children>
+                  <Label fx:id="LCrearCuenta" layoutX="73.0" layoutY="296.0" prefHeight="23.0" prefWidth="171.0" text="CREAR CUENTA" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="BRegistrarse" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Registrarse" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/coffe.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
