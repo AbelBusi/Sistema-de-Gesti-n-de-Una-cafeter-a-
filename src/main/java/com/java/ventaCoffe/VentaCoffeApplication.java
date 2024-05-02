@@ -26,7 +26,7 @@ public class VentaCoffeApplication extends Application {
 		Scene scene = new Scene(fxml.load());
 		stage.setTitle("LOGIN");
 		stage.setMinHeight(450);
-		stage.setMinWidth(650);
+		stage.setMinWidth(600);
 		stage.setScene(scene);
 		stage.show();
 	}

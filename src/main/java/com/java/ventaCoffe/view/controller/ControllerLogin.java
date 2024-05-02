@@ -1,6 +1,8 @@
 package com.java.ventaCoffe.view.controller;
 
 
+import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.view.controller.subController.CLogin;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -15,6 +20,9 @@ import java.util.ResourceBundle;
 
 @Component
 public class ControllerLogin implements Initializable {
+
+    private final Logger loggger = LoggerFactory.getLogger(ControllerLogin.class);
+
 
     @FXML
     private Button BCrearCuenta;
@@ -67,7 +75,21 @@ public class ControllerLogin implements Initializable {
     @FXML
     private TextField txtRespuesta;
 
+    //Validaciones
+
+    @Autowired
+    private CLogin login;
+
+    @FXML
+    void IngresarUsuario(ActionEvent event) throws Exception {
+
+
+        login.Ingresar( txtCorreo,txtClave);
+
+    }
+
     public void cambiarForm(ActionEvent event){
+
 
         TranslateTransition slider =new TranslateTransition();
         if(event.getSource()==BRegistrarse){
