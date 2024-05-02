@@ -24,6 +24,9 @@ public class Usuario {
     @Column(length = 30)
     private String claveUsuario;
 
+    @Column(length = 100)
+    private String preguntaUsuario;
+
     @Column(length = 60)
     private String resptValidacionUsuario;
 

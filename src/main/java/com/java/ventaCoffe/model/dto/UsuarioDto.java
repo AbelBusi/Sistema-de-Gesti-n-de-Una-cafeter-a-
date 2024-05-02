@@ -15,6 +15,7 @@ public class UsuarioDto {
 
     private String correoUsuarioDto;
     private String claveUsuarioDto;
+    private String preguntaUsuarioDto;
     private String resptValidacionUsuarioDto;
 
 }

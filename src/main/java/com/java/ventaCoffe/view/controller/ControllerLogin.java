@@ -4,6 +4,8 @@ package com.java.ventaCoffe.view.controller;
 import com.java.ventaCoffe.model.entity.Usuario;
 import com.java.ventaCoffe.view.controller.subController.CLogin;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -80,6 +84,28 @@ public class ControllerLogin implements Initializable {
     @Autowired
     private CLogin login;
 
+    private String [] preguntas= {"¿Cual es tu color favorito?",
+    "¿Cual es tu serie favorita?","¿Mascota favorita?"};
+
+    public void recorrePreguntas(){
+        List<String> list= new ArrayList<>();
+        for (String pregunta:preguntas) {
+
+            list.add(pregunta);
+
+        }
+
+        ObservableList lisData = FXCollections.observableArrayList(list);
+        comboPregunta.setItems(lisData);
+    }
+
+    @FXML
+    void CrearCuenta(ActionEvent event) {
+
+        login.Registrarse(txtRegistrarseCorreo, txtRegistrarClave,comboPregunta,txtRespuesta);
+
+    }
+
     @FXML
     void IngresarUsuario(ActionEvent event) throws Exception {
 
@@ -102,6 +128,7 @@ public class ControllerLogin implements Initializable {
 
                 BRegistrarse.setVisible(false);
                 BCuentaExistente.setVisible(true);
+                //recorrePreguntas();
             });
 
             slider.play();
@@ -116,6 +143,7 @@ public class ControllerLogin implements Initializable {
 
                 BCuentaExistente.setVisible(false);
                 BRegistrarse.setVisible(true);
+                comboPregunta.cancelEdit();
 
             });
 
@@ -131,6 +159,6 @@ public class ControllerLogin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        recorrePreguntas();
     }
 }

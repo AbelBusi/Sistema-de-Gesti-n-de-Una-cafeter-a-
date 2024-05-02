@@ -14,7 +14,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
 
     Optional<Usuario> findByClaveUsuario(String claveUsuario);
 
-    Optional<Usuario> idUsuario (Integer id);
+    Optional<Usuario> findByPreguntaUsuario(String preguntaUsuario);
+
+    Optional<Usuario> findByResptValidacionUsuario(String respuestaUsuario);
 
 
 
