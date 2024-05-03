@@ -1,8 +1,8 @@
 package com.java.ventaCoffe.view.controller;
 
-
-import com.java.ventaCoffe.model.entity.Usuario;
-import com.java.ventaCoffe.view.controller.subController.CLogin;
+import com.java.ventaCoffe.view.controller.login.CrearCuentaCntroller;
+import com.java.ventaCoffe.view.controller.login.IngresaCuentaController;
+import com.java.ventaCoffe.view.controller.login.RecuperarClaveController;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ import java.util.ResourceBundle;
 public class ControllerLogin implements Initializable {
 
     private final Logger loggger = LoggerFactory.getLogger(ControllerLogin.class);
-
 
     @FXML
     private Button BCrearCuenta;
@@ -51,6 +49,9 @@ public class ControllerLogin implements Initializable {
 
     @FXML
     private AnchorPane apEntrarRegistrarse;
+
+    @FXML
+    private AnchorPane apRecuperarClave;
 
     @FXML
     private AnchorPane apIngresar;
@@ -79,10 +80,22 @@ public class ControllerLogin implements Initializable {
     @FXML
     private TextField txtRespuesta;
 
+    @FXML
+    private PasswordField txtNuevaClave;
+
+    @FXML
+    private PasswordField txtNuevaClaveVerifi;
+
     //Validaciones
 
     @Autowired
-    private CLogin login;
+    private IngresaCuentaController login;
+
+    @Autowired
+    private CrearCuentaCntroller crearCuenta;
+
+    @Autowired
+    private RecuperarClaveController recuperarClave;
 
     private String [] preguntas= {"¿Cual es tu color favorito?",
     "¿Cual es tu serie favorita?","¿Mascota favorita?"};
@@ -102,7 +115,7 @@ public class ControllerLogin implements Initializable {
     @FXML
     void CrearCuenta(ActionEvent event) {
 
-        login.Registrarse(txtRegistrarseCorreo, txtRegistrarClave,comboPregunta,txtRespuesta);
+        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave,comboPregunta,txtRespuesta);
 
     }
 
@@ -128,6 +141,7 @@ public class ControllerLogin implements Initializable {
 
                 BRegistrarse.setVisible(false);
                 BCuentaExistente.setVisible(true);
+
                 //recorrePreguntas();
             });
 
@@ -153,6 +167,14 @@ public class ControllerLogin implements Initializable {
         }
 
     }
+    @FXML
+    void ClavePerdida(ActionEvent event) {
+
+        apIngresar.setVisible(false);
+        apRecuperarClave.setVisible(true);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         recorrePreguntas();
