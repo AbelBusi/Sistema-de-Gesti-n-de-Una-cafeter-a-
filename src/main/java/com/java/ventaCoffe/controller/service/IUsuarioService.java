@@ -11,14 +11,9 @@ public interface IUsuarioService {
     //Traen el email y clave de la clase usuario, serviran para validar si existen los usuarios o no
     Optional<Usuario> findByCorreoUsuario(String correoUsuario);
 
-    Optional<Usuario> findByClaveUsuario(String claveUsuario);
-
-    //Validaciones con respecto a las preguntas
-    Optional<Usuario> findByPreguntaUsuario(String preguntaUsuario);
-
-    Optional<Usuario> findByResptValidacionUsuario(String respuestaUsuario);
-
     Usuario guardarUsuario (UsuarioDto usuarioDto);
+
+    Usuario actualizarClave(Usuario usuario);
 
     Optional<Usuario> idUsuario (Integer id);
 

@@ -36,6 +36,9 @@ public class ControllerLogin implements Initializable {
     private Button BIngresar;
 
     @FXML
+    private Button buttonRegresarIncio;
+
+    @FXML
     private Button BRegistrarse;
 
     @FXML
@@ -54,6 +57,9 @@ public class ControllerLogin implements Initializable {
     private AnchorPane apRecuperarClave;
 
     @FXML
+    private AnchorPane apCambiarClave;
+
+    @FXML
     private AnchorPane apIngresar;
 
     @FXML
@@ -61,6 +67,9 @@ public class ControllerLogin implements Initializable {
 
     @FXML
     private ComboBox<?> comboPregunta;
+
+    @FXML
+    private ComboBox<?> RComboPregunta;
 
     @FXML
     private Hyperlink hyClave;
@@ -72,6 +81,9 @@ public class ControllerLogin implements Initializable {
     private TextField txtCorreo;
 
     @FXML
+    private TextField RPCorreoIngresar;
+
+    @FXML
     private PasswordField txtRegistrarClave;
 
     @FXML
@@ -79,6 +91,9 @@ public class ControllerLogin implements Initializable {
 
     @FXML
     private TextField txtRespuesta;
+
+    @FXML
+    private TextField RCPrespuesta;
 
     @FXML
     private PasswordField txtNuevaClave;
@@ -110,6 +125,7 @@ public class ControllerLogin implements Initializable {
 
         ObservableList lisData = FXCollections.observableArrayList(list);
         comboPregunta.setItems(lisData);
+        RComboPregunta.setItems(lisData);
     }
 
     @FXML
@@ -157,11 +173,15 @@ public class ControllerLogin implements Initializable {
 
                 BCuentaExistente.setVisible(false);
                 BRegistrarse.setVisible(true);
+                apRecuperarClave.setVisible(false);
+                apCambiarClave.setVisible(false);
                 comboPregunta.cancelEdit();
+                recuperarClave.limpiarPreguntas(RPCorreoIngresar,RCPrespuesta);
 
             });
 
             slider.play();
+
 
 
         }
@@ -170,10 +190,40 @@ public class ControllerLogin implements Initializable {
     @FXML
     void ClavePerdida(ActionEvent event) {
 
-        apIngresar.setVisible(false);
         apRecuperarClave.setVisible(true);
 
     }
+
+    @FXML
+    void RegresarInicio(ActionEvent event) {
+
+        apRecuperarClave.setVisible(false);
+        recuperarClave.limpiarPreguntas(RPCorreoIngresar,RCPrespuesta);
+
+    }
+
+    @FXML
+    void ContinuarValidacion(ActionEvent event) {
+
+        recuperarClave.VerificarCorreoExistente(RPCorreoIngresar,RComboPregunta,RCPrespuesta,apCambiarClave);
+
+
+    }
+
+    @FXML
+    void RegresarRecuperarClave(ActionEvent event) {
+
+        apCambiarClave.setVisible(false);
+
+    }
+
+    @FXML
+    void CambiarClaveNueva(ActionEvent event) {
+
+        recuperarClave.cambiarClaveUsuario(RPCorreoIngresar,RCPrespuesta,txtNuevaClave,txtNuevaClaveVerifi,apCambiarClave,apRecuperarClave);
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

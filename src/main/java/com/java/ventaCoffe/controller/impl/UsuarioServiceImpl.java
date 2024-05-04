@@ -20,34 +20,20 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public Optional<Usuario> idUsuario(Integer id) {
-        return Optional.empty();
+
+
+        return usuarioRepository.findById(id);
     }
 
 
     //Servicio del correo si es que existe
-    //@Transactional
+    @Transactional
     @Override
     public Optional<Usuario> findByCorreoUsuario(String correoUsuario) {
         return usuarioRepository.findByCorreoUsuario(correoUsuario);
     }
 
-    //Servicio del correo si es que existe
-    //@Transactional
-    @Override
-    public Optional<Usuario> findByClaveUsuario(String claveUsuario) {
-        return usuarioRepository.findByClaveUsuario(claveUsuario);
-    }
-
-    @Override
-    public Optional<Usuario> findByPreguntaUsuario(String preguntaUsuario) {
-        return usuarioRepository.findByPreguntaUsuario(preguntaUsuario);
-    }
-
-    @Override
-    public Optional<Usuario> findByResptValidacionUsuario(String respuestaUsuario) {
-        return usuarioRepository.findByResptValidacionUsuario(respuestaUsuario);
-    }
-
+    @Transactional
     @Override
     public Usuario guardarUsuario(UsuarioDto usuarioDto) {
 
@@ -57,6 +43,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
                 .preguntaUsuario(usuarioDto.getPreguntaUsuarioDto())
                 .resptValidacionUsuario(usuarioDto.getResptValidacionUsuarioDto())
                 .build();
+
+        return usuarioRepository.save(usuario);
+    }
+
+    @Transactional
+    @Override
+    public Usuario actualizarClave(Usuario usuario) {
 
         return usuarioRepository.save(usuario);
     }

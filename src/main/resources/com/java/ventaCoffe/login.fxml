@@ -30,7 +30,7 @@
                   <TextField fx:id="txtRespuesta" layoutX="47.0" layoutY="258.0" prefHeight="30.0" prefWidth="220.0" promptText="correo" styleClass="textfield" stylesheets="@css/login.css" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apIngresar" focusTraversable="true" layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css" AnchorPane.leftAnchor="300.0">
+            <AnchorPane fx:id="apIngresar" layoutX="300.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css" AnchorPane.leftAnchor="300.0">
                <children>
                   <Label fx:id="LIngresarUsuario" layoutX="58.0" layoutY="62.0" prefHeight="23.0" prefWidth="212.0" styleClass="bead-label" stylesheets="@css/login.css" text="INGRESAR USUARIO" textFill="#246861">
                      <font>
@@ -48,10 +48,10 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                         </Label>
-                        <Button fx:id="ButtonContinuarRecuperar" layoutX="40.0" layoutY="242.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Continuar" />
+                        <Button fx:id="ButtonContinuarRecuperar" layoutX="40.0" layoutY="242.0" mnemonicParsing="false" onAction="#ContinuarValidacion" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Continuar" />
                         <ComboBox fx:id="RComboPregunta" layoutX="40.0" layoutY="148.0" prefHeight="30.0" prefWidth="220.0" promptText="Pregunta" styleClass="textfield" stylesheets="@css/login.css" />
                         <TextField fx:id="RCPrespuesta" layoutX="40.0" layoutY="195.0" prefHeight="30.0" prefWidth="220.0" promptText="respuesta" styleClass="textfield" stylesheets="@css/login.css" />
-                        <Button fx:id="buttonRegresarIncio" layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="40.0" prefWidth="117.0" styleClass="login-btn" stylesheets="@css/login.css" text="Regresar" />
+                        <Button fx:id="buttonRegresarIncio" layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#RegresarInicio" prefHeight="40.0" prefWidth="117.0" styleClass="login-btn" stylesheets="@css/login.css" text="Regresar" />
                         <TextField fx:id="RPCorreoIngresar" layoutX="41.0" layoutY="105.0" prefHeight="30.0" prefWidth="220.0" promptText="Correo" styleClass="textfield" stylesheets="@css/login.css" />
                         <AnchorPane fx:id="apCambiarClave" layoutX="-8.0" layoutY="-14.0" prefHeight="408.0" prefWidth="300.0" styleClass="white-form" stylesheets="@css/login.css" visible="false">
                            <children>
@@ -60,8 +60,8 @@
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="BCambiarClave" layoutX="40.0" layoutY="242.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Cambiar clave" />
-                              <Button fx:id="buttonRegresarRP" layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#CrearCuenta" prefHeight="40.0" prefWidth="117.0" styleClass="login-btn" stylesheets="@css/login.css" text="Regresar" />
+                              <Button fx:id="BCambiarClave" layoutX="40.0" layoutY="242.0" mnemonicParsing="false" onAction="#CambiarClaveNueva" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@css/login.css" text="Cambiar clave" />
+                              <Button fx:id="buttonRegresarRP" layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#RegresarRecuperarClave" prefHeight="40.0" prefWidth="117.0" styleClass="login-btn" stylesheets="@css/login.css" text="Regresar" />
                               <PasswordField fx:id="txtNuevaClave" layoutX="40.0" layoutY="120.0" prefHeight="30.0" prefWidth="220.0" promptText="Clave nueva" styleClass="textfield" stylesheets="@css/login.css" />
                               <PasswordField fx:id="txtNuevaClaveVerifi" layoutX="40.0" layoutY="174.0" prefHeight="30.0" prefWidth="220.0" promptText="Repite la clave" styleClass="textfield" stylesheets="@css/login.css" />
                            </children>

@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,8 @@ public class CrearCuentaCntroller {
 
     }
 
-    public void Registrarse(TextField correoUsuario, PasswordField claveUsuaio, ComboBox pregunta, TextField respuestaUsuario) {
+    public void Registrarse(TextField correoUsuario, PasswordField claveUsuaio,
+                            ComboBox pregunta, TextField respuestaUsuario) {
 
         UsuarioDto usuarioDto = new UsuarioDto();
         Usuario usuario = new Usuario();
