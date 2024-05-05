@@ -1,0 +1,8 @@
+.header{
+    -fx-background-color: linear-gradient(to bottom right, #098c53, #246861);
+
+}
+
+.nav-form{
+    -fx-background-color: linear-gradient(to bottom right, #0f6789, #286155);
+}

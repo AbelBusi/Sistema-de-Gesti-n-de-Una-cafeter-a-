@@ -78,7 +78,7 @@ public class RecuperarClaveController {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Error de verificacion");
-                alerta.setContentText("No existe un usuario con el correo solicitado");
+                alerta.setContentText("No existe un usuario con el correo ingresado");
                 alerta.showAndWait();
 
             }
