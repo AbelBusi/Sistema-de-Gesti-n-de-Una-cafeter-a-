@@ -78,9 +78,9 @@
                      </font>
                   </Label>
                   <Button fx:id="BRegistrarse" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" onAction="#cambiarForm" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Registrarse" AnchorPane.bottomAnchor="35.0" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="179.0" fitWidth="256.0" layoutX="62.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/coffe.png" />
+                        <Image url="@images/icons8-bebida-caliente-64_out.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="BCuentaExistente" layoutX="41.0" layoutY="333.0" mnemonicParsing="false" onAction="#cambiarForm" prefHeight="40.0" prefWidth="220.0" styleClass="create-btn" stylesheets="@css/login.css" text="Ya tengo una cuenta" visible="false" />
