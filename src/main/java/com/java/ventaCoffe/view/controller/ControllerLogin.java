@@ -8,14 +8,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,12 +117,12 @@ public class ControllerLogin implements Initializable {
     @Autowired
     private RecuperarClaveController recuperarClave;
 
-    private String [] preguntas= {"¿Cual es tu color favorito?",
-    "¿Cual es tu serie favorita?","¿Mascota favorita?"};
+    private String[] preguntas = {"¿Cual es tu color favorito?",
+            "¿Cual es tu serie favorita?", "¿Mascota favorita?"};
 
-    public void recorrePreguntas(){
-        List<String> list= new ArrayList<>();
-        for (String pregunta:preguntas) {
+    public void recorrePreguntas() {
+        List<String> list = new ArrayList<>();
+        for (String pregunta : preguntas) {
 
             list.add(pregunta);
 
@@ -131,7 +136,7 @@ public class ControllerLogin implements Initializable {
     @FXML
     void CrearCuenta(ActionEvent event) {
 
-        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave,comboPregunta,txtRespuesta);
+        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta, txtRespuesta);
 
     }
 
@@ -139,20 +144,32 @@ public class ControllerLogin implements Initializable {
     void IngresarUsuario(ActionEvent event) throws Exception {
 
 
-        login.Ingresar( txtCorreo,txtClave);
+        if (login.Ingresar(txtCorreo, txtClave)) {
+
+            //TxtCorreo es seleccionado para poder verificar alg elemento de la escena actual, para asi acceder
+            Stage ventanaLogin = (Stage) txtCorreo.getScene().getWindow();
+            Stage ventanaMenu = new Stage();
+            FXMLLoader ruta = new FXMLLoader();
+            ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
+            Parent root = ruta.load();
+            Scene scene = new Scene(root);
+            ventanaMenu.setScene(scene);
+            ventanaMenu.show();
+            ventanaLogin.close();
+        }
 
     }
 
-    public void cambiarForm(ActionEvent event){
+    public void cambiarForm(ActionEvent event) {
 
 
-        TranslateTransition slider =new TranslateTransition();
-        if(event.getSource()==BRegistrarse){
+        TranslateTransition slider = new TranslateTransition();
+        if (event.getSource() == BRegistrarse) {
 
             slider.setNode(apEntrarRegistrarse);
             slider.setToX(300);
             slider.setDuration(Duration.seconds(.5));
-            slider.setOnFinished((ActionEvent e) ->{
+            slider.setOnFinished((ActionEvent e) -> {
 
 
                 BRegistrarse.setVisible(false);
@@ -164,29 +181,29 @@ public class ControllerLogin implements Initializable {
             slider.play();
 
 
-        }else if(event.getSource()==BCuentaExistente){
+        } else if (event.getSource() == BCuentaExistente) {
 
             slider.setNode(apEntrarRegistrarse);
             slider.setToX(0);
             slider.setDuration(Duration.seconds(.5));
-            slider.setOnFinished((ActionEvent e) ->{
+            slider.setOnFinished((ActionEvent e) -> {
 
                 BCuentaExistente.setVisible(false);
                 BRegistrarse.setVisible(true);
                 apRecuperarClave.setVisible(false);
                 apCambiarClave.setVisible(false);
                 comboPregunta.cancelEdit();
-                recuperarClave.limpiarPreguntas(RPCorreoIngresar,RCPrespuesta);
+                recuperarClave.limpiarPreguntas(RPCorreoIngresar, RCPrespuesta);
 
             });
 
             slider.play();
 
 
-
         }
 
     }
+
     @FXML
     void ClavePerdida(ActionEvent event) {
 
@@ -198,14 +215,14 @@ public class ControllerLogin implements Initializable {
     void RegresarInicio(ActionEvent event) {
 
         apRecuperarClave.setVisible(false);
-        recuperarClave.limpiarPreguntas(RPCorreoIngresar,RCPrespuesta);
+        recuperarClave.limpiarPreguntas(RPCorreoIngresar, RCPrespuesta);
 
     }
 
     @FXML
     void ContinuarValidacion(ActionEvent event) {
 
-        recuperarClave.VerificarCorreoExistente(RPCorreoIngresar,RComboPregunta,RCPrespuesta,apCambiarClave);
+        recuperarClave.VerificarCorreoExistente(RPCorreoIngresar, RComboPregunta, RCPrespuesta, apCambiarClave);
 
 
     }
@@ -220,7 +237,8 @@ public class ControllerLogin implements Initializable {
     @FXML
     void CambiarClaveNueva(ActionEvent event) {
 
-        recuperarClave.cambiarClaveUsuario(RPCorreoIngresar,RCPrespuesta,txtNuevaClave,txtNuevaClaveVerifi,apCambiarClave,apRecuperarClave);
+        recuperarClave.cambiarClaveUsuario(RPCorreoIngresar, RCPrespuesta, txtNuevaClave,
+    txtNuevaClaveVerifi, apCambiarClave, apRecuperarClave);
 
     }
 

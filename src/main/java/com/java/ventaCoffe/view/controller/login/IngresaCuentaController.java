@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,6 @@ public class IngresaCuentaController {
         correo.setText("");
         clave.setText("");
         respuesta.setText("");
-
-
     }
 
     public void limpiarIngreso(TextField correo, PasswordField clave) {
@@ -33,15 +32,12 @@ public class IngresaCuentaController {
         clave.setText("");
     }
 
-    public void Ingresar(TextField correoUsuario, PasswordField claveUsuario) {
+    public Boolean Ingresar(TextField correoUsuario, PasswordField claveUsuario) {
 
         String correo = correoUsuario.getText();
         String clave = claveUsuario.getText();
         loggger.info("Clave del usuario {}", clave);
         Optional<Usuario> userCorreo = usuarioService.findByCorreoUsuario(correo);
-        //Optional<Usuario> userClave=usuarioService.findByClaveUsuario(clave);
-
-        //loggger.info("Usuario de db: {}",user.get());
 
         if (!correo.isEmpty() && !clave.isEmpty()) {
 
@@ -53,9 +49,12 @@ public class IngresaCuentaController {
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setHeaderText(null);
                     alerta.setTitle("Prueba ");
-                    alerta.setContentText(" correo: " + correo + " Clave: " + clave);
+                    alerta.setContentText("El usuario ingreso correctamente");
                     limpiarIngreso(correoUsuario, claveUsuario);
                     alerta.showAndWait();
+
+                    return true;
+
                 } else {
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
                     alerta.setHeaderText(null);
@@ -63,6 +62,8 @@ public class IngresaCuentaController {
                     alerta.setContentText("La clave del usuario no es valida");
                     limpiarIngreso(correoUsuario, claveUsuario);
                     alerta.showAndWait();
+
+                    return false;
 
                 }
 
@@ -76,17 +77,19 @@ public class IngresaCuentaController {
                 limpiarIngreso(correoUsuario, claveUsuario);
                 alerta.showAndWait();
 
+                return false;
+
             }
 
         } else {
-
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setTitle("Autenticacion del usuario");
             alerta.setContentText("Error: Correo o clave vacios");
             limpiarIngreso(correoUsuario, claveUsuario);
             alerta.showAndWait();
+            return false;
         }
-    }
 
+    }
 }
