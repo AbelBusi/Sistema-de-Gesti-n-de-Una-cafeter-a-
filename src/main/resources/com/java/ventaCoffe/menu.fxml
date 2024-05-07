@@ -228,7 +228,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="311.0" prefWidth="807.0" style="-fx-background-color: #000;" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="14.0">
+                              <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="311.0" prefWidth="807.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
@@ -251,50 +251,50 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="23.0" layoutY="369.0" prefHeight="243.0" prefWidth="807.0" style="-fx-background-color: #2E4053;" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0">
+                              <AnchorPane layoutX="23.0" layoutY="369.0" prefHeight="243.0" prefWidth="807.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="109.0" text="ID PRODUCTO:" textFill="WHITE">
+                                    <Label layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="109.0" text="ID PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField layoutX="144.0" layoutY="21.0" prefHeight="25.0" prefWidth="119.0" promptText="ID" />
-                                    <Label layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRODUCTO:" textFill="WHITE">
+                                    <Label layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="168.0" promptText="nombre" />
-                                    <Label layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" text="TIPO:" textFill="WHITE">
+                                    <Label layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" text="TIPO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
                                     <ComboBox layoutX="144.0" layoutY="109.0" prefHeight="25.0" prefWidth="168.0" />
-                                    <Label layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" text="STOCK:" textFill="WHITE">
+                                    <Label layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" text="STOCK:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField layoutX="447.0" layoutY="21.0" prefHeight="25.0" prefWidth="104.0" promptText="0" />
-                                    <Label layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRECIO $:" textFill="WHITE">
+                                    <Label layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRECIO $:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField layoutX="449.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" />
                                     <AnchorPane layoutX="636.0" layoutY="14.0" prefHeight="135.0" prefWidth="137.0" style="-fx-background-color: #000;" AnchorPane.rightAnchor="34.0" />
-                                    <Button layoutX="635.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="IMPRIMIR" AnchorPane.rightAnchor="32.0" />
-                                    <Button layoutX="78.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="AGREGAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="222.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="ACTUALIZAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="359.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="LIMPIAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="499.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Label layoutX="362.0" layoutY="112.0" prefHeight="20.0" prefWidth="83.0" text="ESTADO:" textFill="WHITE">
+                                    <Button layoutX="635.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" styleClass="btn" stylesheets="@css/menu.css" text="IMPRIMIR" AnchorPane.rightAnchor="32.0" />
+                                    <Button layoutX="78.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="AGREGAR" AnchorPane.bottomAnchor="31.0" />
+                                    <Button layoutX="222.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ACTUALIZAR" AnchorPane.bottomAnchor="31.0" />
+                                    <Button layoutX="359.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="31.0" />
+                                    <Button layoutX="499.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" />
+                                    <Label layoutX="362.0" layoutY="112.0" prefHeight="20.0" prefWidth="83.0" text="ESTADO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
