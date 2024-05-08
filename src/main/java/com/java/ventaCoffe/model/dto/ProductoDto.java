@@ -1,6 +1,6 @@
-package com.java.ventaCoffe.model.entity;
+package com.java.ventaCoffe.model.dto;
 
-import jakarta.persistence.*;
+import com.java.ventaCoffe.model.entity.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,35 +9,23 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Entity
-public class Producto {
+public class ProductoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProducto;
-
-    @Column(length = 20)
     private String nombreProducto;
 
-    @Column(length = 30)
     private String tipoProducto;
 
-    @Column(length = 1000)
     private int stockProducto;
 
-    @Column
     private double precioProducto;
 
-    @Column(length = 20)
     private String estadoProducto;
 
-    @Column
     private Date fechaProducto;
 
-    @ManyToOne
     private Usuario usuario;
 
 }

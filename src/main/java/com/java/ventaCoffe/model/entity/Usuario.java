@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +19,6 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
-    @Basic
     @Column(length = 50)
     private String correoUsuario;
 
@@ -29,5 +30,16 @@ public class Usuario {
 
     @Column(length = 60)
     private String resptValidacionUsuario;
+
+    public Usuario(Integer idUsuario, String correoUsuario, String claveUsuario, String preguntaUsuario, String resptValidacionUsuario) {
+        this.idUsuario = idUsuario;
+        this.correoUsuario = correoUsuario;
+        this.claveUsuario = claveUsuario;
+        this.preguntaUsuario = preguntaUsuario;
+        this.resptValidacionUsuario = resptValidacionUsuario;
+    }
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;
 
 }

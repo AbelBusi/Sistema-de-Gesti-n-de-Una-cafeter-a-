@@ -74,11 +74,16 @@
                                     <Image url="@images/icons8-flecha-100.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="128.0" layoutY="141.0" prefHeight="34.0" prefWidth="115.0" styleClass="logout" stylesheets="@css/menu.css" text="Cesar Abel" textFill="#070707">
+                              <Label fx:id="labelUsuarioLogeado" layoutX="128.0" layoutY="141.0" prefHeight="34.0" prefWidth="115.0" styleClass="logout" stylesheets="@css/menu.css" text="Cesar Abel" textFill="#070707">
                                  <font>
                                     <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="22.0" layoutY="459.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="CLIENTES">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="15.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
@@ -235,7 +240,7 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView layoutX="20.0" layoutY="20.0" prefHeight="276.0" prefWidth="768.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="20.0">
+                                    <TableView fx:id="TableProductoInv" layoutX="20.0" layoutY="20.0" prefHeight="276.0" prefWidth="768.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="20.0">
                                       <columns>
                                         <TableColumn prefWidth="91.0" text="ID PRODUCTO" />
                                           <TableColumn prefWidth="91.0" text="PRODUCTO" />
@@ -258,45 +263,45 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="122.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ID PRODUCTO:">
+                                    <Label fx:id="LidProducto" layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="122.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ID PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="154.0" layoutY="21.0" prefHeight="25.0" prefWidth="119.0" promptText="ID" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtIdProducto" layoutX="154.0" layoutY="21.0" prefHeight="25.0" prefWidth="119.0" promptText="ID" styleClass="textfield" stylesheets="@css/menu.css">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
-                                    <Label layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="107.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRODUCTO:">
+                                    <Label fx:id="LnombreProducto" layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="107.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="154.0" layoutY="69.0" prefHeight="25.0" prefWidth="168.0" promptText="nombre" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtNombreProducto" layoutX="154.0" layoutY="69.0" prefHeight="25.0" prefWidth="168.0" promptText="nombre" styleClass="textfield" stylesheets="@css/menu.css">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
-                                    <Label layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="TIPO:">
+                                    <Label fx:id="LtipoProducto" layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="TIPO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="154.0" layoutY="113.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@css/menu.css" />
-                                    <Label layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:">
+                                    <ComboBox fx:id="comboTipoProducto" layoutX="154.0" layoutY="113.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@css/menu.css" />
+                                    <Label fx:id="LstockProducto" layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="466.0" layoutY="20.0" prefHeight="25.0" prefWidth="104.0" promptText="0" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtStockProducto" layoutX="466.0" layoutY="20.0" prefHeight="25.0" prefWidth="104.0" promptText="0" styleClass="textfield" stylesheets="@css/menu.css">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
-                                    <Label layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRECIO $:">
+                                    <Label fx:id="LprecioProducto" layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRECIO $:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="468.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtPrecioProducto" layoutX="468.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
@@ -305,7 +310,7 @@
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
-                                    <Button layoutX="80.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="AGREGAR" AnchorPane.bottomAnchor="21.0">
+                                    <Button fx:id="BagregarProducto" layoutX="80.0" layoutY="172.0" mnemonicParsing="false" onAction="#guardarProducto" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="AGREGAR" AnchorPane.bottomAnchor="21.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
@@ -313,7 +318,7 @@
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
-                                    <Button layoutX="362.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="21.0">
+                                    <Button fx:id="BlimpiarProducto" layoutX="362.0" layoutY="172.0" mnemonicParsing="false" onAction="#limpiarCasillas" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="21.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
