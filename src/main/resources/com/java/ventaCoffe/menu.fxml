@@ -22,7 +22,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.java.ventaCoffe.view.controller.ControllerMenu">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="menuForm" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane layoutX="281.0" layoutY="186.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
@@ -32,41 +32,41 @@
                            <children>
                               <AnchorPane prefHeight="118.0" prefWidth="255.0" styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="14.0" layoutY="25.0" prefHeight="54.0" prefWidth="226.0" text="SISTEMA DE LA CAFETERIA" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                    <Label alignment="CENTER" layoutX="14.0" layoutY="25.0" prefHeight="54.0" prefWidth="226.0" styleClass="labelText" stylesheets="@css/menu.css" text="SISTEMA DE LA CAFETERIA" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
-                                          <Font name="Times New Roman" size="20.0" />
+                                          <Font name="Times New Roman" size="21.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
                               <Label layoutX="22.0" layoutY="141.0" prefHeight="34.0" prefWidth="103.0" text="BIENVENIDO" textFill="WHITE">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Label>
                               <Button layoutX="22.0" layoutY="226.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="INICIO">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
                               <Button layoutX="22.0" layoutY="286.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="INVENTARIO">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
                               <Button layoutX="22.0" layoutY="347.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="MENU">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
                               <Button layoutX="26.0" layoutY="407.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="CLIENTES">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
                               <Button layoutX="79.0" layoutY="549.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="Salir">
                                  <font>
-                                    <Font name="Times New Roman" size="12.0" />
+                                    <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
                               </Button>
                               <ImageView fitHeight="35.0" fitWidth="52.0" layoutX="26.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" styleClass="logout">
@@ -76,7 +76,7 @@
                               </ImageView>
                               <Label layoutX="128.0" layoutY="141.0" prefHeight="34.0" prefWidth="115.0" styleClass="logout" stylesheets="@css/menu.css" text="Cesar Abel" textFill="#070707">
                                  <font>
-                                    <Font name="Times New Roman" size="15.0" />
+                                    <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Label>
                            </children>
@@ -258,48 +258,75 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="109.0" text="ID PRODUCTO:">
+                                    <Label layoutX="32.0" layoutY="23.0" prefHeight="20.0" prefWidth="122.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ID PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="144.0" layoutY="21.0" prefHeight="25.0" prefWidth="119.0" promptText="ID" />
-                                    <Label layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRODUCTO:">
+                                    <TextField layoutX="154.0" layoutY="21.0" prefHeight="25.0" prefWidth="119.0" promptText="ID" styleClass="textfield" stylesheets="@css/menu.css">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></TextField>
+                                    <Label layoutX="32.0" layoutY="71.0" prefHeight="20.0" prefWidth="107.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRODUCTO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="168.0" promptText="nombre" />
-                                    <Label layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" text="TIPO:">
+                                    <TextField layoutX="154.0" layoutY="69.0" prefHeight="25.0" prefWidth="168.0" promptText="nombre" styleClass="textfield" stylesheets="@css/menu.css">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></TextField>
+                                    <Label layoutX="32.0" layoutY="116.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="TIPO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="144.0" layoutY="109.0" prefHeight="25.0" prefWidth="168.0" />
-                                    <Label layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" text="STOCK:">
+                                    <ComboBox layoutX="154.0" layoutY="113.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@css/menu.css" />
+                                    <Label layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="447.0" layoutY="21.0" prefHeight="25.0" prefWidth="104.0" promptText="0" />
-                                    <Label layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" text="PRECIO $:">
+                                    <TextField layoutX="466.0" layoutY="20.0" prefHeight="25.0" prefWidth="104.0" promptText="0" styleClass="textfield" stylesheets="@css/menu.css">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></TextField>
+                                    <Label layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRECIO $:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="449.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" />
+                                    <TextField layoutX="468.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></TextField>
                                     <AnchorPane layoutX="636.0" layoutY="14.0" prefHeight="135.0" prefWidth="137.0" style="-fx-background-color: #000;" AnchorPane.rightAnchor="34.0" />
-                                    <Button layoutX="635.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" styleClass="btn" stylesheets="@css/menu.css" text="IMPRIMIR" AnchorPane.rightAnchor="32.0" />
-                                    <Button layoutX="78.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="AGREGAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="222.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ACTUALIZAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="359.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Button layoutX="499.0" layoutY="162.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" />
-                                    <Label layoutX="362.0" layoutY="112.0" prefHeight="20.0" prefWidth="83.0" text="ESTADO:">
+                                    <Button layoutX="635.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" styleClass="btn" stylesheets="@css/menu.css" text="IMPRIMIR" AnchorPane.rightAnchor="32.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></Button>
+                                    <Button layoutX="80.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="AGREGAR" AnchorPane.bottomAnchor="21.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></Button>
+                                    <Button layoutX="222.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ACTUALIZAR" AnchorPane.bottomAnchor="21.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></Button>
+                                    <Button layoutX="362.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="21.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></Button>
+                                    <Button layoutX="498.0" layoutY="172.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="21.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="12.0" />
+                                       </font></Button>
+                                    <Label layoutX="362.0" layoutY="112.0" prefHeight="20.0" prefWidth="83.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ESTADO:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="449.0" layoutY="108.0" prefHeight="25.0" prefWidth="110.0" />
+                                    <ComboBox layoutX="468.0" layoutY="108.0" prefHeight="25.0" prefWidth="110.0" styleClass="textfield" stylesheets="@css/menu.css" />
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="8.0" layoutY="337.0" prefHeight="0.0" prefWidth="832.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />

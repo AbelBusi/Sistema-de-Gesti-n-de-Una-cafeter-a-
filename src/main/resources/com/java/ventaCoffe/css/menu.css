@@ -78,3 +78,23 @@
 .btn:hover{
     -fx-background-color: linear-gradient(to bottom right, #0fb565, #399a8f);
 }
+
+.textfield{
+	-fx-background-color: transparent;
+	-fx-border-color: linear-gradient(to bottom right, #0f6789,#286155);
+	-fx-border-wigth: .5px;
+}
+
+.textfield:focused{
+	-fx-border-width: 1px;
+}
+
+.bead-label{
+	-fx-border-color: #286155;
+	-fx-border-width: 0 0 0 10px;
+	-fx-padding: 0 0 0 5px;
+}
+
+.labelText {
+    -fx-font-weight: bold; /* Grosor del texto dentro de los bead-label */
+}
