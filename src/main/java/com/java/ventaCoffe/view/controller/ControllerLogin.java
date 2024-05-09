@@ -143,8 +143,9 @@ public class ControllerLogin implements Initializable {
     @FXML
     void IngresarUsuario(ActionEvent event) throws Exception {
 
+        String correoUsuario=login.Ingresar(txtCorreo, txtClave);
 
-        if (login.Ingresar(txtCorreo, txtClave)) {
+        if (correoUsuario!=null) {
 
             //TxtCorreo es seleccionado para poder verificar alg elemento de la escena actual, para asi acceder
             Stage ventanaLogin = (Stage) txtCorreo.getScene().getWindow();
@@ -152,6 +153,8 @@ public class ControllerLogin implements Initializable {
             FXMLLoader ruta = new FXMLLoader();
             ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
             Parent root = ruta.load();
+            ControllerMenu controllerMenu=ruta.getController();
+            controllerMenu.setNombreUsuario(correoUsuario);
             Scene scene = new Scene(root);
             ventanaMenu.setScene(scene);
             ventanaMenu.show();

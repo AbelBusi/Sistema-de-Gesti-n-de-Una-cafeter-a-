@@ -1,5 +1,6 @@
 package com.java.ventaCoffe;
 
+import com.java.ventaCoffe.view.controller.ControllerLogin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

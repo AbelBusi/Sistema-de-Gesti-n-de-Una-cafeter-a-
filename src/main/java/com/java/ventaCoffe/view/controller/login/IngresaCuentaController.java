@@ -32,7 +32,7 @@ public class IngresaCuentaController {
         clave.setText("");
     }
 
-    public Boolean Ingresar(TextField correoUsuario, PasswordField claveUsuario) {
+    public String Ingresar(TextField correoUsuario, PasswordField claveUsuario) {
 
         String correo = correoUsuario.getText();
         String clave = claveUsuario.getText();
@@ -53,7 +53,7 @@ public class IngresaCuentaController {
                     limpiarIngreso(correoUsuario, claveUsuario);
                     alerta.showAndWait();
 
-                    return true;
+                    return correo;
 
                 } else {
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -63,7 +63,7 @@ public class IngresaCuentaController {
                     limpiarIngreso(correoUsuario, claveUsuario);
                     alerta.showAndWait();
 
-                    return false;
+                    return null;
 
                 }
 
@@ -77,7 +77,7 @@ public class IngresaCuentaController {
                 limpiarIngreso(correoUsuario, claveUsuario);
                 alerta.showAndWait();
 
-                return false;
+                return null;
 
             }
 
@@ -88,7 +88,7 @@ public class IngresaCuentaController {
             alerta.setContentText("Error: Correo o clave vacios");
             limpiarIngreso(correoUsuario, claveUsuario);
             alerta.showAndWait();
-            return false;
+            return null;
         }
 
     }
