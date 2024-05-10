@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class ProductoServiceImpl implements IProductoService {
 
@@ -28,5 +30,10 @@ public class ProductoServiceImpl implements IProductoService {
                 .usuario(productoDto.getUsuario())
                 .build();
         return productoRepository.save(producto);
+    }
+
+    @Override
+    public Optional<Producto> findByNombreProducto(String nombreProducto) {
+        return productoRepository.findByNombreProducto(nombreProducto);
     }
 }

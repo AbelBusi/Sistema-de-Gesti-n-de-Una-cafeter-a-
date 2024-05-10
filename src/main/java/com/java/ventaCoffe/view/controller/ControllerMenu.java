@@ -1,7 +1,10 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
+import com.java.ventaCoffe.view.controller.inventario.AgregarProductoContoller;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -51,6 +56,9 @@ public class ControllerMenu implements Initializable {
     private ComboBox<?> comboTipoProducto;
 
     @FXML
+    private ComboBox<?> comboEstadoProducto;
+
+    @FXML
     private Label labelUsuarioLogeado;
 
     @FXML
@@ -68,6 +76,33 @@ public class ControllerMenu implements Initializable {
     @FXML
     private TextField txtStockProducto;
 
+    private String []tipoProductoA ={"Bebida","Enlatado","postre","bocadito"};
+
+    private String []estadoProductoA={"Disponible", "No Disponible"};
+
+    @Autowired
+    private AgregarProductoContoller agregarProductoContoller;
+
+    public void recorrerTipoProducto(){
+
+        List<String> list= new ArrayList<>();
+
+        for (String tipo: tipoProductoA){
+            list.add(tipo);
+        }
+        ObservableList lisData = FXCollections.observableArrayList(list);
+        comboTipoProducto.setItems(lisData);
+    }
+
+    public void recorrerEstadoProducto(){
+        List<String> list= new ArrayList<>();
+
+        for (String tipo: estadoProductoA){
+            list.add(tipo);
+        }
+        ObservableList lisData = FXCollections.observableArrayList(list);
+        comboEstadoProducto.setItems(lisData);
+    }
     private String nombreUsuario;
 
     public String getNombreUsuario() {
@@ -83,6 +118,12 @@ public class ControllerMenu implements Initializable {
     @FXML
     void guardarProducto(ActionEvent event) {
 
+        agregarProductoContoller.agregarProducto(txtNombreProducto,
+                txtStockProducto,
+                txtPrecioProducto,
+                comboTipoProducto,
+                comboEstadoProducto,txtIdProducto);
+
     }
 
     @FXML
@@ -97,6 +138,9 @@ public class ControllerMenu implements Initializable {
             labelUsuarioLogeado.setText(getNombreUsuario());
 
         });
+
+        recorrerEstadoProducto();
+        recorrerTipoProducto();
 
     }
 }

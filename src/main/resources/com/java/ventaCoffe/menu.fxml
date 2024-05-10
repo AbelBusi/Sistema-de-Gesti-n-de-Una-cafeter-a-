@@ -286,7 +286,7 @@
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="comboTipoProducto" layoutX="154.0" layoutY="113.0" prefHeight="25.0" prefWidth="168.0" styleClass="textfield" stylesheets="@css/menu.css" />
+                                    <ComboBox fx:id="comboTipoProducto" layoutX="154.0" layoutY="113.0" prefHeight="25.0" prefWidth="168.0" promptText="Seleccionar" styleClass="textfield" stylesheets="@css/menu.css" />
                                     <Label fx:id="LstockProducto" layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
@@ -331,7 +331,7 @@
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="468.0" layoutY="108.0" prefHeight="25.0" prefWidth="110.0" styleClass="textfield" stylesheets="@css/menu.css" />
+                                    <ComboBox fx:id="comboEstadoProducto" layoutX="468.0" layoutY="108.0" prefHeight="25.0" prefWidth="110.0" promptText="Seleccionar" styleClass="textfield" stylesheets="@css/menu.css" />
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="8.0" layoutY="337.0" prefHeight="0.0" prefWidth="832.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
