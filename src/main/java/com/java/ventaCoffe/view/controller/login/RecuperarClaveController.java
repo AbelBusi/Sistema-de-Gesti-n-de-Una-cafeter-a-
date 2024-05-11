@@ -1,9 +1,7 @@
 package com.java.ventaCoffe.view.controller.login;
 
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
-import com.java.ventaCoffe.model.dto.UsuarioDto;
 import com.java.ventaCoffe.model.entity.Usuario;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -12,11 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Service
+@Component
 public class RecuperarClaveController {
 
     private final Logger loggger = LoggerFactory.getLogger(RecuperarClaveController.class);

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -24,7 +25,7 @@ public class ProductoDto {
 
     private String estadoProducto;
 
-    private Date fechaProducto;
+    private LocalDateTime fechaProducto;
 
     private Usuario usuario;
 

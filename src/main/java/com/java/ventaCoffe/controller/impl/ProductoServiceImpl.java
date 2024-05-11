@@ -32,6 +32,7 @@ public class ProductoServiceImpl implements IProductoService {
         return productoRepository.save(producto);
     }
 
+    @Transactional
     @Override
     public Optional<Producto> findByNombreProducto(String nombreProducto) {
         return productoRepository.findByNombreProducto(nombreProducto);

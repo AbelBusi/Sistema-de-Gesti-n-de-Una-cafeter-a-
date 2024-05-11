@@ -1,5 +1,6 @@
 package com.java.ventaCoffe.view.controller;
 
+import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.view.controller.login.CrearCuentaCntroller;
 import com.java.ventaCoffe.view.controller.login.IngresaCuentaController;
 import com.java.ventaCoffe.view.controller.login.RecuperarClaveController;
@@ -19,14 +20,16 @@ import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Component
+@Controller
 public class ControllerLogin implements Initializable {
 
     private final Logger loggger = LoggerFactory.getLogger(ControllerLogin.class);
@@ -136,9 +139,12 @@ public class ControllerLogin implements Initializable {
     @FXML
     void CrearCuenta(ActionEvent event) {
 
-        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta, txtRespuesta);
+        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta,txtRespuesta);
 
     }
+
+    @Autowired
+    private ControllerMenu controllerMenu;
 
     @FXML
     void IngresarUsuario(ActionEvent event) throws Exception {
@@ -146,14 +152,16 @@ public class ControllerLogin implements Initializable {
         String correoUsuario=login.Ingresar(txtCorreo, txtClave);
 
         if (correoUsuario!=null) {
-
             //TxtCorreo es seleccionado para poder verificar alg elemento de la escena actual, para asi acceder
             Stage ventanaLogin = (Stage) txtCorreo.getScene().getWindow();
             Stage ventanaMenu = new Stage();
             FXMLLoader ruta = new FXMLLoader();
             ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
+            ApplicationContext applicationContext = VentaCoffeApplication.context;
+            // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
+            ruta.setControllerFactory(applicationContext::getBean);
             Parent root = ruta.load();
-            ControllerMenu controllerMenu=ruta.getController();
+            controllerMenu = ruta.getController();
             controllerMenu.setNombreUsuario(correoUsuario);
             Scene scene = new Scene(root);
             ventanaMenu.setScene(scene);

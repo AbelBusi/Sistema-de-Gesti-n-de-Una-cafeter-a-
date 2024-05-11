@@ -1,14 +1,12 @@
 package com.java.ventaCoffe.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -31,7 +29,12 @@ public class Usuario {
     @Column(length = 60)
     private String resptValidacionUsuario;
 
-    public Usuario(Integer idUsuario, String correoUsuario, String claveUsuario, String preguntaUsuario, String resptValidacionUsuario) {
+    public Usuario(Integer idUsuario,
+                   String correoUsuario,
+                   String claveUsuario,
+                   String preguntaUsuario,
+                   String resptValidacionUsuario) {
+
         this.idUsuario = idUsuario;
         this.correoUsuario = correoUsuario;
         this.claveUsuario = claveUsuario;

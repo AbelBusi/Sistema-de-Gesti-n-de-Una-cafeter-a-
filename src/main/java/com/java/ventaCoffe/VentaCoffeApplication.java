@@ -1,6 +1,5 @@
 package com.java.ventaCoffe;
 
-import com.java.ventaCoffe.view.controller.ControllerLogin;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,8 +14,7 @@ public class VentaCoffeApplication extends Application {
 	public static ConfigurableApplicationContext context;
 
 	public static void main(String[] args) {
-		launch();
-		SpringApplication.run(VentaCoffeApplication.class, args);
+		launch(args);
 	}
 
 	@Override

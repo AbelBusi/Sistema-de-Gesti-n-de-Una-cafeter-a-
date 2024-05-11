@@ -1,30 +1,30 @@
 package com.java.ventaCoffe.view.controller;
 
-import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
-import com.java.ventaCoffe.view.controller.inventario.AgregarProductoContoller;
+import com.java.ventaCoffe.view.controller.minventario.AgregarProductoController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javafx.scene.control.Button;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-@Component
+@Controller
 public class ControllerMenu implements Initializable {
 
-    private final Logger loggger = LoggerFactory.getLogger(ControllerMenu.class);
+    //private final Logger loggger = LoggerFactory.getLogger(ControllerMenu.class);
 
     //Pertenecen a agregar productos al 'INVENTARIO'
 
@@ -80,8 +80,7 @@ public class ControllerMenu implements Initializable {
 
     private String []estadoProductoA={"Disponible", "No Disponible"};
 
-    @Autowired
-    private AgregarProductoContoller agregarProductoContoller;
+
 
     public void recorrerTipoProducto(){
 
@@ -112,24 +111,26 @@ public class ControllerMenu implements Initializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    @Autowired
-    private UsuarioServiceImpl usuarioService;
-
-    @FXML
-    void guardarProducto(ActionEvent event) {
-
-        agregarProductoContoller.agregarProducto(txtNombreProducto,
-                txtStockProducto,
-                txtPrecioProducto,
-                comboTipoProducto,
-                comboEstadoProducto,txtIdProducto);
-
-    }
-
     @FXML
     void limpiarCasillas(ActionEvent event) {
 
     }
+
+    @Autowired
+    private AgregarProductoController agregarProducto;
+
+    @FXML
+    void guardarProducto(ActionEvent event) {
+        System.out.println("Prueba");
+        agregarProducto.agregarProducto(txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),comboTipoProducto,comboEstadoProducto);
+        System.out.println("Paso");
+        //try {
+        //}catch (RuntimeException e){
+          //  System.out.println("Error: "+e.getMessage());
+        //}
+        //System.out.println("Paso el test");
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
