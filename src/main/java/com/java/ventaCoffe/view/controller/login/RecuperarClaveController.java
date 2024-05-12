@@ -2,6 +2,7 @@ package com.java.ventaCoffe.view.controller.login;
 
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
 import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.view.controller.error.Errores;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -21,6 +22,8 @@ public class RecuperarClaveController {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
+
+    Errores errores= new Errores();
 
     public void limpiar(PasswordField clave, PasswordField claveValidacion){
 
@@ -47,6 +50,8 @@ public class RecuperarClaveController {
         //String clave = claveUsuario.getText();
 
         Optional<Usuario> userCorreo = usuarioService.findByCorreoUsuario(correo);
+
+        try{
 
         if (!correo.isEmpty() && !(pregunta == null) && !respuesta.isEmpty()) {
 
@@ -89,6 +94,10 @@ public class RecuperarClaveController {
             alerta.setContentText("Las casillas no deben estar vacias, Seleccione una pregunta :)");
             alerta.showAndWait();
 
+        }}catch (Exception exception){
+            errores.errorDatos();
+            System.out.println("Error: "+exception.getMessage());
+
         }
 
     }
@@ -103,6 +112,8 @@ public class RecuperarClaveController {
         String clave = claveUsuario.getText();
         String valClave = validacionClave.getText();
         Optional<Usuario> usuario = usuarioService.findByCorreoUsuario(correo);
+
+        try{
         if (!clave.isEmpty() && !valClave.isEmpty()) {
             if (clave.equalsIgnoreCase(valClave)) {
                 usuario.get().setClaveUsuario(clave);
@@ -133,8 +144,11 @@ public class RecuperarClaveController {
             alerta.setTitle("Error de validacion");
             alerta.setContentText("Las casillas no deben estar vacias");
             alerta.showAndWait();
-            limpiar(claveUsuario,validacionClave);
+            limpiar(claveUsuario, validacionClave);
 
+        }}catch (Exception exception){
+            errores.errorDatos();
+            System.out.println("Error: "+exception.getMessage());
         }
 
     }

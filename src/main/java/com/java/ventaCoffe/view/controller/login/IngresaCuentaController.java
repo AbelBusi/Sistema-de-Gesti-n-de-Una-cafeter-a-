@@ -2,6 +2,7 @@ package com.java.ventaCoffe.view.controller.login;
 
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
 import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.view.controller.error.Errores;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,6 +19,8 @@ public class IngresaCuentaController {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
+
+    Errores errores= new Errores();
 
     public void limpiarRegistro(TextField correo, PasswordField clave, TextField respuesta) {
 
@@ -38,27 +41,43 @@ public class IngresaCuentaController {
         loggger.info("Clave del usuario {}", clave);
         Optional<Usuario> userCorreo = usuarioService.findByCorreoUsuario(correo);
 
-        if (!correo.isEmpty() && !clave.isEmpty()) {
+        try {
 
-            if (userCorreo.isPresent()) {
+            if (!correo.isEmpty() && !clave.isEmpty()) {
 
-                if (userCorreo.get().getClaveUsuario().equalsIgnoreCase(clave)) {
-                    loggger.info("Usuario {}", clave);
+                if (userCorreo.isPresent()) {
 
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setHeaderText(null);
-                    alerta.setTitle("Prueba ");
-                    alerta.setContentText("El usuario ingreso correctamente");
-                    limpiarIngreso(correoUsuario, claveUsuario);
-                    alerta.showAndWait();
+                    if (userCorreo.get().getClaveUsuario().equalsIgnoreCase(clave)) {
+                        loggger.info("Usuario {}", clave);
 
-                    return correo;
+                        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                        alerta.setHeaderText(null);
+                        alerta.setTitle("Prueba ");
+                        alerta.setContentText("El usuario ingreso correctamente");
+                        limpiarIngreso(correoUsuario, claveUsuario);
+                        alerta.showAndWait();
+
+                        return correo;
+
+                    } else {
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setHeaderText(null);
+                        alerta.setTitle("Autenticacion ");
+                        alerta.setContentText("La clave del usuario no es valida");
+                        limpiarIngreso(correoUsuario, claveUsuario);
+                        alerta.showAndWait();
+
+                        return null;
+
+                    }
 
                 } else {
+
+                    loggger.info("El usuario no existe");
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
                     alerta.setHeaderText(null);
-                    alerta.setTitle("Autenticacion ");
-                    alerta.setContentText("La clave del usuario no es valida");
+                    alerta.setTitle("Prueba ");
+                    alerta.setContentText("Usuario no registrado en la BD");
                     limpiarIngreso(correoUsuario, claveUsuario);
                     alerta.showAndWait();
 
@@ -67,27 +86,18 @@ public class IngresaCuentaController {
                 }
 
             } else {
-
-                loggger.info("El usuario no existe");
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
-                alerta.setTitle("Prueba ");
-                alerta.setContentText("Usuario no registrado en la BD");
+                alerta.setTitle("Autenticacion del usuario");
+                alerta.setContentText("Error: Correo o clave vacios");
                 limpiarIngreso(correoUsuario, claveUsuario);
                 alerta.showAndWait();
-
                 return null;
-
             }
-
-        } else {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setTitle("Autenticacion del usuario");
-            alerta.setContentText("Error: Correo o clave vacios");
-            limpiarIngreso(correoUsuario, claveUsuario);
-            alerta.showAndWait();
-            return null;
+        }catch (RuntimeException exception){
+            errores.errorDatos();
+            System.out.println("Error: "+exception.getMessage());
+            return  null;
         }
 
     }

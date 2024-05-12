@@ -1,6 +1,7 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
+import com.java.ventaCoffe.view.controller.error.Errores;
 import com.java.ventaCoffe.view.controller.login.CrearCuentaCntroller;
 import com.java.ventaCoffe.view.controller.login.IngresaCuentaController;
 import com.java.ventaCoffe.view.controller.login.RecuperarClaveController;
@@ -136,10 +137,19 @@ public class ControllerLogin implements Initializable {
         RComboPregunta.setItems(lisData);
     }
 
+    Errores errores = new Errores();
+
     @FXML
     void CrearCuenta(ActionEvent event) {
+        try {
+            crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta,txtRespuesta);
 
-        crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta,txtRespuesta);
+        }catch (NullPointerException exception){
+            errores.errorDatos();
+            System.out.println("Error: "+exception.getMessage());
+
+        }
+
 
     }
 
@@ -149,8 +159,9 @@ public class ControllerLogin implements Initializable {
     @FXML
     void IngresarUsuario(ActionEvent event) throws Exception {
 
-        String correoUsuario=login.Ingresar(txtCorreo, txtClave);
 
+        String correoUsuario=login.Ingresar(txtCorreo, txtClave);
+        try{
         if (correoUsuario!=null) {
             //TxtCorreo es seleccionado para poder verificar alg elemento de la escena actual, para asi acceder
             Stage ventanaLogin = (Stage) txtCorreo.getScene().getWindow();
@@ -167,6 +178,10 @@ public class ControllerLogin implements Initializable {
             ventanaMenu.setScene(scene);
             ventanaMenu.show();
             ventanaLogin.close();
+        }
+        }catch (RuntimeException exception){
+            errores.mostrarErrorAplicacion();
+            System.out.println("Error: "+exception.getMessage());
         }
 
     }

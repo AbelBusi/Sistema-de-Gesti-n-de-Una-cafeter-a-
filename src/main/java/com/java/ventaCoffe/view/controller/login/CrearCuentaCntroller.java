@@ -3,11 +3,13 @@ package com.java.ventaCoffe.view.controller.login;
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
 import com.java.ventaCoffe.model.dto.UsuarioDto;
 import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.view.controller.error.Errores;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -17,6 +19,8 @@ public class CrearCuentaCntroller {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
+
+    Errores errores= new Errores();
 
     public void limpiarRegistro(TextField correo, PasswordField clave, TextField respuesta) {
 
@@ -37,6 +41,10 @@ public class CrearCuentaCntroller {
         String preguntaSeleccionada = (String) pregunta.getSelectionModel().getSelectedItem();
         String respuesta = respuestaUsuario.getText();
         Optional<Usuario> user = usuarioService.findByCorreoUsuario(correo);
+
+        try {
+
+
 
         if (!correo.isEmpty() && !clave.isEmpty() && !(preguntaSeleccionada == null)
                 && !respuesta.isEmpty()) {
@@ -75,6 +83,12 @@ public class CrearCuentaCntroller {
                     "seleccione una pregunta e Intentalo denuevo :)");
             alerta.showAndWait();
             limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
+
+        }
+        }catch (JpaSystemException exception){
+
+            errores.errorDatos();
+            System.out.println("Error: "+exception.getMessage());
 
         }
     }
