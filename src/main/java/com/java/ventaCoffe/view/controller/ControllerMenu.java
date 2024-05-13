@@ -1,7 +1,8 @@
 package com.java.ventaCoffe.view.controller;
 
-import com.java.ventaCoffe.view.controller.minventario.AgregarProductoController;
-import com.java.ventaCoffe.view.controller.minventario.mostrarComboController;
+import com.java.ventaCoffe.view.controller.inventario.AgregarProductoController;
+import com.java.ventaCoffe.view.controller.inventario.ImagenProductoController;
+import com.java.ventaCoffe.view.controller.inventario.mostrarComboController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +74,15 @@ public class ControllerMenu implements Initializable {
     @FXML
     private TextField txtStockProducto;
 
+    @FXML
+    private ImageView imagenProductoView;
+
     @Autowired
     private mostrarComboController comboController;
 
+
+    @Autowired
+    private ImagenProductoController imagenController;
 
     private String nombreUsuario;
 
@@ -92,6 +100,11 @@ public class ControllerMenu implements Initializable {
     @FXML
     void limpiarCasillas(ActionEvent event) {
         agregarProducto.limpiarCasillas(txtNombreProducto, txtStockProducto, txtPrecioProducto);
+    }
+
+    @FXML
+    void imprimirBoton(ActionEvent event) {
+        imagenController.agregarImagenProducto(menuForm,imagenProductoView);
     }
 
     @FXML

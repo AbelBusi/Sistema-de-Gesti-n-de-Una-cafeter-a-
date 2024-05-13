@@ -1,4 +1,4 @@
-package com.java.ventaCoffe.view.controller.minventario;
+package com.java.ventaCoffe.view.controller.inventario;
 
 import com.java.ventaCoffe.controller.impl.ProductoServiceImpl;
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;

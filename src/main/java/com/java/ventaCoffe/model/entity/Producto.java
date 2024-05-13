@@ -35,6 +35,9 @@ public class Producto {
     @Column(length = 20)
     private String estadoProducto;
 
+    @Column(name = "ImagenProducto")
+    private String imagenProducto;
+
     @Column
     private LocalDateTime fechaProducto;
 

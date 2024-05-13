@@ -1,4 +1,4 @@
-package com.java.ventaCoffe.view.controller.minventario;
+package com.java.ventaCoffe.view.controller.inventario;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
