@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,14 +61,20 @@ public class AgregarProductoController {
 
     public void limpiarCasillas(TextField nombreProducto,
                                 TextField stockProducto,
-                                TextField precioProducto){
+                                TextField precioProducto,
+                                ImageView imageView){
 
         nombreProducto.setText("");
         stockProducto.setText("");
         precioProducto.setText("");
+        imageView.setImage(null);
     }
 
-    public void productoGuardado(TextField nombreProducto,TextField StockProducto, TextField precioProducto){
+    public void productoGuardado(TextField nombreProducto,
+                                 TextField StockProducto,
+                                 TextField precioProducto,
+                                 String imagen,
+                                 ImageView imageView){
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setHeaderText(null);
         alerta.setTitle("Producto Guardado");
@@ -77,6 +84,10 @@ public class AgregarProductoController {
         nombreProducto.setText("");
         StockProducto.setText("");
         precioProducto.setText("");
+        imagen=null;
+
+        logger.info("RUTA BORRADA: {}",imagen);
+        imageView.setImage(null);
     }
 
     public void fijarlogitudMaximo(final TextField campoTexto, final int tamañoMáximo) {
@@ -109,7 +120,7 @@ public class AgregarProductoController {
                                 TextField precioProducto,
                                 String idCorreo,
                                 ComboBox tipoProducto,
-                                ComboBox estadoProducto,String rutaImagen)
+                                ComboBox estadoProducto,String rutaImagen,ImageView imageView)
     {
         try {
 
@@ -123,22 +134,19 @@ public class AgregarProductoController {
             Optional<Usuario> usuarioProducto = usuarioService.findByCorreoUsuario(usuario);
             int idUsuarioProducto = usuarioProducto.get().getIdUsuario();
 
-            logger.info("Prueba: {}, User: {}", nombre,usuario);
-            String prueba="";
+            String imagenRuta;
             if(rutaImagen==null){
 
                 Resource imagenUrl = resourceLoader.getResource("classpath:imageProducto/default.jpg");
                 if(imagenUrl.exists()){
                     URL photoUrl = imagenUrl.getURL();
-                    prueba = photoUrl.getPath();
-                    logger.info("Ruta: {}",prueba);
+                    imagenRuta = photoUrl.getPath();
                 }else {
-                    prueba="Imagen no encontrada, posible problema de cache";
-                    logger.info("Ruta: {}",prueba);
+                    imagenRuta="Imagen no encontrada, posible problema de cache";
                 }
 
             }else {
-                prueba=rutaImagen;
+                imagenRuta=rutaImagen;
             }
 
             if (!productoExistente.isPresent()) {
@@ -160,10 +168,13 @@ public class AgregarProductoController {
                     productoDto.setPrecioProducto(precio);
                     productoDto.setEstadoProducto(estado);
                     productoDto.setFechaProducto(LocalDateTime.now());
-                    productoDto.setImagenProducto(prueba);
+                    productoDto.setImagenProducto(imagenRuta);
                     productoDto.setUsuario(idUsuario.orElse(null));
                     Producto producto = productoService.guardarProducto(productoDto);
-                    productoGuardado(nombreProducto,stockProducto,precioProducto);
+                    logger.info("RUTA cache {}",imagenRuta);
+                    imagenRuta=null;
+                    logger.info("RUTA cacheEliminado {}",imagenRuta);
+                    productoGuardado(nombreProducto,stockProducto,precioProducto,imagenRuta,imageView);
                     comboController.recorrerTipoProducto(tipoProducto);
                     comboController.recorrerEstadoProducto(estadoProducto);
 
@@ -171,12 +182,12 @@ public class AgregarProductoController {
 
                 } else {
                     alertaCasillasVacias();
-                    limpiarCasillas(nombreProducto,stockProducto,precioProducto);
+                    limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
                 }
 
             } else {
                 alertaUsuarioExistente();
-                limpiarCasillas(nombreProducto,stockProducto,precioProducto);
+                limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
             }
 
         }
@@ -184,7 +195,7 @@ public class AgregarProductoController {
             System.out.println("Error: "+exception.getMessage());
         }
         catch (RuntimeException e) {
-            limpiarCasillas(nombreProducto,stockProducto,precioProducto);
+            limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
             System.out.println("Error: " + e.getMessage());
 
         }

@@ -106,10 +106,7 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private AgregarProductoController agregarProducto;
 
-    @FXML
-    void limpiarCasillas(ActionEvent event) {
-        agregarProducto.limpiarCasillas(txtNombreProducto, txtStockProducto, txtPrecioProducto);
-    }
+
 
     String ruta;
 
@@ -130,6 +127,12 @@ public class ControllerMenu implements Initializable {
     }
 
     @FXML
+    void limpiarCasillas(ActionEvent event) {
+        agregarProducto.limpiarCasillas(txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
+        ruta=null;
+    }
+
+    @FXML
     void imprimirBoton(ActionEvent event) {
         agregarImagenProducto();
     }
@@ -138,8 +141,9 @@ public class ControllerMenu implements Initializable {
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
         agregarProducto.agregarProducto(txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),
-                comboTipoProducto, comboEstadoProducto,ruta);
+                comboTipoProducto, comboEstadoProducto,ruta,imagenProductoView);
         System.out.println("Paso");
+        ruta=null;
 
     }
 
