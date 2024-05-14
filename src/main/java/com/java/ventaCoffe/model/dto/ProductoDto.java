@@ -25,6 +25,8 @@ public class ProductoDto {
 
     private String estadoProducto;
 
+    private String imagenProducto;
+
     private LocalDateTime fechaProducto;
 
     private Usuario usuario;

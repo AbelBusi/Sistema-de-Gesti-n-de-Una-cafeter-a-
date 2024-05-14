@@ -1,5 +1,6 @@
 package com.java.ventaCoffe.view.controller;
 
+import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.view.controller.inventario.AgregarProductoController;
 import com.java.ventaCoffe.view.controller.inventario.ImagenProductoController;
 import com.java.ventaCoffe.view.controller.inventario.mostrarComboController;
@@ -11,18 +12,24 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
 public class ControllerMenu implements Initializable {
 
-    //private final Logger loggger = LoggerFactory.getLogger(ControllerMenu.class);
+    private final Logger loggger = LoggerFactory.getLogger(ControllerMenu.class);
 
     //Pertenecen a agregar productos al 'INVENTARIO'
 
@@ -77,6 +84,8 @@ public class ControllerMenu implements Initializable {
     @FXML
     private ImageView imagenProductoView;
 
+    private Image image;
+
     @Autowired
     private mostrarComboController comboController;
 
@@ -102,21 +111,36 @@ public class ControllerMenu implements Initializable {
         agregarProducto.limpiarCasillas(txtNombreProducto, txtStockProducto, txtPrecioProducto);
     }
 
+    String ruta;
+
+    public void agregarImagenProducto() {
+
+        FileChooser openFile = new FileChooser();
+        openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open image File","*png","*jpg"));
+        File file = openFile.showOpenDialog(menuForm.getScene().getWindow());
+
+        if(file!=null){
+
+            ruta = file.getAbsolutePath();
+            image = new Image(file.toURI().toString(),137,135,false,true);
+            imagenProductoView.setImage(image);
+
+        }
+
+    }
+
     @FXML
     void imprimirBoton(ActionEvent event) {
-        imagenController.agregarImagenProducto(menuForm,imagenProductoView);
+        agregarImagenProducto();
     }
 
     @FXML
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
-        agregarProducto.agregarProducto(txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(), comboTipoProducto, comboEstadoProducto);
+        agregarProducto.agregarProducto(txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),
+                comboTipoProducto, comboEstadoProducto,ruta);
         System.out.println("Paso");
-        //try {
-        //}catch (RuntimeException e){
-        //  System.out.println("Error: "+e.getMessage());
-        //}
-        //System.out.println("Paso el test");
+
     }
 
     @Override

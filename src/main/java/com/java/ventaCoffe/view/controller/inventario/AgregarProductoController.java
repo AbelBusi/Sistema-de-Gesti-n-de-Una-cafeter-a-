@@ -13,7 +13,12 @@ import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -28,6 +33,9 @@ public class AgregarProductoController {
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
+
+    @Autowired
+    private ImagenProductoController imagenProductoController;
 
     @Autowired
     private mostrarComboController comboController;
@@ -93,25 +101,20 @@ public class AgregarProductoController {
         });
     }
 
-    public void prueba(String parametro){
-
-        System.out.println(parametro);
-
-    }
-
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     public void agregarProducto(TextField nombreProducto,
                                 TextField stockProducto,
                                 TextField precioProducto,
                                 String idCorreo,
                                 ComboBox tipoProducto,
-                                ComboBox estadoProducto)
+                                ComboBox estadoProducto,String rutaImagen)
     {
         try {
-        System.out.println("en el metodo");
-            logger.info("Test: {}, {}, {}, {}",nombreProducto.getText(),
-                    stockProducto.getText(),precioProducto.getText(),
-                    idCorreo);
+
+
+
             String nombre = nombreProducto.getText();
             String tipo = (String) tipoProducto.getSelectionModel().getSelectedItem();
             String estado = (String) estadoProducto.getSelectionModel().getSelectedItem();
@@ -121,15 +124,34 @@ public class AgregarProductoController {
             int idUsuarioProducto = usuarioProducto.get().getIdUsuario();
 
             logger.info("Prueba: {}, User: {}", nombre,usuario);
+            String prueba="";
+            if(rutaImagen==null){
+
+                Resource imagenUrl = resourceLoader.getResource("classpath:imageProducto/default.jpg");
+                if(imagenUrl.exists()){
+                    URL photoUrl = imagenUrl.getURL();
+                    prueba = photoUrl.getPath();
+                    logger.info("Ruta: {}",prueba);
+                }else {
+                    prueba="Imagen no encontrada, posible problema de cache";
+                    logger.info("Ruta: {}",prueba);
+                }
+
+            }else {
+                prueba=rutaImagen;
+            }
 
             if (!productoExistente.isPresent()) {
 
                 if (!nombre.isEmpty() && !stockProducto.getText().isEmpty() && !precioProducto.getText().isEmpty()
                         && !tipo.isEmpty() && !estado.isEmpty() && !idCorreo.isEmpty()) {
 
+
                     int stock = Integer.parseInt(stockProducto.getText());
                     double precio = Double.parseDouble(precioProducto.getText());
                     Optional<Usuario> idUsuario = usuarioService.idUsuario(idUsuarioProducto);
+
+
 
                     ProductoDto productoDto = new ProductoDto();
                     productoDto.setNombreProducto(nombre);
@@ -138,6 +160,7 @@ public class AgregarProductoController {
                     productoDto.setPrecioProducto(precio);
                     productoDto.setEstadoProducto(estado);
                     productoDto.setFechaProducto(LocalDateTime.now());
+                    productoDto.setImagenProducto(prueba);
                     productoDto.setUsuario(idUsuario.orElse(null));
                     Producto producto = productoService.guardarProducto(productoDto);
                     productoGuardado(nombreProducto,stockProducto,precioProducto);
@@ -156,7 +179,11 @@ public class AgregarProductoController {
                 limpiarCasillas(nombreProducto,stockProducto,precioProducto);
             }
 
-        } catch (RuntimeException e) {
+        }
+        catch (IOException exception){
+            System.out.println("Error: "+exception.getMessage());
+        }
+        catch (RuntimeException e) {
             limpiarCasillas(nombreProducto,stockProducto,precioProducto);
             System.out.println("Error: " + e.getMessage());
 

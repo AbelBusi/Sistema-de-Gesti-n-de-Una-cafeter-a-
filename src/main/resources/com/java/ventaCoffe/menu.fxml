@@ -309,7 +309,7 @@
                                        <children>
                                           <ImageView fx:id="imagenProductoView" fitHeight="135.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" />
                                        </children></AnchorPane>
-                                    <Button fx:id="BImprimirProducto" layoutX="635.0" layoutY="157.0" mnemonicParsing="false" onAction="#imprimirBoton" prefHeight="25.0" prefWidth="140.0" styleClass="btn" stylesheets="@css/menu.css" text="IMPRIMIR" AnchorPane.rightAnchor="32.0">
+                                    <Button fx:id="BImprimirProducto" layoutX="635.0" layoutY="157.0" mnemonicParsing="false" onAction="#imprimirBoton" prefHeight="25.0" prefWidth="140.0" styleClass="btn" stylesheets="@css/menu.css" text="SUBIR FOTO" AnchorPane.rightAnchor="32.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>

@@ -27,6 +27,7 @@ public class ProductoServiceImpl implements IProductoService {
                 .tipoProducto(productoDto.getTipoProducto())
                 .estadoProducto(productoDto.getEstadoProducto())
                 .fechaProducto(productoDto.getFechaProducto())
+                .imagenProducto(productoDto.getImagenProducto())
                 .usuario(productoDto.getUsuario())
                 .build();
         return productoRepository.save(producto);

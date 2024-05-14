@@ -16,11 +16,8 @@ public class ImagenProductoController {
     private Image image;
 
     public static String usuario;
-    public static String path;
 
-
-
-    public void agregarImagenProducto(AnchorPane menuForm,ImageView anchorImage) {
+    public void agregarImagenProductos(AnchorPane menuForm,ImageView anchorImage,String path) {
 
         FileChooser openFile = new FileChooser();
         openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open image File","*png","*jpg"));
