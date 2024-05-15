@@ -5,8 +5,7 @@ import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.error.Errores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,7 +42,7 @@ public class MostrarProductoController {
         List<Producto>  listProducto =productoService.mostrarProducto();
 
         try {
-
+            tablProducto.setPlaceholder(new Label("No hay datos por mostrar"));
             idProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
             idProducto.setStyle("-fx-alignment: CENTER-LEFT");
             nombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));

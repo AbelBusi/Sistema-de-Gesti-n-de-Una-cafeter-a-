@@ -2,10 +2,7 @@ package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.view.controller.inventario.AgregarProductoController;
-import com.java.ventaCoffe.view.controller.inventario.ImagenProductoController;
-import com.java.ventaCoffe.view.controller.inventario.MostrarProductoController;
-import com.java.ventaCoffe.view.controller.inventario.mostrarComboController;
+import com.java.ventaCoffe.view.controller.inventario.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -173,6 +171,14 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private MostrarProductoController mostrarProductoController;
 
+    @Autowired
+    private ActualizarProductoContoller actualizarProductoContoller;
+
+    public void SeleccionarTableView() {
+        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -187,6 +193,7 @@ public class ControllerMenu implements Initializable {
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
+
 
     }
 }
