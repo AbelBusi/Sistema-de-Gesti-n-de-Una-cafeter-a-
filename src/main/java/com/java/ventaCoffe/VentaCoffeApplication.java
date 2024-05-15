@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class VentaCoffeApplication extends Application {

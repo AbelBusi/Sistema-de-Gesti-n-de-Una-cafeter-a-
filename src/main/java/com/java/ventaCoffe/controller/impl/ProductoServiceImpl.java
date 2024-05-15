@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,11 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public Optional<Producto> findByNombreProducto(String nombreProducto) {
         return productoRepository.findByNombreProducto(nombreProducto);
+    }
+
+    @Transactional
+    @Override
+    public List<Producto> mostrarProducto() {
+        return productoRepository.findAll();
     }
 }

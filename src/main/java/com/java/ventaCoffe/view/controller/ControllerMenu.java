@@ -1,21 +1,19 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.model.entity.Data;
+import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.inventario.AgregarProductoController;
 import com.java.ventaCoffe.view.controller.inventario.ImagenProductoController;
+import com.java.ventaCoffe.view.controller.inventario.MostrarProductoController;
 import com.java.ventaCoffe.view.controller.inventario.mostrarComboController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +22,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 @Controller
@@ -55,13 +54,34 @@ public class ControllerMenu implements Initializable {
     private Label LtipoProducto;
 
     @FXML
-    private TableView<?> TableProductoInv;
+    private TableView<Producto> TableProductoInv;
 
     @FXML
-    private ComboBox<?> comboTipoProducto;
+    private TableColumn<Producto ,String> columEstadoProducto;
 
     @FXML
-    private ComboBox<?> comboEstadoProducto;
+    private TableColumn<Producto, LocalDateTime> columFechaProducto;
+
+    @FXML
+    private TableColumn<Producto, Double> columPrecioProducto;
+
+    @FXML
+    private TableColumn<Producto, String> columProducto;
+
+    @FXML
+    private TableColumn<Producto, Integer> columProductoID;
+
+    @FXML
+    private TableColumn<Producto, Integer> columStockProducto;
+
+    @FXML
+    private TableColumn<Producto, String> columTipoProducto;
+
+    @FXML
+    private ComboBox<String> comboTipoProducto;
+
+    @FXML
+    private ComboBox<String> comboEstadoProducto;
 
     @FXML
     private Label labelUsuarioLogeado;
@@ -144,8 +164,14 @@ public class ControllerMenu implements Initializable {
                 comboTipoProducto, comboEstadoProducto,ruta,imagenProductoView);
         System.out.println("Paso");
         ruta=null;
+        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
+                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+                columFechaProducto);
 
     }
+
+    @Autowired
+    private MostrarProductoController mostrarProductoController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -158,6 +184,9 @@ public class ControllerMenu implements Initializable {
         agregarProducto.fijarlogitudMaximo(txtPrecioProducto,6);
         comboController.recorrerEstadoProducto(comboEstadoProducto);
         comboController.recorrerTipoProducto(comboTipoProducto);
+        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
+                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+                columFechaProducto);
 
     }
 }
