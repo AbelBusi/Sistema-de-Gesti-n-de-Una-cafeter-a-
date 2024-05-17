@@ -59,11 +59,11 @@ public class AgregarProductoController {
         alerta.showAndWait();
     }
 
-    public void limpiarCasillas(TextField nombreProducto,
+    public void limpiarCasillas(TextField idProducto,TextField nombreProducto,
                                 TextField stockProducto,
                                 TextField precioProducto,
                                 ImageView imageView){
-
+        idProducto.setText("");
         nombreProducto.setText("");
         stockProducto.setText("");
         precioProducto.setText("");
@@ -115,7 +115,7 @@ public class AgregarProductoController {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    public void agregarProducto(TextField nombreProducto,
+    public void agregarProducto(TextField idProducto,TextField nombreProducto,
                                 TextField stockProducto,
                                 TextField precioProducto,
                                 String idCorreo,
@@ -182,12 +182,12 @@ public class AgregarProductoController {
 
                 } else {
                     alertaCasillasVacias();
-                    limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
+                    limpiarCasillas(idProducto,nombreProducto,stockProducto,precioProducto,imageView);
                 }
 
             } else {
                 alertaUsuarioExistente();
-                limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
+                limpiarCasillas(idProducto,nombreProducto,stockProducto,precioProducto,imageView);
             }
 
         }
@@ -195,7 +195,7 @@ public class AgregarProductoController {
             System.out.println("Error: "+exception.getMessage());
         }
         catch (RuntimeException e) {
-            limpiarCasillas(nombreProducto,stockProducto,precioProducto,imageView);
+            limpiarCasillas(idProducto,nombreProducto,stockProducto,precioProducto,imageView);
             System.out.println("Error: " + e.getMessage());
 
         }

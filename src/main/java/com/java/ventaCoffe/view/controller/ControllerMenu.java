@@ -104,6 +104,8 @@ public class ControllerMenu implements Initializable {
 
     private Image image;
 
+    private Integer idProductoSeleccionado;
+
     @Autowired
     private mostrarComboController comboController;
 
@@ -146,7 +148,7 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     void limpiarCasillas(ActionEvent event) {
-        agregarProducto.limpiarCasillas(txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
+        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
         ruta=null;
     }
 
@@ -158,7 +160,7 @@ public class ControllerMenu implements Initializable {
     @FXML
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
-        agregarProducto.agregarProducto(txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),
+        agregarProducto.agregarProducto(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),
                 comboTipoProducto, comboEstadoProducto,ruta,imagenProductoView);
         System.out.println("Paso");
         ruta=null;
@@ -176,7 +178,18 @@ public class ControllerMenu implements Initializable {
 
     public void SeleccionarTableView() {
         actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto);
+        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto);
+        loggger.info("Prueba Id Producto: {}",idProductoSeleccionado);
 
+    }
+
+    @FXML
+    void actualizarProducto(ActionEvent event) {
+        actualizarProductoContoller.ActualizarProducto(txtIdProducto,idProductoSeleccionado,
+                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto);
+        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
+                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+                columFechaProducto);
     }
 
     @Override

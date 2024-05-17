@@ -45,4 +45,17 @@ public class ProductoServiceImpl implements IProductoService {
     public List<Producto> mostrarProducto() {
         return productoRepository.findAll();
     }
+
+    @Transactional
+    @Override
+    public Optional<Producto> findById(Integer idProducto) {
+        return productoRepository.findById(idProducto);
+    }
+
+    @Transactional
+    @Override
+    public Producto actualizarProducto(Producto producto){
+        return productoRepository.save(producto);
+    }
+
 }

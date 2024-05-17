@@ -15,4 +15,9 @@ public interface IProductoService {
 
     List<Producto> mostrarProducto ();
 
+    Optional<Producto> findById(Integer idProducto);
+
+    Producto actualizarProducto(Producto producto);
+
+
 }
