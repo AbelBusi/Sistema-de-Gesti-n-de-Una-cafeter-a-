@@ -124,8 +124,6 @@ public class AgregarProductoController {
     {
         try {
 
-
-
             String nombre = nombreProducto.getText();
             String tipo = (String) tipoProducto.getSelectionModel().getSelectedItem();
             String estado = (String) estadoProducto.getSelectionModel().getSelectedItem();

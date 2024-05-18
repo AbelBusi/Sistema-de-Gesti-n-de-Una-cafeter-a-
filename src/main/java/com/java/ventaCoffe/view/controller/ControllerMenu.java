@@ -3,6 +3,7 @@ package com.java.ventaCoffe.view.controller;
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.inventario.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,7 +56,7 @@ public class ControllerMenu implements Initializable {
     private TableView<Producto> TableProductoInv;
 
     @FXML
-    private TableColumn<Producto ,String> columEstadoProducto;
+    private TableColumn<Producto, String> columEstadoProducto;
 
     @FXML
     private TableColumn<Producto, LocalDateTime> columFechaProducto;
@@ -126,7 +127,11 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private AgregarProductoController agregarProducto;
 
+    @Autowired
+    private MostrarProductoController mostrarProductoController;
 
+    @Autowired
+    private ActualizarProductoContoller actualizarProductoContoller;
 
     String ruta;
 
@@ -150,6 +155,8 @@ public class ControllerMenu implements Initializable {
     void limpiarCasillas(ActionEvent event) {
         agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
         ruta=null;
+        idProductoSeleccionado=null;
+
     }
 
     @FXML
@@ -167,18 +174,14 @@ public class ControllerMenu implements Initializable {
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
+        idProductoSeleccionado=null;
 
     }
 
-    @Autowired
-    private MostrarProductoController mostrarProductoController;
-
-    @Autowired
-    private ActualizarProductoContoller actualizarProductoContoller;
 
     public void SeleccionarTableView() {
-        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto);
-        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto);
+        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
+        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
         loggger.info("Prueba Id Producto: {}",idProductoSeleccionado);
 
     }
@@ -186,10 +189,12 @@ public class ControllerMenu implements Initializable {
     @FXML
     void actualizarProducto(ActionEvent event) {
         actualizarProductoContoller.ActualizarProducto(txtIdProducto,idProductoSeleccionado,
-                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto);
+                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto,ruta,imagenProductoView);
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
+        idProductoSeleccionado=null;
+
     }
 
     @Override
