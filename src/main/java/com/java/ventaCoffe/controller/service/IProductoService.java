@@ -19,7 +19,7 @@ public interface IProductoService {
 
     Producto actualizarProducto(Producto producto);
 
-    Optional<Producto> eliminarProducto(Integer idProducto);
+    public void eliminarProducto(Integer idProducto);
 
 
 

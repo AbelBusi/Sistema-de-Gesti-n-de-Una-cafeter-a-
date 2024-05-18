@@ -58,4 +58,9 @@ public class ProductoServiceImpl implements IProductoService {
         return productoRepository.save(producto);
     }
 
+    @Override
+    public void eliminarProducto(Integer idProducto) {
+        productoRepository.deleteById(idProducto);
+    }
+
 }

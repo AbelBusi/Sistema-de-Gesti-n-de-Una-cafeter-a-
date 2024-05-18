@@ -133,6 +133,9 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private ActualizarProductoContoller actualizarProductoContoller;
 
+    @Autowired
+    private EliminarProductoController eliminarProductoController;
+
     String ruta;
 
     public void agregarImagenProducto() {
@@ -193,6 +196,18 @@ public class ControllerMenu implements Initializable {
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
+        idProductoSeleccionado=null;
+
+    }
+
+    @FXML
+    void TeliminarProducto(ActionEvent event) {
+
+        eliminarProductoController.eliminarProducto(txtIdProducto);
+        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
+                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+                columFechaProducto);
+        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
         idProductoSeleccionado=null;
 
     }
