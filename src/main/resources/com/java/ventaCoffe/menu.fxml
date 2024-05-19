@@ -17,6 +17,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -342,12 +344,72 @@
                         </AnchorPane>
                         <AnchorPane layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="20.0" layoutY="14.0" prefHeight="200.0" prefWidth="278.0" stylesheets="@css/menu.css">
+                              <AnchorPane layoutX="13.0" layoutY="20.0" prefHeight="549.0" prefWidth="508.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="20.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
                                     <String fx:value="radius" />
                                  </styleClass>
+                                 <children>
+                                    <ScrollPane layoutX="6.0" layoutY="6.0" prefHeight="539.0" prefWidth="496.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <GridPane layoutX="7.0" prefHeight="44.0" prefWidth="100.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="527.0" layoutY="20.0" prefHeight="550.0" prefWidth="307.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="20.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="295.0" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="14.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="PRODUCTO" />
+                                        <TableColumn prefWidth="125.0" text="STOCK" />
+                                          <TableColumn prefWidth="91.0" text="PRECIO" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="80.0" layoutY="251.0" prefHeight="26.0" prefWidth="55.0" text="Total:" AnchorPane.bottomAnchor="273.0" AnchorPane.rightAnchor="172.0">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="159.0" layoutY="251.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="273.0" AnchorPane.rightAnchor="87.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="63.0" layoutY="354.0" prefHeight="26.0" prefWidth="76.0" text="Cambio:" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="168.0">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="159.0" layoutY="354.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="87.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="50.0" layoutY="305.0" prefHeight="26.0" prefWidth="89.0" text="Cantidad:" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="168.0">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="159.0" layoutY="302.0" prefHeight="29.0" prefWidth="126.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="22.0" />
+                                    <Button layoutX="19.0" layoutY="413.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="270.0" styleClass="btn" stylesheets="@css/menu.css" text="PAGAR" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="18.0" />
+                                    <Button layoutX="38.0" layoutY="483.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="19.0" />
+                                    <Button layoutX="168.0" layoutY="483.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" styleClass="btn" stylesheets="@css/menu.css" text="BOLETA" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="18.0" />
+                                 </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>

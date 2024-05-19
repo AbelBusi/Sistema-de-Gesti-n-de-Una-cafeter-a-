@@ -177,7 +177,8 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     void limpiarCasillas(ActionEvent event) {
-        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
+        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+                imagenProductoView);
         ruta=null;
         idProductoSeleccionado=null;
 
@@ -191,7 +192,8 @@ public class ControllerMenu implements Initializable {
     @FXML
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
-        agregarProducto.agregarProducto(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto, getNombreUsuario(),
+        agregarProducto.agregarProducto(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+                getNombreUsuario(),
                 comboTipoProducto, comboEstadoProducto,ruta,imagenProductoView);
         System.out.println("Paso");
         ruta=null;
@@ -204,8 +206,10 @@ public class ControllerMenu implements Initializable {
 
 
     public void SeleccionarTableView() {
-        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
-        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
+        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,
+                txtPrecioProducto,imagenProductoView);
+        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,
+                txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
         loggger.info("Prueba Id Producto: {}",idProductoSeleccionado);
 
     }
@@ -213,7 +217,8 @@ public class ControllerMenu implements Initializable {
     @FXML
     void actualizarProducto(ActionEvent event) {
         actualizarProductoContoller.ActualizarProducto(txtIdProducto,idProductoSeleccionado,
-                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto,ruta,imagenProductoView);
+                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto,ruta,
+                imagenProductoView);
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
@@ -228,10 +233,14 @@ public class ControllerMenu implements Initializable {
         mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
                 columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
                 columFechaProducto);
-        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,imagenProductoView);
+        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+                imagenProductoView);
         idProductoSeleccionado=null;
 
     }
+
+    //Otra informacion
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -3,7 +3,6 @@ package com.java.ventaCoffe.view.controller.inventario;
 import com.java.ventaCoffe.controller.impl.ProductoServiceImpl;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.error.Errores;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
