@@ -64,7 +64,7 @@
                                     <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="79.0" layoutY="549.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="Salir">
+                              <Button fx:id="BSalirPrograma" layoutX="79.0" layoutY="549.0" mnemonicParsing="false" onAction="#salirPrograma" prefHeight="37.0" prefWidth="105.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="Salir">
                                  <font>
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
@@ -231,7 +231,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="311.0" prefWidth="807.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -338,6 +338,17 @@
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="8.0" layoutY="337.0" prefHeight="0.0" prefWidth="832.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="20.0" layoutY="14.0" prefHeight="200.0" prefWidth="278.0" stylesheets="@css/menu.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>

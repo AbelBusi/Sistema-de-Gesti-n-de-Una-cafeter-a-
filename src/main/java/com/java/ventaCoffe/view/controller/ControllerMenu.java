@@ -1,5 +1,6 @@
 package com.java.ventaCoffe.view.controller;
 
+import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.inventario.*;
@@ -7,15 +8,20 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import java.awt.event.MouseEvent;
@@ -110,7 +116,6 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private mostrarComboController comboController;
 
-
     @Autowired
     private ImagenProductoController imagenController;
 
@@ -137,6 +142,22 @@ public class ControllerMenu implements Initializable {
     private EliminarProductoController eliminarProductoController;
 
     String ruta;
+
+    @FXML
+    void salirPrograma(ActionEvent event) {
+
+//        try {
+//        Stage ventanaMenu = (Stage) labelUsuarioLogeado.getScene().getWindow();
+//        Stage ventanaLogin = new Stage();
+//        FXMLLoader ruta = new FXMLLoader();
+//        ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/login.fxml"));
+//        // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
+//        ventanaLogin.setScene(scene);
+//        ventanaLogin.show();
+//        ventanaMenu.close();
+//        }catch (NullPointerException exception){}
+
+    }
 
     public void agregarImagenProducto() {
 
