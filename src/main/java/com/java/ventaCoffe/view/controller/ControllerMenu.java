@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 @Controller
@@ -39,6 +40,9 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     private Button BagregarProducto;
+
+    @FXML
+    private Button BSalirPrograma;
 
     @FXML
     private Button BlimpiarProducto;
@@ -140,35 +144,57 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private EliminarProductoController eliminarProductoController;
+    
 
     String ruta;
 
     @FXML
     void salirPrograma(ActionEvent event) {
 
-//        try {
-//        Stage ventanaMenu = (Stage) labelUsuarioLogeado.getScene().getWindow();
-//        Stage ventanaLogin = new Stage();
-//        FXMLLoader ruta = new FXMLLoader();
-//        ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/login.fxml"));
-//        // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
-//        ventanaLogin.setScene(scene);
-//        ventanaLogin.show();
-//        ventanaMenu.close();
-//        }catch (NullPointerException exception){}
+        try {
+            System.out.println("Entrando");
+
+            Stage salir = (Stage) BSalirPrograma.getScene().getWindow();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("SALIR DEL PROGRAMA");
+            alert.setContentText("¿Estas seguro de salir del programa?");
+            Optional<ButtonType> option= alert.showAndWait();
+            ApplicationContext context = VentaCoffeApplication.context;
+
+
+
+            if(option.get().equals(ButtonType.OK)){
+
+                Stage ventanaLogin = new Stage();
+                FXMLLoader ruta = new FXMLLoader();
+                ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/login.fxml"));
+                ruta.setControllerFactory(context::getBean);
+                Parent root = ruta.load();
+                Scene scene = new Scene(root);
+                ventanaLogin.setScene(scene);
+                ventanaLogin.show();
+                salir.close();
+
+
+            }
+
+        } catch (Exception exception) {
+            System.out.println("Error: " + exception.getMessage());
+        }
 
     }
 
     public void agregarImagenProducto() {
 
         FileChooser openFile = new FileChooser();
-        openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open image File","*png","*jpg"));
+        openFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open image File", "*png", "*jpg"));
         File file = openFile.showOpenDialog(menuForm.getScene().getWindow());
 
-        if(file!=null){
+        if (file != null) {
 
             ruta = file.getAbsolutePath();
-            image = new Image(file.toURI().toString(),137,135,false,true);
+            image = new Image(file.toURI().toString(), 137, 135, false, true);
             imagenProductoView.setImage(image);
 
         }
@@ -177,10 +203,10 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     void limpiarCasillas(ActionEvent event) {
-        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+        agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                 imagenProductoView);
-        ruta=null;
-        idProductoSeleccionado=null;
+        ruta = null;
+        idProductoSeleccionado = null;
 
     }
 
@@ -192,37 +218,37 @@ public class ControllerMenu implements Initializable {
     @FXML
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
-        agregarProducto.agregarProducto(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+        agregarProducto.agregarProducto(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                 getNombreUsuario(),
-                comboTipoProducto, comboEstadoProducto,ruta,imagenProductoView);
+                comboTipoProducto, comboEstadoProducto, ruta, imagenProductoView);
         System.out.println("Paso");
-        ruta=null;
-        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
-                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+        ruta = null;
+        mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
-        idProductoSeleccionado=null;
+        idProductoSeleccionado = null;
 
     }
 
 
     public void SeleccionarTableView() {
-        actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,txtNombreProducto,txtStockProducto,
-                txtPrecioProducto,imagenProductoView);
-        idProductoSeleccionado= actualizarProductoContoller.ObtenerTable(TableProductoInv,txtIdProducto,
-                txtNombreProducto,txtStockProducto,txtPrecioProducto,imagenProductoView);
-        loggger.info("Prueba Id Producto: {}",idProductoSeleccionado);
+        actualizarProductoContoller.ObtenerTable(TableProductoInv, txtIdProducto, txtNombreProducto, txtStockProducto,
+                txtPrecioProducto, imagenProductoView);
+        idProductoSeleccionado = actualizarProductoContoller.ObtenerTable(TableProductoInv, txtIdProducto,
+                txtNombreProducto, txtStockProducto, txtPrecioProducto, imagenProductoView);
+        loggger.info("Prueba Id Producto: {}", idProductoSeleccionado);
 
     }
 
     @FXML
     void actualizarProducto(ActionEvent event) {
-        actualizarProductoContoller.ActualizarProducto(txtIdProducto,idProductoSeleccionado,
-                txtNombreProducto,txtStockProducto,txtPrecioProducto,comboEstadoProducto,comboTipoProducto,ruta,
+        actualizarProductoContoller.ActualizarProducto(txtIdProducto, idProductoSeleccionado,
+                txtNombreProducto, txtStockProducto, txtPrecioProducto, comboEstadoProducto, comboTipoProducto, ruta,
                 imagenProductoView);
-        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
-                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+        mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
-        idProductoSeleccionado=null;
+        idProductoSeleccionado = null;
 
     }
 
@@ -230,12 +256,12 @@ public class ControllerMenu implements Initializable {
     void TeliminarProducto(ActionEvent event) {
 
         eliminarProductoController.eliminarProducto(txtIdProducto);
-        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
-                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+        mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
-        agregarProducto.limpiarCasillas(txtIdProducto,txtNombreProducto, txtStockProducto, txtPrecioProducto,
+        agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                 imagenProductoView);
-        idProductoSeleccionado=null;
+        idProductoSeleccionado = null;
 
     }
 
@@ -249,12 +275,12 @@ public class ControllerMenu implements Initializable {
             labelUsuarioLogeado.setText(getNombreUsuario());
 
         });
-        agregarProducto.fijarlogitudMaximo(txtStockProducto,4);
-        agregarProducto.fijarlogitudMaximo(txtPrecioProducto,6);
+        agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
+        agregarProducto.fijarlogitudMaximo(txtPrecioProducto, 6);
         comboController.recorrerEstadoProducto(comboEstadoProducto);
         comboController.recorrerTipoProducto(comboTipoProducto);
-        mostrarProductoController.MostrarProductos(TableProductoInv,columProductoID,
-                columProducto,columTipoProducto,columStockProducto,columPrecioProducto,columEstadoProducto,
+        mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
 
 
