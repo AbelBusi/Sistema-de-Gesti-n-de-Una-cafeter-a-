@@ -144,7 +144,64 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private EliminarProductoController eliminarProductoController;
-    
+
+    //Cambiar entre ventanas
+
+    @FXML
+    private AnchorPane fromAddProducto;
+
+    @FXML
+    private AnchorPane fromCartProducto;
+
+    @FXML
+    private AnchorPane fromMenuProducto;
+
+    @FXML
+    private Button BclientesMenu;
+
+    @FXML
+    private Button BinicioMenu;
+
+    @FXML
+    private Button BinventarioMenu;
+
+    @FXML
+    private Button BCartProducto;
+
+
+    @FXML
+    void menuClientes(ActionEvent event) {
+
+        System.out.println("en prueba");
+
+    }
+
+    @FXML
+    void menuInicio(ActionEvent event) {
+
+        fromAddProducto.setVisible(false);
+        fromCartProducto.setVisible(false);
+        fromMenuProducto.setVisible(true);
+
+    }
+
+    @FXML
+    void menuInventario(ActionEvent event) {
+
+        fromAddProducto.setVisible(true);
+        fromCartProducto.setVisible(false);
+        fromMenuProducto.setVisible(false);
+
+    }
+
+    @FXML
+    void cartProducto(ActionEvent event){
+
+        fromAddProducto.setVisible(false);
+        fromCartProducto.setVisible(true);
+        fromMenuProducto.setVisible(false);
+
+    }
 
     String ruta;
 
@@ -242,9 +299,16 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     void actualizarProducto(ActionEvent event) {
-        actualizarProductoContoller.ActualizarProducto(txtIdProducto, idProductoSeleccionado,
-                txtNombreProducto, txtStockProducto, txtPrecioProducto, comboEstadoProducto, comboTipoProducto, ruta,
+        actualizarProductoContoller.ActualizarProducto(txtIdProducto,
+                idProductoSeleccionado,
+                txtNombreProducto,
+                txtStockProducto,
+                txtPrecioProducto,
+                comboEstadoProducto,
+                comboTipoProducto,
+                ruta,
                 imagenProductoView);
+
         mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);

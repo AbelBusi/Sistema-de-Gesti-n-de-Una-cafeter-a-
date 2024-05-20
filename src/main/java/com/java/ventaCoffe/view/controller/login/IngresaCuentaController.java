@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.Optional;
 
 @Component
@@ -20,7 +21,7 @@ public class IngresaCuentaController {
     @Autowired
     private UsuarioServiceImpl usuarioService;
 
-    Errores errores= new Errores();
+    Errores errores = new Errores();
 
     public void limpiarRegistro(TextField correo, PasswordField clave, TextField respuesta) {
 
@@ -94,10 +95,10 @@ public class IngresaCuentaController {
                 alerta.showAndWait();
                 return null;
             }
-        }catch (RuntimeException exception){
+        } catch (RuntimeException exception) {
             errores.errorDatos();
-            System.out.println("Error: "+exception.getMessage());
-            return  null;
+            System.out.println("Error: " + exception.getMessage());
+            return null;
         }
 
     }

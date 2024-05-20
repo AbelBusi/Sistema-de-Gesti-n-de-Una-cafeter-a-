@@ -20,7 +20,7 @@ public class CrearCuentaCntroller {
     @Autowired
     private UsuarioServiceImpl usuarioService;
 
-    Errores errores= new Errores();
+    Errores errores = new Errores();
 
     public void limpiarRegistro(TextField correo, PasswordField clave, TextField respuesta) {
 
@@ -30,6 +30,7 @@ public class CrearCuentaCntroller {
 
 
     }
+
     public void Registrarse(TextField correoUsuario, PasswordField claveUsuaio,
                             ComboBox pregunta, TextField respuestaUsuario) {
 
@@ -45,50 +46,49 @@ public class CrearCuentaCntroller {
         try {
 
 
+            if (!correo.isEmpty() && !clave.isEmpty() && !(preguntaSeleccionada == null)
+                    && !respuesta.isEmpty()) {
 
-        if (!correo.isEmpty() && !clave.isEmpty() && !(preguntaSeleccionada == null)
-                && !respuesta.isEmpty()) {
+                if (!user.isPresent()) {
 
-            if (!user.isPresent()) {
+                    usuarioDto.setCorreoUsuarioDto(correo);
+                    usuarioDto.setClaveUsuarioDto(clave);
+                    usuarioDto.setPreguntaUsuarioDto(preguntaSeleccionada);
+                    usuarioDto.setResptValidacionUsuarioDto(respuesta);
+                    usuario = usuarioService.guardarUsuario(usuarioDto);
 
-                usuarioDto.setCorreoUsuarioDto(correo);
-                usuarioDto.setClaveUsuarioDto(clave);
-                usuarioDto.setPreguntaUsuarioDto(preguntaSeleccionada);
-                usuarioDto.setResptValidacionUsuarioDto(respuesta);
-                usuario = usuarioService.guardarUsuario(usuarioDto);
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Registro Correcto");
+                    alerta.setContentText("El usuario fue registrado con exito, puede ingresar :)");
+                    alerta.showAndWait();
 
-                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setHeaderText(null);
-                alerta.setTitle("Registro Correcto");
-                alerta.setContentText("El usuario fue registrado con exito, puede ingresar :)");
-                alerta.showAndWait();
+                    limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
 
-                limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Error de autenticacion");
+                    alerta.setContentText("El correo que ingreso ya existe, Intente con otro");
+                    alerta.showAndWait();
+                    limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
+                }
 
             } else {
+
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Error de autenticacion");
-                alerta.setContentText("El correo que ingreso ya existe, Intente con otro");
+                alerta.setContentText("Las casillas no pueden estar vacias, " +
+                        "seleccione una pregunta e Intentalo denuevo :)");
                 alerta.showAndWait();
                 limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
+
             }
-
-        } else {
-
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText(null);
-            alerta.setTitle("Error de autenticacion");
-            alerta.setContentText("Las casillas no pueden estar vacias, " +
-                    "seleccione una pregunta e Intentalo denuevo :)");
-            alerta.showAndWait();
-            limpiarRegistro(correoUsuario, claveUsuaio, respuestaUsuario);
-
-        }
-        }catch (JpaSystemException exception){
+        } catch (JpaSystemException exception) {
 
             errores.errorDatos();
-            System.out.println("Error: "+exception.getMessage());
+            System.out.println("Error: " + exception.getMessage());
 
         }
     }
