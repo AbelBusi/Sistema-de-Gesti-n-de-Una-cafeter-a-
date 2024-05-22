@@ -42,4 +42,14 @@ public class Producto {
     @ManyToOne
     private Usuario usuario;
 
+
+    public Producto(Integer idProducto, String nombreProducto,double precioProducto, String imagenProducto){
+
+        this.idProducto=idProducto;
+        this.nombreProducto=nombreProducto;
+        this.precioProducto=precioProducto;
+        this.imagenProducto=imagenProducto;
+
+    }
+
 }

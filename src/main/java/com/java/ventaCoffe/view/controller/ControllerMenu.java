@@ -3,6 +3,7 @@ package com.java.ventaCoffe.view.controller;
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.application.Platform;
@@ -16,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -28,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -146,6 +150,9 @@ public class ControllerMenu implements Initializable {
     private EliminarProductoController eliminarProductoController;
 
     //Cambiar entre ventanas
+
+    @FXML
+    private GridPane menuGrip_pane;
 
     @FXML
     private AnchorPane fromAddProducto;
@@ -329,8 +336,8 @@ public class ControllerMenu implements Initializable {
 
     }
 
-    //Otra informacion
-
+    @Autowired
+    private mostrarCartProductoController cartProductoController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -347,6 +354,11 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
 
+        cartProductoController.menuDisplayCard(menuGrip_pane);
+
 
     }
+
+
+
 }
