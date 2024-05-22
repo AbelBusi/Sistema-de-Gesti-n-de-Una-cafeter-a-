@@ -125,16 +125,26 @@ public class ControllerLogin implements Initializable {
             "¿Cual es tu serie favorita?", "¿Mascota favorita?"};
 
     public void recorrePreguntas() {
-        List<String> list = new ArrayList<>();
-        for (String pregunta : preguntas) {
 
-            list.add(pregunta);
+        try {
 
+
+            List<String> list = new ArrayList<>();
+            list.clear();
+            for (String pregunta : preguntas) {
+
+                list.add(pregunta);
+
+            }
+
+            ObservableList lisData = FXCollections.observableArrayList(list);
+            comboPregunta.setPromptText("Pregunta");
+            comboPregunta.setItems(lisData);
+            RComboPregunta.setItems(lisData);
+        }catch (NullPointerException exception){
+            System.out.println("Error: "+exception.getMessage());
         }
 
-        ObservableList lisData = FXCollections.observableArrayList(list);
-        comboPregunta.setItems(lisData);
-        RComboPregunta.setItems(lisData);
     }
 
     Errores errores = new Errores();
@@ -143,6 +153,7 @@ public class ControllerLogin implements Initializable {
     void CrearCuenta(ActionEvent event) {
         try {
             crearCuenta.Registrarse(txtRegistrarseCorreo, txtRegistrarClave, comboPregunta,txtRespuesta);
+            recorrePreguntas();
 
         }catch (NullPointerException exception){
             errores.errorDatos();

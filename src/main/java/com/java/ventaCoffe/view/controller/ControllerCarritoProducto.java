@@ -1,7 +1,6 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.view.controller.inventario.ActualizarProductoContoller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,7 +44,6 @@ public class ControllerCarritoProducto implements Initializable {
         loggger.info("Path: {}",path);
         cartImageProducto.setImage(image);
 
-        //cartImageProducto.setImage(new Image(producto.getImagenProducto()));
     }
 
     @Override
