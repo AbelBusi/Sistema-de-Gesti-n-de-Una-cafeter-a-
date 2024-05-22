@@ -151,6 +151,9 @@ public class ControllerMenu implements Initializable {
 
     //Cambiar entre ventanas
 
+    @Autowired
+    private mostrarCartProductoController cartProductoController;
+
     @FXML
     private GridPane menuGrip_pane;
 
@@ -291,6 +294,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
+        cartProductoController.menuDisplayCard(menuGrip_pane);
 
     }
 
@@ -320,6 +324,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
+        cartProductoController.menuDisplayCard(menuGrip_pane);
 
     }
 
@@ -330,14 +335,13 @@ public class ControllerMenu implements Initializable {
         mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
+        cartProductoController.menuDisplayCard(menuGrip_pane);
         agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                 imagenProductoView);
         idProductoSeleccionado = null;
 
     }
 
-    @Autowired
-    private mostrarCartProductoController cartProductoController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
