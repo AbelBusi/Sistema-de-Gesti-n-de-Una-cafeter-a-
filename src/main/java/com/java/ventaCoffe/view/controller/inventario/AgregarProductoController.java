@@ -90,27 +90,37 @@ public class AgregarProductoController {
         imageView.setImage(null);
     }
 
+
     public void fijarlogitudMaximo(final TextField campoTexto, final int tamañoMáximo) {
         campoTexto.lengthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                                 Number valorAnterior, Number valorActual) {
                 if (valorActual.intValue() > valorAnterior.intValue()) {
-                    // Verificar si el nuevo texto contiene caracteres no numéricos
-                    if (!campoTexto.getText().matches("[0-9]*")) {
-                        // Si contiene caracteres no numéricos, eliminarlos
-                        campoTexto.setText(campoTexto.getText().replaceAll("[^0-9]", ""));
+                    // Verificar si el nuevo texto contiene caracteres no numéricos, excepto un punto
+                    if (!campoTexto.getText().matches("[0-9]*\\.?[0-9]*")) {
+                        // Si contiene caracteres no numéricos, eliminarlos, pero permitir un punto
+                        campoTexto.setText(campoTexto.getText().replaceAll("[^0-9.]", ""));
+                        return;
+                    }
+
+                    // Verificar que solo haya un punto en el texto
+                    if (campoTexto.getText().chars().filter(ch -> ch == '.').count() > 1) {
+                        // Si hay más de un punto, eliminar el último punto ingresado
+                        int lastIndex = campoTexto.getText().lastIndexOf('.');
+                        campoTexto.setText(campoTexto.getText().substring(0, lastIndex) + campoTexto.getText().substring(lastIndex + 1));
                         return;
                     }
 
                     // Revisar que la longitud del texto no sea mayor a la variable definida.
-                    if (campoTexto.getText().length() >= tamañoMáximo) {
+                    if (campoTexto.getText().length() > tamañoMáximo) {
                         campoTexto.setText(campoTexto.getText().substring(0, tamañoMáximo));
                     }
                 }
             }
         });
     }
+
 
     @Autowired
     private ResourceLoader resourceLoader;

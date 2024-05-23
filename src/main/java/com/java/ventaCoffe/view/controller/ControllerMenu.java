@@ -331,15 +331,31 @@ public class ControllerMenu implements Initializable {
     @FXML
     void TeliminarProducto(ActionEvent event) {
 
-        eliminarProductoController.eliminarProducto(txtIdProducto);
-        mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
-                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
-                columFechaProducto);
-        cartProductoController.menuDisplayCard(menuGrip_pane);
-        agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
-                imagenProductoView);
-        idProductoSeleccionado = null;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("SALIR DEL PROGRAMA");
+        alert.setContentText("¿Deseas eliminar el producto?");
+        Optional<ButtonType> option= alert.showAndWait();
+        if(option.equals(ButtonType.OK)){
 
+            eliminarProductoController.eliminarProducto(txtIdProducto);
+            mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                    columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
+                    columFechaProducto);
+            cartProductoController.menuDisplayCard(menuGrip_pane);
+            agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
+                    imagenProductoView);
+            idProductoSeleccionado = null;
+
+        }else {
+            mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
+                    columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
+                    columFechaProducto);
+            cartProductoController.menuDisplayCard(menuGrip_pane);
+            agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
+                    imagenProductoView);
+            idProductoSeleccionado = null;
+        }
     }
 
 

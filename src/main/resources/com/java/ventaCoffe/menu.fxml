@@ -233,7 +233,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="fromAddProducto" layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromAddProducto" layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="311.0" prefWidth="807.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -289,21 +289,21 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="comboTipoProducto" layoutX="150.0" layoutY="108.0" prefHeight="27.0" prefWidth="177.0" promptText="Seleccionar" styleClass="textfield" stylesheets="@css/menu.css" />
-                                    <Label fx:id="LstockProducto" layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:">
+                                    <Label fx:id="LstockProducto" layoutX="359.0" layoutY="23.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="STOCK:" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="358.0">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtStockProducto" layoutX="466.0" layoutY="20.0" prefHeight="25.0" prefWidth="104.0" promptText="0" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtStockProducto" layoutX="468.0" layoutY="21.0" prefHeight="25.0" prefWidth="104.0" promptText="0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="197.0" AnchorPane.rightAnchor="235.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
-                                    <Label fx:id="LprecioProducto" layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRECIO $:">
+                                    <Label fx:id="LprecioProducto" layoutX="359.0" layoutY="71.0" prefHeight="20.0" prefWidth="90.0" styleClass="bead-label" stylesheets="@css/menu.css" text="PRECIO $:" AnchorPane.bottomAnchor="152.0" AnchorPane.rightAnchor="358.0">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtPrecioProducto" layoutX="468.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css">
+                                    <TextField fx:id="txtPrecioProducto" layoutX="468.0" layoutY="68.0" prefHeight="25.0" prefWidth="100.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="150.0" AnchorPane.rightAnchor="239.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></TextField>
@@ -323,26 +323,26 @@
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
-                                    <Button fx:id="BlimpiarProducto" layoutX="362.0" layoutY="172.0" mnemonicParsing="false" onAction="#limpiarCasillas" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="21.0">
+                                    <Button fx:id="BlimpiarProducto" layoutX="362.0" layoutY="172.0" mnemonicParsing="false" onAction="#limpiarCasillas" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="LIMPIAR" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="327.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
-                                    <Button layoutX="498.0" layoutY="172.0" mnemonicParsing="false" onAction="#TeliminarProducto" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="21.0">
+                                    <Button layoutX="498.0" layoutY="172.0" mnemonicParsing="false" onAction="#TeliminarProducto" prefHeight="50.0" prefWidth="118.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="191.0">
                                        <font>
                                           <Font name="Times New Roman" size="12.0" />
                                        </font></Button>
-                                    <Label layoutX="359.0" layoutY="116.0" prefHeight="20.0" prefWidth="83.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ESTADO:">
+                                    <Label layoutX="359.0" layoutY="116.0" prefHeight="20.0" prefWidth="83.0" styleClass="bead-label" stylesheets="@css/menu.css" text="ESTADO:" AnchorPane.bottomAnchor="107.0" AnchorPane.rightAnchor="365.0">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="comboEstadoProducto" layoutX="468.0" layoutY="108.0" prefHeight="27.0" prefWidth="145.0" promptText="Seleccionar" styleClass="textfield" stylesheets="@css/menu.css" />
+                                    <ComboBox fx:id="comboEstadoProducto" layoutX="468.0" layoutY="108.0" prefHeight="27.0" prefWidth="145.0" promptText="Seleccionar" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="108.0" AnchorPane.rightAnchor="194.0" />
                                  </children>
                               </AnchorPane>
                               <Separator layoutX="8.0" layoutY="337.0" prefHeight="0.0" prefWidth="832.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="fromCartProducto" layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromCartProducto" layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="13.0" layoutY="20.0" prefHeight="549.0" prefWidth="508.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="20.0">
                                  <styleClass>
