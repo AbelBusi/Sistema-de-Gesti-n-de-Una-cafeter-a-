@@ -41,12 +41,12 @@
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="43.0" prefWidth="230.0">
                <children>
-                  <Spinner fx:id="BcartCantidadProducto" prefHeight="28.0" prefWidth="87.0" stylesheets="@css/cartProducto.css">
+                  <Spinner fx:id="BcartCantidadProducto" amountToStepBy="1" initialValue="1" max="6" min="1" prefHeight="28.0" prefWidth="87.0" stylesheets="@css/cartProducto.css">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button fx:id="BcartAgregarProducto" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" styleClass="btn" stylesheets="@css/cartProducto.css" text="AGREGAR" />
+                  <Button fx:id="BcartAgregarProducto" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="25.0" prefWidth="81.0" styleClass="btn" stylesheets="@css/cartProducto.css" text="AGREGAR" />
                </children>
             </HBox>
          </children>

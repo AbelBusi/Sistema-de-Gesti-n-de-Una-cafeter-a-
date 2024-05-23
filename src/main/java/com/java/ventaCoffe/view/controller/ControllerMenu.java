@@ -178,6 +178,29 @@ public class ControllerMenu implements Initializable {
     @FXML
     private Button BCartProducto;
 
+    //Contenido de los pedidos
+
+    @FXML
+    private Label LtotalPedido;
+
+    @FXML
+    private TextField TxtcantidadPedido;
+
+    @FXML
+    private Label cambioPedido;
+
+    @FXML
+    private TableView<?> tableViewPedido;
+
+    @FXML
+    private TableColumn<?, ?> columnPrecioPedido;
+
+    @FXML
+    private TableColumn<?, ?> columnProductoPedido;
+
+    @FXML
+    private TableColumn<?, ?> columnStockPedido;
+
 
     @FXML
     void menuClientes(ActionEvent event) {

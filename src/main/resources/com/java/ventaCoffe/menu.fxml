@@ -233,7 +233,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="fromAddProducto" layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromAddProducto" layoutX="180.0" layoutY="178.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="311.0" prefWidth="807.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -342,7 +342,7 @@
                               <Separator layoutX="8.0" layoutY="337.0" prefHeight="0.0" prefWidth="832.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="fromCartProducto" layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromCartProducto" layoutX="273.0" layoutY="86.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="13.0" layoutY="20.0" prefHeight="549.0" prefWidth="508.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="20.0">
                                  <styleClass>
@@ -373,11 +373,11 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="295.0" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="14.0">
+                                    <TableView fx:id="tableViewPedido" layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="295.0" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="14.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="PRODUCTO" />
-                                        <TableColumn prefWidth="125.0" text="STOCK" />
-                                          <TableColumn prefWidth="91.0" text="PRECIO" />
+                                        <TableColumn fx:id="columnProductoPedido" prefWidth="75.0" text="PRODUCTO" />
+                                        <TableColumn fx:id="columnStockPedido" prefWidth="125.0" text="STOCK" />
+                                          <TableColumn fx:id="columnPrecioPedido" prefWidth="91.0" text="PRECIO" />
                                       </columns>
                                     </TableView>
                                     <Label layoutX="80.0" layoutY="251.0" prefHeight="26.0" prefWidth="55.0" text="Total:" AnchorPane.bottomAnchor="273.0" AnchorPane.rightAnchor="172.0">
@@ -385,7 +385,7 @@
                                           <Font name="Times New Roman Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="159.0" layoutY="251.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="273.0" AnchorPane.rightAnchor="87.0">
+                                    <Label fx:id="LtotalPedido" layoutX="159.0" layoutY="251.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="273.0" AnchorPane.rightAnchor="87.0">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
@@ -395,17 +395,17 @@
                                           <Font name="Times New Roman Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="159.0" layoutY="354.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="87.0">
+                                    <Label fx:id="cambioPedido" layoutX="159.0" layoutY="354.0" prefHeight="26.0" prefWidth="61.0" text="\$0.0" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="87.0">
                                        <font>
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="50.0" layoutY="305.0" prefHeight="26.0" prefWidth="89.0" text="Cantidad:" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="168.0">
+                                    <Label layoutX="67.0" layoutY="304.0" prefHeight="26.0" prefWidth="68.0" text="Dinero:" AnchorPane.bottomAnchor="220.0" AnchorPane.rightAnchor="172.0">
                                        <font>
                                           <Font name="Times New Roman Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="159.0" layoutY="302.0" prefHeight="29.0" prefWidth="126.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="22.0" />
+                                    <TextField fx:id="TxtcantidadPedido" layoutX="159.0" layoutY="302.0" prefHeight="29.0" prefWidth="126.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="22.0" />
                                     <Button layoutX="19.0" layoutY="413.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="270.0" styleClass="btn" stylesheets="@css/menu.css" text="PAGAR" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="18.0" />
                                     <Button layoutX="38.0" layoutY="483.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="19.0" />
                                     <Button layoutX="168.0" layoutY="483.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" styleClass="btn" stylesheets="@css/menu.css" text="BOLETA" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="18.0" />
