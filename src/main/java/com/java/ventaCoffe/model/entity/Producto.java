@@ -52,4 +52,11 @@ public class Producto {
 
     }
 
+    public Producto(int stockProducto, String nombreProducto,double precioProducto){
+        this.stockProducto=stockProducto;
+        this.nombreProducto=nombreProducto;
+        this.precioProducto=precioProducto;
+
+    }
+
 }

@@ -1,9 +1,13 @@
 package com.java.ventaCoffe.view.controller;
 
+import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -11,7 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,9 +63,11 @@ public class ControllerCarritoProducto implements Initializable {
         this.precioProducto = precioProducto;
     }
 
+    CartTablePedidoController pedidoTable = new CartTablePedidoController();
+
     //el otro argumento es la cantidad de productos (agregaProducto)
 
-    public void agregarProducto(Producto producto){
+    public void agregarProducto(Producto producto) {
 
         try {
 
@@ -73,27 +82,35 @@ public class ControllerCarritoProducto implements Initializable {
             double precioProducto = producto.getPrecioProducto();
             setNombreProducto(nombreProducto);
             setPrecioProducto(precioProducto);
-        }catch (Exception exception){
-            System.out.println("Error: "+exception.getMessage());
+        } catch (Exception exception) {
+            System.out.println("Error: " + exception.getMessage());
         }
 
     }
 
     @FXML
     void agregarProducto(ActionEvent event) {
-        System.out.println(
-                BcartCantidadProducto.getValue()
+        try {
+
+            int cantidad = BcartCantidadProducto.getValue();
+            String nombreProducto = getNombreProducto();
+            double precioProducto = getPrecioProducto();
+
+            FXMLLoader ruta = new FXMLLoader();
+            ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
+            ApplicationContext applicationContext = VentaCoffeApplication.context;
+            // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
+            ruta.setControllerFactory(applicationContext::getBean);
+            Parent root = ruta.load();
+            ControllerMenu controllerMenu = ruta.getController();
+            controllerMenu.setNombrePedido(nombreProducto);
+            controllerMenu.setStockPedido(cantidad);
+            controllerMenu.setPrecioPedido(precioProducto);
 
 
-        );
 
-        System.out.println(getNombreProducto());
-        System.out.println(getPrecioProducto());
-
-        try{
-
-        }catch (NullPointerException exception){
-            System.out.println("Error: "+exception.getMessage());
+        } catch (Exception exception) {
+            System.out.println("Error: " + exception.getMessage());
         }
 
     }

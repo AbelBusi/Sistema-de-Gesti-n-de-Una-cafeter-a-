@@ -3,6 +3,7 @@ package com.java.ventaCoffe.view.controller;
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -154,6 +155,9 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private mostrarCartProductoController cartProductoController;
 
+    @Autowired
+    private CartTablePedidoController cartTablePedidoController;
+
     @FXML
     private GridPane menuGrip_pane;
 
@@ -190,7 +194,7 @@ public class ControllerMenu implements Initializable {
     private Label cambioPedido;
 
     @FXML
-    private TableView<?> tableViewPedido;
+    private TableView<Producto> tableViewPedido;
 
     @FXML
     private TableColumn<?, ?> columnPrecioPedido;
@@ -200,6 +204,36 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     private TableColumn<?, ?> columnStockPedido;
+
+    private String nombrePedido;
+
+    private int stockPedido;
+
+    private double precioPedido;
+
+    public String getNombrePedido() {
+        return nombrePedido;
+    }
+
+    public void setNombrePedido(String nombrePedido) {
+        this.nombrePedido = nombrePedido;
+    }
+
+    public int getStockPedido() {
+        return stockPedido;
+    }
+
+    public void setStockPedido(int stockPedido) {
+        this.stockPedido = stockPedido;
+    }
+
+    public double getPrecioPedido() {
+        return precioPedido;
+    }
+
+    public void setPrecioPedido(double precioPedido) {
+        this.precioPedido = precioPedido;
+    }
 
 
     @FXML
@@ -228,7 +262,7 @@ public class ControllerMenu implements Initializable {
     }
 
     @FXML
-    void cartProducto(ActionEvent event){
+    void cartProducto(ActionEvent event) {
 
         fromAddProducto.setVisible(false);
         fromCartProducto.setVisible(true);
@@ -249,12 +283,11 @@ public class ControllerMenu implements Initializable {
             alert.setHeaderText(null);
             alert.setTitle("SALIR DEL PROGRAMA");
             alert.setContentText("¿Estas seguro de salir del programa?");
-            Optional<ButtonType> option= alert.showAndWait();
+            Optional<ButtonType> option = alert.showAndWait();
             ApplicationContext context = VentaCoffeApplication.context;
 
 
-
-            if(option.get().equals(ButtonType.OK)){
+            if (option.get().equals(ButtonType.OK)) {
 
                 Stage ventanaLogin = new Stage();
                 FXMLLoader ruta = new FXMLLoader();
@@ -358,8 +391,8 @@ public class ControllerMenu implements Initializable {
         alert.setHeaderText(null);
         alert.setTitle("SALIR DEL PROGRAMA");
         alert.setContentText("¿Deseas eliminar el producto?");
-        Optional<ButtonType> option= alert.showAndWait();
-        if(option.equals(ButtonType.OK)){
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.equals(ButtonType.OK)) {
 
             eliminarProductoController.eliminarProducto(txtIdProducto);
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
@@ -370,7 +403,7 @@ public class ControllerMenu implements Initializable {
                     imagenProductoView);
             idProductoSeleccionado = null;
 
-        }else {
+        } else {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
@@ -387,6 +420,10 @@ public class ControllerMenu implements Initializable {
         Platform.runLater(() -> {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
+            System.out.println("Nombre pedido: " + getNombrePedido());
+            System.out.println("Precio pedido: " + getPrecioPedido());
+            System.out.println("Stock pedido: " + getStockPedido());
+
 
         });
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
@@ -399,9 +436,15 @@ public class ControllerMenu implements Initializable {
 
         cartProductoController.menuDisplayCard(menuGrip_pane);
 
+        cartTablePedidoController.agregarPedidoTable(getNombrePedido(),
+                getStockPedido(),
+                getPrecioPedido(),
+                tableViewPedido);
 
+        cartTablePedidoController.MostrarProductos(tableViewPedido,
+                columnProductoPedido,
+                columnStockPedido,
+                columnPrecioPedido);
     }
-
-
 
 }
