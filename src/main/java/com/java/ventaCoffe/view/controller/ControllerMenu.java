@@ -197,13 +197,13 @@ public class ControllerMenu implements Initializable {
     private TableView<Producto> tableViewPedido;
 
     @FXML
-    private TableColumn<?, ?> columnPrecioPedido;
+    private TableColumn<Producto,Double > columnPrecioPedido;
 
     @FXML
-    private TableColumn<?, ?> columnProductoPedido;
+    private TableColumn<Producto, String> columnProductoPedido;
 
     @FXML
-    private TableColumn<?, ?> columnStockPedido;
+    private TableColumn<Producto, Integer> columnStockPedido;
 
     private String nombrePedido;
 
@@ -436,15 +436,16 @@ public class ControllerMenu implements Initializable {
 
         cartProductoController.menuDisplayCard(menuGrip_pane);
 
-        cartTablePedidoController.agregarPedidoTable(getNombrePedido(),
+        cartTablePedidoController.initializable(getNombrePedido(),
                 getStockPedido(),
-                getPrecioPedido(),
-                tableViewPedido);
+                getPrecioPedido());
 
-        cartTablePedidoController.MostrarProductos(tableViewPedido,
+        cartTablePedidoController.agregarPedidoTable(tableViewPedido,
                 columnProductoPedido,
                 columnStockPedido,
                 columnPrecioPedido);
+
+
     }
 
 }

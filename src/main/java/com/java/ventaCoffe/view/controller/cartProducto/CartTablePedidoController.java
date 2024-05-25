@@ -16,44 +16,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class CartTablePedidoController {
 
-    ObservableList<Producto> productos;
+    ObservableList<Producto> productos=FXCollections.observableArrayList();
 
     private final Logger loggger = LoggerFactory.getLogger(CartTablePedidoController.class);
 
 
-    public void agregarPedidoTable(String nombrePedido,
-                                   int cantidadPedido,
-                                   double precioPedido,
-                                   TableView<Producto> tableView) {
-        try {
+    public void agregarPedidoTable(TableView<Producto> tableView,
+                                   TableColumn<Producto, String> columNombre,
+                                   TableColumn<Producto, Integer> columCantidad,
+                                   TableColumn<Producto, Double> columPrecio) {
 
-            loggger.info("Cantidad: {}",cantidadPedido);
-            loggger.info("Nombre: {}",nombrePedido);
-            loggger.info("Precio: {}",precioPedido);
-
-            Producto producto = new Producto(cantidadPedido, nombrePedido, precioPedido);
-            if (this.productos.contains(producto)) {
-                this.productos.add(producto);
-                tableView.setItems(productos);
-            }
-            {
-                System.out.println("prueba testeo view");
-            }
-        } catch (Exception exception) {
-            System.out.println("Error: " + exception.getMessage());
-        }
-
+        columNombre.setCellValueFactory(new PropertyValueFactory("nombreProducto"));
+        columCantidad.setCellValueFactory(new PropertyValueFactory("stockProducto"));
+        columPrecio.setCellValueFactory(new PropertyValueFactory("precioProducto"));
+        tableView.setItems(productos);
 
     }
 
-    public void MostrarProductos(TableView<Producto> tablProducto,
-                                 TableColumn nombreProducto,
-                                 TableColumn stocksProducto,
-                                 TableColumn precioProducto) {
-        productos = FXCollections.observableArrayList();
+    public void initializable(String nombrePedido, int cantidadPedido, double precioPedido){
 
-        nombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
-
+        Producto producto= new Producto(cantidadPedido,nombrePedido,precioPedido);
+        productos.add(producto);
 
     }
 
