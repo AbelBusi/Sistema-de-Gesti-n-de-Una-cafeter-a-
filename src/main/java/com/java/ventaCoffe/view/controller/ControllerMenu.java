@@ -236,9 +236,6 @@ public class ControllerMenu implements Initializable {
         this.precioPedido = precioPedido;
     }
 
-    @Autowired
-    private TablePedidoContoller tablePedidoContoller;
-
 
     @FXML
     void menuClientes(ActionEvent event) {
@@ -247,17 +244,16 @@ public class ControllerMenu implements Initializable {
 
     }
 
-    public void cambiarFrom(ActionEvent event){
-        if(event.getSource()==BinicioMenu){
+    public void cambiarFrom(ActionEvent event) {
+        if (event.getSource() == BinicioMenu) {
             fromAddProducto.setVisible(false);
             fromCartProducto.setVisible(false);
             fromMenuProducto.setVisible(true);
-        }
-        else if(event.getSource()==BinventarioMenu){
+        } else if (event.getSource() == BinventarioMenu) {
             fromAddProducto.setVisible(true);
             fromCartProducto.setVisible(false);
             fromMenuProducto.setVisible(false);
-        }else if (event.getSource()==BCartProducto){
+        } else if (event.getSource() == BCartProducto) {
 
             fromAddProducto.setVisible(false);
             fromCartProducto.setVisible(true);
@@ -350,7 +346,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+        cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
 
     }
 
@@ -380,7 +376,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+        cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
 
     }
 
@@ -398,7 +394,7 @@ public class ControllerMenu implements Initializable {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
@@ -407,7 +403,7 @@ public class ControllerMenu implements Initializable {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
@@ -419,19 +415,22 @@ public class ControllerMenu implements Initializable {
     @FXML
     void eliminarPedido(ActionEvent event) {
 
-        tablePedidoContoller.SeleecionarPedidoTable(tableViewPedido);
+        //tablePedidoContoller.SeleecionarPedidoTable(tableViewPedido);
         System.out.println("Eliminar pedido");
 
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
-            System.out.println("Numero pedido: "+getNombrePedido());
-            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+
+
+            cartTablePedidoController.agregarPedidoTable(tableViewPedido,
+                    columnProductoPedido,
+                    columnStockPedido,
+                    columnPrecioPedido);
 
 
         });
@@ -446,11 +445,7 @@ public class ControllerMenu implements Initializable {
 
 
 
-        cartTablePedidoController.agregarPedidoTable(tableViewPedido,
-                columnProductoPedido,
-                columnStockPedido,
-                columnPrecioPedido);
-
+        cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
 
 
     }

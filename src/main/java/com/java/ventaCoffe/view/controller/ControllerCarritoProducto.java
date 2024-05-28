@@ -1,23 +1,20 @@
 package com.java.ventaCoffe.view.controller;
 
-import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -27,7 +24,6 @@ import java.util.ResourceBundle;
 public class ControllerCarritoProducto implements Initializable {
 
     private final Logger loggger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
-
 
     @FXML
     private AnchorPane anchorPane;
@@ -94,27 +90,21 @@ public class ControllerCarritoProducto implements Initializable {
     // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
     //ruta.setControllerFactory(applicationContext::getBean);
 
+    //    @Autowired
+//    private
+    CartTablePedidoController cartTablePedidoController = new CartTablePedidoController();
+
+
     @FXML
     void BagregarProducto(ActionEvent event) {
         try {
-
             int cantidad = BcartCantidadProducto.getValue();
-            String nombreProducto = getNombreProducto();
-            double precioProducto = getPrecioProducto();
-            FXMLLoader ruta = new FXMLLoader();
-            ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
+            loggger.info("Agregando producto - Nombre: {}, Cantidad: {}, Precio: {}", nombreProducto, cantidad, precioProducto);
 
-            Parent root = ruta.load();
-            ControllerMenu controllerMenu = ruta.getController();
+//            cartTablePedidoController.initializable(getNombreProducto(), cantidad, getPrecioProducto());
+            //cartTablePedidoController.guardarPrueba(getNombreProducto(), cantidad, getPrecioProducto());
 
-            controllerMenu.setNombrePedido(nombreProducto);
-            controllerMenu.setStockPedido(cantidad);
-            controllerMenu.setPrecioPedido(precioProducto);
-
-
-
-
-
+            loggger.info("Guardo el producto");
 
         } catch (Exception exception) {
             System.out.println("Error: " + exception.getMessage());
