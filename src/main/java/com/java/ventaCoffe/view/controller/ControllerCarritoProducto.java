@@ -2,20 +2,21 @@ package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
@@ -26,6 +27,10 @@ import java.util.ResourceBundle;
 public class ControllerCarritoProducto implements Initializable {
 
     private final Logger loggger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
+
+
+    @FXML
+    private AnchorPane anchorPane;
 
 
     @FXML
@@ -63,15 +68,12 @@ public class ControllerCarritoProducto implements Initializable {
         this.precioProducto = precioProducto;
     }
 
-    CartTablePedidoController pedidoTable = new CartTablePedidoController();
 
     //el otro argumento es la cantidad de productos (agregaProducto)
 
     public void agregarProducto(Producto producto) {
 
         try {
-
-
             LcartNombreProducto.setText(producto.getNombreProducto());
             LcartPrecioProducto.setText("$" + producto.getPrecioProducto());
             String path = "File:" + producto.getImagenProducto();
@@ -88,24 +90,29 @@ public class ControllerCarritoProducto implements Initializable {
 
     }
 
+    //ApplicationContext applicationContext = VentaCoffeApplication.context;
+    // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
+    //ruta.setControllerFactory(applicationContext::getBean);
+
     @FXML
-    void agregarProducto(ActionEvent event) {
+    void BagregarProducto(ActionEvent event) {
         try {
 
             int cantidad = BcartCantidadProducto.getValue();
             String nombreProducto = getNombreProducto();
             double precioProducto = getPrecioProducto();
-
             FXMLLoader ruta = new FXMLLoader();
             ruta.setLocation(getClass().getResource("/com/java/ventaCoffe/menu.fxml"));
-            ApplicationContext applicationContext = VentaCoffeApplication.context;
-            // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
-            ruta.setControllerFactory(applicationContext::getBean);
+
             Parent root = ruta.load();
             ControllerMenu controllerMenu = ruta.getController();
+
             controllerMenu.setNombrePedido(nombreProducto);
             controllerMenu.setStockPedido(cantidad);
             controllerMenu.setPrecioPedido(precioProducto);
+
+
+
 
 
 

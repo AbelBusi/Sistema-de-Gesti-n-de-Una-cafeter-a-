@@ -4,6 +4,7 @@ import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Data;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
+import com.java.ventaCoffe.view.controller.cartProducto.TablePedidoContoller;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -197,7 +198,7 @@ public class ControllerMenu implements Initializable {
     private TableView<Producto> tableViewPedido;
 
     @FXML
-    private TableColumn<Producto,Double > columnPrecioPedido;
+    private TableColumn<Producto, Double> columnPrecioPedido;
 
     @FXML
     private TableColumn<Producto, String> columnProductoPedido;
@@ -235,6 +236,9 @@ public class ControllerMenu implements Initializable {
         this.precioPedido = precioPedido;
     }
 
+    @Autowired
+    private TablePedidoContoller tablePedidoContoller;
+
 
     @FXML
     void menuClientes(ActionEvent event) {
@@ -243,30 +247,23 @@ public class ControllerMenu implements Initializable {
 
     }
 
-    @FXML
-    void menuInicio(ActionEvent event) {
+    public void cambiarFrom(ActionEvent event){
+        if(event.getSource()==BinicioMenu){
+            fromAddProducto.setVisible(false);
+            fromCartProducto.setVisible(false);
+            fromMenuProducto.setVisible(true);
+        }
+        else if(event.getSource()==BinventarioMenu){
+            fromAddProducto.setVisible(true);
+            fromCartProducto.setVisible(false);
+            fromMenuProducto.setVisible(false);
+        }else if (event.getSource()==BCartProducto){
 
-        fromAddProducto.setVisible(false);
-        fromCartProducto.setVisible(false);
-        fromMenuProducto.setVisible(true);
+            fromAddProducto.setVisible(false);
+            fromCartProducto.setVisible(true);
+            fromMenuProducto.setVisible(false);
 
-    }
-
-    @FXML
-    void menuInventario(ActionEvent event) {
-
-        fromAddProducto.setVisible(true);
-        fromCartProducto.setVisible(false);
-        fromMenuProducto.setVisible(false);
-
-    }
-
-    @FXML
-    void cartProducto(ActionEvent event) {
-
-        fromAddProducto.setVisible(false);
-        fromCartProducto.setVisible(true);
-        fromMenuProducto.setVisible(false);
+        }
 
     }
 
@@ -339,6 +336,9 @@ public class ControllerMenu implements Initializable {
     }
 
     @FXML
+    AnchorPane pruebaPane;
+
+    @FXML
     void guardarProducto(ActionEvent event) {
         System.out.println("Prueba");
         agregarProducto.agregarProducto(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
@@ -350,7 +350,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        cartProductoController.menuDisplayCard(menuGrip_pane);
+        //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
 
     }
 
@@ -380,7 +380,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        cartProductoController.menuDisplayCard(menuGrip_pane);
+        //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
 
     }
 
@@ -398,7 +398,7 @@ public class ControllerMenu implements Initializable {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            cartProductoController.menuDisplayCard(menuGrip_pane);
+            //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
@@ -407,11 +407,21 @@ public class ControllerMenu implements Initializable {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            cartProductoController.menuDisplayCard(menuGrip_pane);
+            //cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
         }
+    }
+
+    //Pedidos
+
+    @FXML
+    void eliminarPedido(ActionEvent event) {
+
+        tablePedidoContoller.SeleecionarPedidoTable(tableViewPedido);
+        System.out.println("Eliminar pedido");
+
     }
 
 
@@ -420,9 +430,8 @@ public class ControllerMenu implements Initializable {
         Platform.runLater(() -> {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
-            System.out.println("Nombre pedido: " + getNombrePedido());
-            System.out.println("Precio pedido: " + getPrecioPedido());
-            System.out.println("Stock pedido: " + getStockPedido());
+            System.out.println("Numero pedido: "+getNombrePedido());
+            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
 
 
         });
@@ -431,19 +440,17 @@ public class ControllerMenu implements Initializable {
         comboController.recorrerEstadoProducto(comboEstadoProducto);
         comboController.recorrerTipoProducto(comboTipoProducto);
         mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
-                columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
+                columProducto, columTipoProducto, columStockProducto, columPrecioProducto,
+                columEstadoProducto,
                 columFechaProducto);
 
-        cartProductoController.menuDisplayCard(menuGrip_pane);
 
-        cartTablePedidoController.initializable(getNombrePedido(),
-                getStockPedido(),
-                getPrecioPedido());
 
         cartTablePedidoController.agregarPedidoTable(tableViewPedido,
                 columnProductoPedido,
                 columnStockPedido,
                 columnPrecioPedido);
+
 
 
     }

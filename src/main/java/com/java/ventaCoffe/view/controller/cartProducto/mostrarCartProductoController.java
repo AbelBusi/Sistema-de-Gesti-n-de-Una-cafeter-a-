@@ -3,6 +3,7 @@ package com.java.ventaCoffe.view.controller.cartProducto;
 import com.java.ventaCoffe.controller.impl.ProductoServiceImpl;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.ControllerCarritoProducto;
+import com.java.ventaCoffe.view.controller.ControllerMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,7 @@ public class mostrarCartProductoController {
     }
 
 
-    public void menuDisplayCard(GridPane menuGridPane) {
+    public void menuDisplayCard(GridPane menuGridPane,AnchorPane pane) {
         cardListData.clear();
         cardListData.addAll(menuGetData());
 
@@ -65,8 +66,9 @@ public class mostrarCartProductoController {
                 }
                 FXMLLoader load = new FXMLLoader(fxmlUrl);
 
-                AnchorPane pane = load.load();
+                pane = load.load();
                 ControllerCarritoProducto carritoProducto = load.getController();
+
                 carritoProducto.agregarProducto(cardListData.get(q));
 
                 if (column == 2) {
@@ -75,6 +77,7 @@ public class mostrarCartProductoController {
                 }
 
                 menuGridPane.add(pane, column++, row);
+                GridPane.setMargin(pane, new Insets(10));
 
             } catch (Exception exception) {
                 System.out.println("Error: " + exception.getMessage());

@@ -53,6 +53,7 @@
     -fx-border-color: linear-gradient(to bottom right, #0f6789, #286155);
     -fx-border-radius: 5px;
     -fx-border-width: 1.5px;
+    -fx-alignment: CENTER-LEFT;
 }
 
 .table-view .column-header-background{

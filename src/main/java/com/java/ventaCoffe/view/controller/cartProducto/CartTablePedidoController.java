@@ -16,9 +16,53 @@ import org.springframework.stereotype.Component;
 @Component
 public class CartTablePedidoController {
 
-    ObservableList<Producto> productos=FXCollections.observableArrayList();
+    private final ObservableList<Producto> productos = FXCollections.observableArrayList();
+
+    private String nombrePedido;
+
+    private int stockPedido;
+
+    private double precioPedido;
+
+    public String getNombrePedido() {
+        return nombrePedido;
+    }
+
+    public void setNombrePedido(String nombrePedido) {
+        this.nombrePedido = nombrePedido;
+    }
+
+    public int getStockPedido() {
+        return stockPedido;
+    }
+
+    public void setStockPedido(int stockPedido) {
+        this.stockPedido = stockPedido;
+    }
+
+    public double getPrecioPedido() {
+        return precioPedido;
+    }
+
+    public void setPrecioPedido(double precioPedido) {
+        this.precioPedido = precioPedido;
+    }
 
     private final Logger loggger = LoggerFactory.getLogger(CartTablePedidoController.class);
+
+    public void initializable(String nombrePedido, int cantidadPedido, double precioPedido) {
+
+
+        if (!(nombrePedido == null)
+                && !(precioPedido == 0.0) && !(cantidadPedido == 0)) {
+            Producto producto = new Producto(cantidadPedido, nombrePedido, precioPedido);
+            productos.add(producto);
+        } else {
+            System.out.println("No paso el test de la tablaView");
+        }
+
+
+    }
 
 
     public void agregarPedidoTable(TableView<Producto> tableView,
@@ -26,18 +70,13 @@ public class CartTablePedidoController {
                                    TableColumn<Producto, Integer> columCantidad,
                                    TableColumn<Producto, Double> columPrecio) {
 
+
         columNombre.setCellValueFactory(new PropertyValueFactory("nombreProducto"));
         columCantidad.setCellValueFactory(new PropertyValueFactory("stockProducto"));
         columPrecio.setCellValueFactory(new PropertyValueFactory("precioProducto"));
         tableView.setItems(productos);
-
     }
 
-    public void initializable(String nombrePedido, int cantidadPedido, double precioPedido){
 
-        Producto producto= new Producto(cantidadPedido,nombrePedido,precioPedido);
-        productos.add(producto);
-
-    }
 
 }
