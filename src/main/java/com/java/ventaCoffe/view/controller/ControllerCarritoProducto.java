@@ -1,13 +1,11 @@
 package com.java.ventaCoffe.view.controller;
 
-import com.java.ventaCoffe.model.entity.DataTransFerService;
+import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
+import com.java.ventaCoffe.view.controller.cartProducto.TablePedidoContoller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -18,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -27,10 +24,9 @@ import java.util.ResourceBundle;
 @Controller
 public class ControllerCarritoProducto implements Initializable {
 
-    private final Logger loggger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
+    private final Logger logger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    ApplicationContext applicationContext = VentaCoffeApplication.context;
 
     @FXML
     private AnchorPane anchorPane;
@@ -71,6 +67,9 @@ public class ControllerCarritoProducto implements Initializable {
         this.precioProducto = precioProducto;
     }
 
+    @Autowired
+    private TablePedidoContoller tablePedidoContoller;
+
 
     //el otro argumento es la cantidad de productos (agregaProducto)
 
@@ -81,7 +80,7 @@ public class ControllerCarritoProducto implements Initializable {
             LcartPrecioProducto.setText("$" + producto.getPrecioProducto());
             String path = "File:" + producto.getImagenProducto();
             Image image = new Image(path, 200, 85, false, true);
-            loggger.info("Path: {}", path);
+            logger.info("Path: {}", path);
             cartImageProducto.setImage(image);
             String nombreProducto = LcartNombreProducto.getText();
             double precioProducto = producto.getPrecioProducto();
@@ -93,8 +92,9 @@ public class ControllerCarritoProducto implements Initializable {
 
     }
 
-    @Autowired
-    private DataTransFerService dataTransFerService;
+//    @Autowired
+//    private DataTransFerService dataTransFerService;
+
 
     @FXML
     void BagregarProducto(ActionEvent event) {
@@ -103,12 +103,14 @@ public class ControllerCarritoProducto implements Initializable {
             String nombrePedido=getNombreProducto();
             double precioPedido = getPrecioProducto();
 
-            dataTransFerService.setNombrePedido(nombrePedido);
-            dataTransFerService.setPrecioPedido(precioPedido);
-            dataTransFerService.setCantidad(cantidad);
+            Producto producto = new Producto(cantidad,nombreProducto,precioProducto);
+
+            tablePedidoContoller.guardarPedidoTemporal(producto);
+
+
 
         } catch (Exception exception) {
-            loggger.error("Error: {}", exception.getMessage());
+            logger.error("Error: {}", exception.getMessage());
         }
     }
 

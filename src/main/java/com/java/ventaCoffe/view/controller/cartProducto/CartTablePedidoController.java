@@ -36,6 +36,7 @@ public class CartTablePedidoController {
     public void initializable(int cantidadPedido, double precioPedido,String nombrePedido) {
 
     Producto producto = new Producto(cantidadPedido,nombrePedido,precioPedido);
+    loggger.info("Producto: {}",producto);
     productos.add(producto);
 
     }

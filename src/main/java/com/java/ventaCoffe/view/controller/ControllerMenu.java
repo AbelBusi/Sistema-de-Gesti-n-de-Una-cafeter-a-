@@ -1,17 +1,11 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
-import com.java.ventaCoffe.model.entity.Data;
-import com.java.ventaCoffe.model.entity.DataTransFerService;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
-import com.java.ventaCoffe.view.controller.cartProducto.TablePedidoContoller;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -32,11 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -158,9 +149,6 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private mostrarCartProductoController cartProductoController;
-
-    @Autowired
-    private CartTablePedidoController cartTablePedidoController;
 
 
     @FXML
@@ -423,15 +411,12 @@ public class ControllerMenu implements Initializable {
         System.out.println("Eliminar pedido");
 
     }
-
-    @Autowired
-    private DataTransFerService dataTransFerService;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
+
 
 
         });
@@ -445,21 +430,6 @@ public class ControllerMenu implements Initializable {
                 columEstadoProducto,
                 columFechaProducto);
         cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
-
-        //Prueba
-        String nbombre= dataTransFerService.getNombrePedido();
-        int cantidad = dataTransFerService.getCantidad();
-        double precio = dataTransFerService.getPrecioPedido();
-
-
-
-        cartTablePedidoController.agregarPedidoTable(tableViewPedido,
-                columnProductoPedido,
-                columnStockPedido,
-                columnPrecioPedido);
-
-        cartTablePedidoController.initializable(cantidad,precio,nbombre);
-
 
     }
 

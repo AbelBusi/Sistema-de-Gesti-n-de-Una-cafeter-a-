@@ -1,23 +1,88 @@
 package com.java.ventaCoffe.view.controller.cartProducto;
 
+import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
+import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
-import javafx.scene.control.TableView;
+import com.java.ventaCoffe.view.controller.ControllerCarritoProducto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TablePedidoContoller {
 
-    public void SeleecionarPedidoTable(TableView<Producto> productoTableView){
+    @Autowired
+    private PedidoTempServiceImpl pedidoTempService;
 
-        Producto p = productoTableView.getSelectionModel().getSelectedItem();
-        if(p==null){
-            System.out.println("Debe seleccionar un producto");
+    private final Logger logger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
+
+
+    public void guardarPedidoTemporal(Producto producto){
+
+        if(!(producto==null)){
+
+            if (!(producto.getStockProducto()==0.0) && !(producto.getNombreProducto()==null)
+            && !(producto.getStockProducto()==0)){
+
+                logger.info("Accediendo a guardar el pedidoTemporal");
+
+                PedidoTemporal pedidoTemporal = new PedidoTemporal();
+                pedidoTemporal.setNombrePedidoTemp(producto.getNombreProducto());
+                pedidoTemporal.setPrecioPedidoTemp(producto.getPrecioProducto());
+                pedidoTemporal.setCantidadPedidoTemp(producto.getStockProducto());
+
+                pedidoTempService.guardarPedidoTemp(pedidoTemporal);
+
+
+            }else {
+                logger.info("No puede estar vacio las cosas {}", producto);
+            }
+
+
         }else {
 
-            System.out.println("Nombre Producto: "+p.getNombreProducto());
+            logger.info("Ocurrio un problema: {}", producto);
 
         }
 
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void SeleecionarPedidoTable(TableView<Producto> productoTableView){
+//
+//        Producto p = productoTableView.getSelectionModel().getSelectedItem();
+//        if(p==null){
+//            System.out.println("Debe seleccionar un producto");
+//        }else {
+//
+//            System.out.println("Nombre Producto: "+p.getNombreProducto());
+//
+//        }
+//
+//    }
 
 }
