@@ -2,7 +2,6 @@ package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import javafx.application.Platform;

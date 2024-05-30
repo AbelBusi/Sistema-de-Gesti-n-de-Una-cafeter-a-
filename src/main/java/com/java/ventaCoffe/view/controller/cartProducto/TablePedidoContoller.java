@@ -34,6 +34,7 @@ public class TablePedidoContoller {
 
                 pedidoTempService.guardarPedidoTemp(pedidoTemporal);
 
+                logger.info("Guardando el pedidoTemporal: {}",pedidoTemporal);
 
             }else {
                 logger.info("No puede estar vacio las cosas {}", producto);

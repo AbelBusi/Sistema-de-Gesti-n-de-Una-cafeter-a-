@@ -91,23 +91,15 @@ public class ControllerCarritoProducto implements Initializable {
         }
 
     }
-
-//    @Autowired
-//    private DataTransFerService dataTransFerService;
-
-
     @FXML
     void BagregarProducto(ActionEvent event) {
         try {
             int cantidad = BcartCantidadProducto.getValue();
             String nombrePedido=getNombreProducto();
             double precioPedido = getPrecioProducto();
-
+            tablePedidoContoller=applicationContext.getBean(TablePedidoContoller.class);
             Producto producto = new Producto(cantidad,nombreProducto,precioProducto);
-
             tablePedidoContoller.guardarPedidoTemporal(producto);
-
-
 
         } catch (Exception exception) {
             logger.error("Error: {}", exception.getMessage());
