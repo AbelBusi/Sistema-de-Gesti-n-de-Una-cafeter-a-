@@ -1,10 +1,13 @@
 package com.java.ventaCoffe.view.controller;
 
+import com.java.ventaCoffe.model.entity.DataTransFerService;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -14,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -24,6 +28,9 @@ import java.util.ResourceBundle;
 public class ControllerCarritoProducto implements Initializable {
 
     private final Logger loggger = LoggerFactory.getLogger(ControllerCarritoProducto.class);
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @FXML
     private AnchorPane anchorPane;
@@ -86,30 +93,23 @@ public class ControllerCarritoProducto implements Initializable {
 
     }
 
-    //ApplicationContext applicationContext = VentaCoffeApplication.context;
-    // Configura la fábrica de controladores de FXMLLoader para utilizar el contexto de Spring
-    //ruta.setControllerFactory(applicationContext::getBean);
-
-    //    @Autowired
-//    private
-    CartTablePedidoController cartTablePedidoController = new CartTablePedidoController();
-
+    @Autowired
+    private DataTransFerService dataTransFerService;
 
     @FXML
     void BagregarProducto(ActionEvent event) {
         try {
             int cantidad = BcartCantidadProducto.getValue();
-            loggger.info("Agregando producto - Nombre: {}, Cantidad: {}, Precio: {}", nombreProducto, cantidad, precioProducto);
+            String nombrePedido=getNombreProducto();
+            double precioPedido = getPrecioProducto();
 
-//            cartTablePedidoController.initializable(getNombreProducto(), cantidad, getPrecioProducto());
-            //cartTablePedidoController.guardarPrueba(getNombreProducto(), cantidad, getPrecioProducto());
-
-            loggger.info("Guardo el producto");
+            dataTransFerService.setNombrePedido(nombrePedido);
+            dataTransFerService.setPrecioPedido(precioPedido);
+            dataTransFerService.setCantidad(cantidad);
 
         } catch (Exception exception) {
-            System.out.println("Error: " + exception.getMessage());
+            loggger.error("Error: {}", exception.getMessage());
         }
-
     }
 
     @Override

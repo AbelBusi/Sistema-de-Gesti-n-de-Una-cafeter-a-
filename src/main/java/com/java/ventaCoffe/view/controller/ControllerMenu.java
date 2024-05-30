@@ -2,6 +2,7 @@ package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.model.entity.Data;
+import com.java.ventaCoffe.model.entity.DataTransFerService;
 import com.java.ventaCoffe.model.entity.Producto;
 import com.java.ventaCoffe.view.controller.cartProducto.CartTablePedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.TablePedidoContoller;
@@ -9,6 +10,8 @@ import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoContr
 import com.java.ventaCoffe.view.controller.inventario.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -158,6 +161,7 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private CartTablePedidoController cartTablePedidoController;
+
 
     @FXML
     private GridPane menuGrip_pane;
@@ -420,6 +424,9 @@ public class ControllerMenu implements Initializable {
 
     }
 
+    @Autowired
+    private DataTransFerService dataTransFerService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -427,13 +434,8 @@ public class ControllerMenu implements Initializable {
             labelUsuarioLogeado.setText(getNombreUsuario());
 
 
-            cartTablePedidoController.agregarPedidoTable(tableViewPedido,
-                    columnProductoPedido,
-                    columnStockPedido,
-                    columnPrecioPedido);
-
-
         });
+
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
         agregarProducto.fijarlogitudMaximo(txtPrecioProducto, 6);
         comboController.recorrerEstadoProducto(comboEstadoProducto);
@@ -442,10 +444,21 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto,
                 columEstadoProducto,
                 columFechaProducto);
-
-
-
         cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
+
+        //Prueba
+        String nbombre= dataTransFerService.getNombrePedido();
+        int cantidad = dataTransFerService.getCantidad();
+        double precio = dataTransFerService.getPrecioPedido();
+
+
+
+        cartTablePedidoController.agregarPedidoTable(tableViewPedido,
+                columnProductoPedido,
+                columnStockPedido,
+                columnPrecioPedido);
+
+        cartTablePedidoController.initializable(cantidad,precio,nbombre);
 
 
     }

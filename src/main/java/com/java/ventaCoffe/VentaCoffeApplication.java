@@ -1,6 +1,7 @@
 package com.java.ventaCoffe;
 
 import com.java.ventaCoffe.view.controller.error.Errores;
+import javafx.fxml.FXML;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "com.java.ventaCoffe")
 public class VentaCoffeApplication extends Application {
 
 	public static ConfigurableApplicationContext context;

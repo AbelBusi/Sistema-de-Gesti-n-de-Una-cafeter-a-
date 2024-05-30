@@ -43,7 +43,6 @@
 			<artifactId>fontawesomefx</artifactId>
 			<version>8.9</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
