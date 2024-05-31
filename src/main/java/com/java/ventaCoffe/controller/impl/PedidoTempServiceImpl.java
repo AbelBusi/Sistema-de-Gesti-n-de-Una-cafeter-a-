@@ -39,4 +39,9 @@ public class PedidoTempServiceImpl implements IPedidoTempService {
     public void eliminarPedidoId(Integer id) {
         tempRepository.deleteById(id);
     }
+
+    @Override
+    public Double sumarTotalPedido() {
+        return tempRepository.sumarTotalPedido();
+    }
 }

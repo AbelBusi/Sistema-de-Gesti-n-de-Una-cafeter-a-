@@ -209,6 +209,8 @@ public class ControllerMenu implements Initializable {
     @FXML
     private TableColumn<PedidoTemporal, Integer> columnStockPedido;
 
+
+
     private String nombrePedido;
 
     private int stockPedido;
@@ -422,6 +424,7 @@ public class ControllerMenu implements Initializable {
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
+        pruebaTotalVenta();
 
     }
 
@@ -438,10 +441,30 @@ public class ControllerMenu implements Initializable {
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
-
+        pruebaTotalVenta();
 
 
     }
+
+    public Double pruebaTotalVenta(){
+        Double totalPedido=pedidoTempService.sumarTotalPedido();
+        Double total =totalPedido;
+        if(!(total==null)){
+            LtotalPedido.setText("$"+total);
+            return total;
+        }else {
+            LtotalPedido.setText("$"+0.0);
+            return 0.0;
+        }
+
+    }
+
+    @FXML
+    void totalPedido(ActionEvent event) {
+        logger.info("Total venta: {}",pedidoTempService.sumarTotalPedido());
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -469,6 +492,9 @@ public class ControllerMenu implements Initializable {
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
+
+        pruebaTotalVenta();
+
 
     }
 

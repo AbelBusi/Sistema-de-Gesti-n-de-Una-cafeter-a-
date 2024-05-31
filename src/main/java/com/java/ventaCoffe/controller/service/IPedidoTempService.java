@@ -14,4 +14,6 @@ public interface IPedidoTempService {
 
     void eliminarPedidoId(Integer id);
 
+    Double sumarTotalPedido();
+
 }

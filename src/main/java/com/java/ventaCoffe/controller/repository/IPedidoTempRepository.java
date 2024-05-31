@@ -15,9 +15,7 @@ import java.util.List;
 @Repository
 public interface IPedidoTempRepository extends JpaRepository<PedidoTemporal,Integer> {
 
-//    @SQLDelete()
-//    @Transactional
-//    @Query(value ="DELETE FROM PedidoTemporal" ,nativeQuery = true)
-//    List<PedidoTemporal> eliminarRegistroTablaPedido();
+    @Query(value ="SELECT SUM(precioPedidoTemp) FROM PedidoTemporal"  ,nativeQuery = true)
+    Double sumarTotalPedido();
 
 }
