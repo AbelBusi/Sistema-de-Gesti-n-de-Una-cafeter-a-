@@ -4,6 +4,7 @@ import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
 import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.EliminarPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
@@ -155,6 +156,9 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private PedidoTempServiceImpl pedidoTempService;
+
+    @Autowired
+    private EliminarPedidoTempController eliminarPedidoTemp;
 
 
 
@@ -427,8 +431,15 @@ public class ControllerMenu implements Initializable {
     void eliminarPedido(ActionEvent event) {
 
         System.out.println("Eliminar pedido");
-        Integer pruebaPedido= pedidoController.ObtenerIdPedidoTemp(tableViewPedido);
-        logger.info("Prueba de obtener el id del pedido: {}",pruebaPedido);
+        Integer idPedido= pedidoController.ObtenerIdPedidoTemp(tableViewPedido);
+        Integer idEliminar=idPedido;
+        eliminarPedidoTemp.eliminarPedidoTemporal(idEliminar);
+        pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
+                columnStockPedido,
+                columnPrecioPedido,
+                columnProductoPedido);
+
+
 
     }
     @Override

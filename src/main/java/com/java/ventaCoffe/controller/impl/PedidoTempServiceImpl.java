@@ -27,10 +27,16 @@ public class PedidoTempServiceImpl implements IPedidoTempService {
         return tempRepository.save(pedidoTemporal);
     }
 
-
+    @Transactional
     @Override
     public void eliminarRegistroTablaPedido() {
 
         tempRepository.deleteAll();
+    }
+
+    @Transactional
+    @Override
+    public void eliminarPedidoId(Integer id) {
+        tempRepository.deleteById(id);
     }
 }

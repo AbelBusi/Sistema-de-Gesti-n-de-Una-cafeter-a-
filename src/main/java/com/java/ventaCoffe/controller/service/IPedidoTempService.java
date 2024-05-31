@@ -12,4 +12,6 @@ public interface IPedidoTempService {
 
     void  eliminarRegistroTablaPedido();
 
+    void eliminarPedidoId(Integer id);
+
 }
