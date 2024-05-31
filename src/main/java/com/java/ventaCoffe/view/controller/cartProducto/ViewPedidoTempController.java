@@ -2,7 +2,6 @@ package com.java.ventaCoffe.view.controller.cartProducto;
 
 import com.java.ventaCoffe.controller.service.IPedidoTempService;
 import com.java.ventaCoffe.model.entity.PedidoTemporal;
-import com.java.ventaCoffe.model.entity.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

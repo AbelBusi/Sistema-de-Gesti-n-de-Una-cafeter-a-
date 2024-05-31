@@ -26,4 +26,11 @@ public class PedidoTempServiceImpl implements IPedidoTempService {
     public PedidoTemporal guardarPedidoTemp(PedidoTemporal pedidoTemporal) {
         return tempRepository.save(pedidoTemporal);
     }
+
+
+    @Override
+    public void eliminarRegistroTablaPedido() {
+
+        tempRepository.deleteAll();
+    }
 }

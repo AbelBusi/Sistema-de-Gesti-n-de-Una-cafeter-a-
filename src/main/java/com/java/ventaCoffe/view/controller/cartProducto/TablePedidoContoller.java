@@ -29,7 +29,7 @@ public class TablePedidoContoller {
 
                 PedidoTemporal pedidoTemporal = new PedidoTemporal();
                 pedidoTemporal.setNombrePedidoTemp(producto.getNombreProducto());
-                pedidoTemporal.setPrecioPedidoTemp(producto.getPrecioProducto());
+                pedidoTemporal.setPrecioPedidoTemp(producto.getPrecioProducto()*producto.getStockProducto());
                 pedidoTemporal.setCantidadPedidoTemp(producto.getStockProducto());
 
                 pedidoTempService.guardarPedidoTemp(pedidoTemporal);
@@ -49,29 +49,6 @@ public class TablePedidoContoller {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //    public void SeleecionarPedidoTable(TableView<Producto> productoTableView){
 //

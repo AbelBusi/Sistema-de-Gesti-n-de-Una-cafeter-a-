@@ -21,13 +21,6 @@ public class MostrarProductoController {
 
     Errores errores = new Errores();
 
-    public void prueba (){
-
-        ObservableList<Producto> productos = FXCollections.observableArrayList();
-
-        List<Producto>  listProducto =productoService.mostrarProducto();
-    }
-
     public void MostrarProductos(TableView<Producto> tablProducto ,
                                  TableColumn<Producto,Integer> idProducto,
                                  TableColumn<Producto,String> nombreProducto,

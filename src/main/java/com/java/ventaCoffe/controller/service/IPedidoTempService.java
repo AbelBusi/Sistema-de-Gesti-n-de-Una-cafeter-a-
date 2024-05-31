@@ -10,4 +10,6 @@ public interface IPedidoTempService {
 
     PedidoTemporal guardarPedidoTemp(PedidoTemporal pedidoTemporal);
 
+    void  eliminarRegistroTablaPedido();
+
 }

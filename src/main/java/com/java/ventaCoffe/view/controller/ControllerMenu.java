@@ -1,8 +1,10 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
+import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
 import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
@@ -35,7 +37,7 @@ import java.util.ResourceBundle;
 @Controller
 public class ControllerMenu implements Initializable {
 
-    private final Logger loggger = LoggerFactory.getLogger(ControllerMenu.class);
+    private final Logger logger = LoggerFactory.getLogger(ControllerMenu.class);
 
     //Pertenecen a agregar productos al 'INVENTARIO'
 
@@ -151,6 +153,10 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private mostrarCartProductoController cartProductoController;
 
+    @Autowired
+    private PedidoTempServiceImpl pedidoTempService;
+
+
 
     @FXML
     private GridPane menuGrip_pane;
@@ -232,6 +238,9 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private ViewPedidoTempController pedidoTempController;
 
+    @Autowired
+    private PedidoController pedidoController;
+
 
     @FXML
     void menuClientes(ActionEvent event) {
@@ -287,6 +296,7 @@ public class ControllerMenu implements Initializable {
                 ventanaLogin.setScene(scene);
                 ventanaLogin.show();
                 salir.close();
+                pedidoTempService.eliminarRegistroTablaPedido();
 
 
             }
@@ -348,11 +358,9 @@ public class ControllerMenu implements Initializable {
 
 
     public void SeleccionarTableView() {
-        actualizarProductoContoller.ObtenerTable(TableProductoInv, txtIdProducto, txtNombreProducto, txtStockProducto,
-                txtPrecioProducto, imagenProductoView);
         idProductoSeleccionado = actualizarProductoContoller.ObtenerTable(TableProductoInv, txtIdProducto,
                 txtNombreProducto, txtStockProducto, txtPrecioProducto, imagenProductoView);
-        loggger.info("Prueba Id Producto: {}", idProductoSeleccionado);
+        logger.info("Prueba Id Producto: {}", idProductoSeleccionado);
 
     }
 
@@ -405,14 +413,22 @@ public class ControllerMenu implements Initializable {
             idProductoSeleccionado = null;
         }
     }
+    public void actualizarTablaPedidoTemp(Producto producto){
+        pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
+                columnStockPedido,
+                columnPrecioPedido,
+                columnProductoPedido);
+
+    }
 
     //Pedidos
 
     @FXML
     void eliminarPedido(ActionEvent event) {
 
-        //tablePedidoContoller.SeleecionarPedidoTable(tableViewPedido);
         System.out.println("Eliminar pedido");
+        Integer pruebaPedido= pedidoController.ObtenerIdPedidoTemp(tableViewPedido);
+        logger.info("Prueba de obtener el id del pedido: {}",pruebaPedido);
 
     }
     @Override

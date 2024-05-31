@@ -32,7 +32,7 @@ public class ActualizarProductoContoller {
 
 
     public String path;
-    public String normal ;
+    public String normal;
 
     public Integer ObtenerTable(TableView<Producto> tableView, TextField idProducto,
                                 TextField nombreProducto, TextField stockProducto,
@@ -40,26 +40,35 @@ public class ActualizarProductoContoller {
         try {
             Producto producto = tableView.getSelectionModel().getSelectedItem();
             int num = tableView.getSelectionModel().getSelectedIndex();
-            if ((num - 1) < -1)
+            if (!((num - 1) < -1)) {
                 System.out.println(producto.getIdProducto());
-            idProducto.setText(String.valueOf(producto.getIdProducto()));
-            nombreProducto.setText(producto.getNombreProducto());
-            stockProducto.setText(String.valueOf(producto.getStockProducto()));
-            precioProducto.setText(String.valueOf(producto.getPrecioProducto()));
-            path = "File:" + producto.getImagenProducto();
-            normal=producto.getImagenProducto();
-            try {
-                Image image = new Image(path, 137, 135, false, true);
-                imagenProducto.setImage(image);
-            } catch (Exception e) {
-                loggger.error("Error al cargar la imagen: {}", path, e);
-                imagenProducto.setImage(null);
+                idProducto.setText(String.valueOf(producto.getIdProducto()));
+                nombreProducto.setText(producto.getNombreProducto());
+                stockProducto.setText(String.valueOf(producto.getStockProducto()));
+                precioProducto.setText(String.valueOf(producto.getPrecioProducto()));
+                path = "File:" + producto.getImagenProducto();
+                normal = producto.getImagenProducto();
+                try {
+                    Image image = new Image(path, 137, 135, false, true);
+                    imagenProducto.setImage(image);
+                } catch (Exception e) {
+                    loggger.error("Error al cargar la imagen: {}", path, e);
+                    imagenProducto.setImage(null);
+                }
+                Integer id = producto.getIdProducto();
+                return id;
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error de tipado");
+                alert.setHeaderText(null);
+                alert.setContentText("Debe seleccionar una casilla de la tabla");
+                alert.showAndWait();
+                return null;
             }
-            Integer id = producto.getIdProducto();
-            return id;
-        }catch (NullPointerException e){
-            System.out.println("Error: "+e.getMessage());
-            Alert alert= new Alert(Alert.AlertType.ERROR);
+
+        } catch (NullPointerException e) {
+            System.out.println("Error: " + e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error de tipado");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una casilla de la tabla");
@@ -79,7 +88,7 @@ public class ActualizarProductoContoller {
         precioProducto.setText("");
         nombreProducto.setText("");
         imageView.setImage(null);
-        id=null;
+        id = null;
 
     }
 
@@ -118,7 +127,7 @@ public class ActualizarProductoContoller {
                         obtenerIdProducto.get().setImagenProducto(normal);
                         productoService.actualizarProducto(obtenerIdProducto.orElse(null));
                         idProducto = null;
-                        normal=null;
+                        normal = null;
                         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                         alerta.setHeaderText(null);
                         alerta.setTitle("Gestion de productos");
@@ -126,7 +135,7 @@ public class ActualizarProductoContoller {
                         alerta.showAndWait();
 
                         limpiarCasillas(txtIdProducto, txtStockProducto, txtPrecioProducto,
-                                txtNombreProducto,idProducto,imageView);
+                                txtNombreProducto, idProducto, imageView);
 
 
                     } else {
@@ -137,7 +146,7 @@ public class ActualizarProductoContoller {
                         alerta.setContentText("No puede agregar vacios a los productos");
                         alerta.showAndWait();
                         limpiarCasillas(txtIdProducto, txtStockProducto, txtPrecioProducto,
-                                txtNombreProducto,idProducto,imageView);
+                                txtNombreProducto, idProducto, imageView);
 
 
                     }
@@ -149,23 +158,23 @@ public class ActualizarProductoContoller {
                     alerta.setContentText("No existe el producto y no puede ser actualizado");
                     alerta.showAndWait();
                     limpiarCasillas(txtIdProducto, txtStockProducto, txtPrecioProducto,
-                            txtNombreProducto,idProducto,imageView);
+                            txtNombreProducto, idProducto, imageView);
 
                 }
-            }else {
+            } else {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Gestion de productos");
                 alerta.setContentText("Debe seleccionar almenos un producto, para actualizarlo");
                 alerta.showAndWait();
                 limpiarCasillas(txtIdProducto, txtStockProducto, txtPrecioProducto,
-                        txtNombreProducto,idProducto,imageView);
+                        txtNombreProducto, idProducto, imageView);
             }
         } catch (Exception exception) {
             System.out.println("Error: " + exception.getMessage());
             errores.errorDatos();
             limpiarCasillas(txtIdProducto, txtStockProducto, txtPrecioProducto,
-                    txtNombreProducto,idProducto,imageView);
+                    txtNombreProducto, idProducto, imageView);
 
         }
 
