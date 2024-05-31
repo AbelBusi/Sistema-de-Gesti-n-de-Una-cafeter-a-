@@ -1,7 +1,9 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
+import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import javafx.application.Platform;
@@ -186,16 +188,16 @@ public class ControllerMenu implements Initializable {
     private Label cambioPedido;
 
     @FXML
-    private TableView<Producto> tableViewPedido;
+    private TableView<PedidoTemporal> tableViewPedido;
 
     @FXML
-    private TableColumn<Producto, Double> columnPrecioPedido;
+    private TableColumn<PedidoTemporal, Double> columnPrecioPedido;
 
     @FXML
-    private TableColumn<Producto, String> columnProductoPedido;
+    private TableColumn<PedidoTemporal, String> columnProductoPedido;
 
     @FXML
-    private TableColumn<Producto, Integer> columnStockPedido;
+    private TableColumn<PedidoTemporal, Integer> columnStockPedido;
 
     private String nombrePedido;
 
@@ -226,6 +228,9 @@ public class ControllerMenu implements Initializable {
     public void setPrecioPedido(double precioPedido) {
         this.precioPedido = precioPedido;
     }
+
+    @Autowired
+    private ViewPedidoTempController pedidoTempController;
 
 
     @FXML
@@ -416,19 +421,27 @@ public class ControllerMenu implements Initializable {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
 
-
-
         });
-
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
+
         agregarProducto.fijarlogitudMaximo(txtPrecioProducto, 6);
+
         comboController.recorrerEstadoProducto(comboEstadoProducto);
+
         comboController.recorrerTipoProducto(comboTipoProducto);
+
         mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
-                columProducto, columTipoProducto, columStockProducto, columPrecioProducto,
+                columProducto, columTipoProducto,
+                columStockProducto, columPrecioProducto,
                 columEstadoProducto,
                 columFechaProducto);
+
         cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
+
+        pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
+                columnStockPedido,
+                columnPrecioPedido,
+                columnProductoPedido);
 
     }
 

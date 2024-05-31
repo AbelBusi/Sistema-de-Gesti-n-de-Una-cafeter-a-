@@ -70,7 +70,6 @@ public class ControllerCarritoProducto implements Initializable {
     @Autowired
     private TablePedidoContoller tablePedidoContoller;
 
-
     //el otro argumento es la cantidad de productos (agregaProducto)
 
     public void agregarProducto(Producto producto) {
@@ -100,6 +99,7 @@ public class ControllerCarritoProducto implements Initializable {
             tablePedidoContoller=applicationContext.getBean(TablePedidoContoller.class);
             Producto producto = new Producto(cantidad,nombreProducto,precioProducto);
             tablePedidoContoller.guardarPedidoTemporal(producto);
+
 
         } catch (Exception exception) {
             logger.error("Error: {}", exception.getMessage());
