@@ -8,6 +8,7 @@ import com.java.ventaCoffe.view.controller.cartProducto.EliminarPedidoTempContro
 import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
+import com.java.ventaCoffe.view.controller.compraProducto.ComprarPedidoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -247,6 +248,9 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private PedidoController pedidoController;
 
+    @Autowired
+    private ComprarPedidoController comprarPedidoController;
+
 
     @FXML
     void menuClientes(ActionEvent event) {
@@ -398,16 +402,17 @@ public class ControllerMenu implements Initializable {
         alert.setTitle("SALIR DEL PROGRAMA");
         alert.setContentText("¿Deseas eliminar el producto?");
         Optional<ButtonType> option = alert.showAndWait();
-        if (option.equals(ButtonType.OK)) {
+        if (option.get().equals(ButtonType.OK)) {
 
             eliminarProductoController.eliminarProducto(txtIdProducto);
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
+            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+
 
         } else {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
@@ -465,6 +470,13 @@ public class ControllerMenu implements Initializable {
 
     }
 
+    @FXML
+    void montoPagar(ActionEvent event) {
+
+        comprarPedidoController.pagar(TxtcantidadPedido,pruebaTotalVenta(),cambioPedido);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -473,6 +485,8 @@ public class ControllerMenu implements Initializable {
 
         });
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
+
+        agregarProducto.fijarlogitudMaximo(TxtcantidadPedido,6);
 
         agregarProducto.fijarlogitudMaximo(txtPrecioProducto, 6);
 

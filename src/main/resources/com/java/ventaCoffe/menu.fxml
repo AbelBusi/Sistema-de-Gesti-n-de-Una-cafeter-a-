@@ -400,15 +400,15 @@
                                           <Font name="Times New Roman" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="67.0" layoutY="304.0" prefHeight="26.0" prefWidth="68.0" text="Dinero:" AnchorPane.bottomAnchor="220.0" AnchorPane.rightAnchor="172.0">
-                                       <font>
-                                          <Font name="Times New Roman Bold" size="19.0" />
-                                       </font>
-                                    </Label>
                                     <TextField fx:id="TxtcantidadPedido" layoutX="159.0" layoutY="302.0" prefHeight="29.0" prefWidth="126.0" promptText="\$0.0" styleClass="textfield" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="219.0" AnchorPane.rightAnchor="22.0" />
                                     <Button fx:id="BtotalPedido" layoutX="19.0" layoutY="413.0" mnemonicParsing="false" onAction="#totalPedido" prefHeight="49.0" prefWidth="270.0" styleClass="btn" stylesheets="@css/menu.css" text="PAGAR" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="18.0" />
                                     <Button fx:id="BeliminarPedido" layoutX="38.0" layoutY="483.0" mnemonicParsing="false" onAction="#eliminarPedido" prefHeight="36.0" prefWidth="114.0" styleClass="btn" stylesheets="@css/menu.css" text="ELIMINAR" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="19.0" />
                                     <Button layoutX="168.0" layoutY="483.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" styleClass="btn" stylesheets="@css/menu.css" text="BOLETA" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="18.0" />
+                                    <Button fx:id="BmontoPagar" layoutX="59.0" layoutY="299.0" mnemonicParsing="false" onAction="#montoPagar" prefHeight="40.0" prefWidth="79.0" styleClass="btn" stylesheets="@css/menu.css" text="Monto" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="169.0">
+                                       <font>
+                                          <Font name="Times New Roman Bold" size="15.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>
