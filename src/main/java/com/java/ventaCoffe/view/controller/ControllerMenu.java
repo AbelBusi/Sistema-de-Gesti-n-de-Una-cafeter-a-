@@ -220,6 +220,16 @@ public class ControllerMenu implements Initializable {
 
     private double precioPedido;
 
+    private Boolean pagoRealizado;
+
+    public Boolean getPagoRealizado() {
+        return pagoRealizado;
+    }
+
+    public void setPagoRealizado(Boolean pagoRealizado) {
+        this.pagoRealizado = pagoRealizado;
+    }
+
     public String getNombrePedido() {
         return nombrePedido;
     }
@@ -472,17 +482,20 @@ public class ControllerMenu implements Initializable {
     @FXML
     void totalPedido(ActionEvent event) {
         Platform.runLater(() -> {
-        logger.info("Total venta: {}", pedidoTempService.sumarTotalPedido());
-        guardarPedidoController.guardarPedido(TotalVenta(), getNombreUsuario(),TxtcantidadPedido);
-        logger.info("Test mombre: {}", getNombreUsuario());
+            logger.info("Total venta: {}", pedidoTempService.sumarTotalPedido());
+            guardarPedidoController.guardarPedido(TotalVenta(), getNombreUsuario(), TxtcantidadPedido,LtotalPedido,cambioPedido);
+            pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
+                    columnStockPedido,
+                    columnPrecioPedido,
+                    columnProductoPedido);
+            logger.info("Test mombre: {}", getNombreUsuario());
         });
 
     }
 
     @FXML
     void montoPagar(ActionEvent event) {
-            comprarPedidoController.pagar(TxtcantidadPedido, TotalVenta(), cambioPedido);
-
+        comprarPedidoController.pagar(TxtcantidadPedido, TotalVenta(), cambioPedido);
     }
 
     @Override
