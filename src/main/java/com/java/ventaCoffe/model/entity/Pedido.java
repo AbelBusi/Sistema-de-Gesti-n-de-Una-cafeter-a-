@@ -30,8 +30,5 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<DetallePedido> detallePedido;
 
-    @ManyToOne
-    private Producto producto;
-
 
 }
