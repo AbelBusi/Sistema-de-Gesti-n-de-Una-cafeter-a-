@@ -9,6 +9,7 @@ import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.compraProducto.ComprarPedidoController;
+import com.java.ventaCoffe.view.controller.compraProducto.GuardarPedidoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -162,7 +163,6 @@ public class ControllerMenu implements Initializable {
     private EliminarPedidoTempController eliminarPedidoTemp;
 
 
-
     @FXML
     private GridPane menuGrip_pane;
 
@@ -189,6 +189,9 @@ public class ControllerMenu implements Initializable {
 
     //Contenido de los pedidos
 
+    @Autowired
+    private GuardarPedidoController guardarPedidoController;
+
     @FXML
     private Label LtotalPedido;
 
@@ -209,7 +212,6 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     private TableColumn<PedidoTemporal, Integer> columnStockPedido;
-
 
 
     private String nombrePedido;
@@ -362,7 +364,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+        cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
 
     }
 
@@ -390,7 +392,7 @@ public class ControllerMenu implements Initializable {
                 columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                 columFechaProducto);
         idProductoSeleccionado = null;
-        cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+        cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
 
     }
 
@@ -411,25 +413,26 @@ public class ControllerMenu implements Initializable {
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
-            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+            cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
 
 
         } else {
             mostrarProductoController.MostrarProductos(TableProductoInv, columProductoID,
                     columProducto, columTipoProducto, columStockProducto, columPrecioProducto, columEstadoProducto,
                     columFechaProducto);
-            cartProductoController.menuDisplayCard(menuGrip_pane,pruebaPane);
+            cartProductoController.menuDisplayCard(menuGrip_pane, pruebaPane);
             agregarProducto.limpiarCasillas(txtIdProducto, txtNombreProducto, txtStockProducto, txtPrecioProducto,
                     imagenProductoView);
             idProductoSeleccionado = null;
         }
     }
-    public void actualizarTablaPedidoTemp(Producto producto){
+
+    public void actualizarTablaPedidoTemp(Producto producto) {
         pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
-        pruebaTotalVenta();
+        TotalVenta();
 
     }
 
@@ -439,41 +442,46 @@ public class ControllerMenu implements Initializable {
     void eliminarPedido(ActionEvent event) {
 
         System.out.println("Eliminar pedido");
-        Integer idPedido= pedidoController.ObtenerIdPedidoTemp(tableViewPedido);
-        Integer idEliminar=idPedido;
+        Integer idPedido = pedidoController.ObtenerIdPedidoTemp(tableViewPedido);
+        Integer idEliminar = idPedido;
         eliminarPedidoTemp.eliminarPedidoTemporal(idEliminar);
         pedidoTempController.mostrarTablePedidoTemp(tableViewPedido,
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
-        pruebaTotalVenta();
+        TotalVenta();
 
 
     }
 
-    public Double pruebaTotalVenta(){
-        Double totalPedido=pedidoTempService.sumarTotalPedido();
-        Double total =totalPedido;
-        if(!(total==null)){
-            LtotalPedido.setText("$"+total);
+    public Double TotalVenta() {
+        Double totalPedido = pedidoTempService.sumarTotalPedido();
+        Double total = totalPedido;
+        if (!(total == null)) {
+            LtotalPedido.setText("$" + total);
             return total;
-        }else {
-            LtotalPedido.setText("$"+0.0);
+        } else {
+            LtotalPedido.setText("$" + 0.0);
             return 0.0;
         }
 
     }
 
+
+    //Aqui debes chambear abel
     @FXML
     void totalPedido(ActionEvent event) {
-        logger.info("Total venta: {}",pedidoTempService.sumarTotalPedido());
+        Platform.runLater(() -> {
+        logger.info("Total venta: {}", pedidoTempService.sumarTotalPedido());
+        guardarPedidoController.guardarPedido(TotalVenta(), getNombreUsuario(),TxtcantidadPedido);
+        logger.info("Test mombre: {}", getNombreUsuario());
+        });
 
     }
 
     @FXML
     void montoPagar(ActionEvent event) {
-
-        comprarPedidoController.pagar(TxtcantidadPedido,pruebaTotalVenta(),cambioPedido);
+            comprarPedidoController.pagar(TxtcantidadPedido, TotalVenta(), cambioPedido);
 
     }
 
@@ -486,7 +494,7 @@ public class ControllerMenu implements Initializable {
         });
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
 
-        agregarProducto.fijarlogitudMaximo(TxtcantidadPedido,6);
+        agregarProducto.fijarlogitudMaximo(TxtcantidadPedido, 6);
 
         agregarProducto.fijarlogitudMaximo(txtPrecioProducto, 6);
 
@@ -507,7 +515,7 @@ public class ControllerMenu implements Initializable {
                 columnPrecioPedido,
                 columnProductoPedido);
 
-        pruebaTotalVenta();
+        TotalVenta();
 
 
     }

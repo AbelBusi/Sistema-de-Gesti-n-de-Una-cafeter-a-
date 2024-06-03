@@ -12,12 +12,4 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
 
     Optional<Usuario> findByCorreoUsuario(String correoUsuario);
 
-    Optional<Usuario> findByClaveUsuario(String claveUsuario);
-
-    Optional<Usuario> findByPreguntaUsuario(String preguntaUsuario);
-
-    Optional<Usuario> findByResptValidacionUsuario(String respuestaUsuario);
-
-
-
 }
