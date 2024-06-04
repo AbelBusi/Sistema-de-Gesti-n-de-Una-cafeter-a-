@@ -11,6 +11,7 @@ import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoContr
 import com.java.ventaCoffe.view.controller.compraProducto.ComprarPedidoController;
 import com.java.ventaCoffe.view.controller.compraProducto.GuardarPedidoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
+import com.java.ventaCoffe.view.controller.reportePedidoPdf.DetallePedidoPdf;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -161,6 +162,9 @@ public class ControllerMenu implements Initializable {
 
     @Autowired
     private EliminarPedidoTempController eliminarPedidoTemp;
+
+    @Autowired
+    private DetallePedidoPdf detallePedidoPdf;
 
 
     @FXML
@@ -496,6 +500,24 @@ public class ControllerMenu implements Initializable {
     @FXML
     void montoPagar(ActionEvent event) {
         comprarPedidoController.pagar(TxtcantidadPedido, TotalVenta(), cambioPedido);
+    }
+
+    @FXML
+    void imprimirBoleta(ActionEvent event){
+        try {
+
+            detallePedidoPdf.crearDocumento();
+            detallePedidoPdf.abrirDocumento();
+            detallePedidoPdf.agregarTitulo("Reporte de Detalle De Pedidos");
+            detallePedidoPdf.agregarSaltoDeLinea();
+            detallePedidoPdf.agregarParrafo("Reporte de pedidos actual 2024");
+            detallePedidoPdf.agregarSaltoDeLinea();
+            detallePedidoPdf.agregarTableDetallePedido();
+            detallePedidoPdf.cerrarDocumento();
+            logger.info("Cerrando el docmuento");
+        }catch (Exception exception) {
+            System.out.println("Error: "+exception.getMessage());
+        }
     }
 
     @Override
