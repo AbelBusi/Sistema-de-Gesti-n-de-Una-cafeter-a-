@@ -61,7 +61,7 @@
                                     <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="BclientesMenu" layoutX="22.0" layoutY="408.0" mnemonicParsing="false" onAction="#menuClientes" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="PEDIDOS">
+                              <Button fx:id="BclientesMenu" layoutX="22.0" layoutY="408.0" mnemonicParsing="false" onAction="#cambiarFrom" prefHeight="40.0" prefWidth="210.0" styleClass="nav-btn" stylesheets="@css/menu.css" text="PEDIDOS">
                                  <font>
                                     <Font name="Times New Roman Bold" size="15.0" />
                                  </font>
@@ -414,12 +414,12 @@
                         </AnchorPane>
                         <AnchorPane fx:id="fromPedidos" layoutX="224.0" layoutY="143.0" prefHeight="600.0" prefWidth="847.0" styleClass="nav-form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="36.0" layoutY="22.0" prefHeight="59.0" prefWidth="145.0" stylesheets="@css/menu.css" text="PEDIDOS">
+                              <Label layoutX="36.0" layoutY="22.0" prefHeight="59.0" prefWidth="145.0" stylesheets="@css/menu.css" text="PEDIDOS" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="22.0">
                                  <font>
                                     <Font name="Times New Roman Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="pedidosTable" layoutX="36.0" layoutY="89.0" prefHeight="483.0" prefWidth="791.0" stylesheets="@css/menu.css">
+                              <TableView fx:id="pedidosTable" layoutX="36.0" layoutY="89.0" prefHeight="483.0" prefWidth="791.0" stylesheets="@css/menu.css" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="89.0">
                                 <columns>
                                   <TableColumn fx:id="idPedidoColumn" prefWidth="145.0" text="ID PEDIDO" />
                                   <TableColumn fx:id="TotalPedidoColumn" prefWidth="218.0" text="TOTAL PEDIDO $" />

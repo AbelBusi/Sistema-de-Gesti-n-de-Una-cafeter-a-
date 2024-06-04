@@ -2,14 +2,17 @@ package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
+import com.java.ventaCoffe.model.entity.Pedido;
 import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
+import com.java.ventaCoffe.model.entity.Usuario;
 import com.java.ventaCoffe.view.controller.cartProducto.EliminarPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoController;
 import com.java.ventaCoffe.view.controller.compraProducto.ComprarPedidoController;
 import com.java.ventaCoffe.view.controller.compraProducto.GuardarPedidoController;
+import com.java.ventaCoffe.view.controller.compraProducto.MostrarPedidoController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import com.java.ventaCoffe.view.controller.reportePedidoPdf.DetallePedidoPdf;
 import javafx.application.Platform;
@@ -174,6 +177,9 @@ public class ControllerMenu implements Initializable {
     private AnchorPane fromAddProducto;
 
     @FXML
+    private AnchorPane fromPedidos;
+
+    @FXML
     private AnchorPane fromCartProducto;
 
     @FXML
@@ -267,29 +273,52 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private ComprarPedidoController comprarPedidoController;
 
+    //Tabla de los pedidos
 
     @FXML
-    void menuClientes(ActionEvent event) {
+    private TableView<Pedido> pedidosTable;
 
-        System.out.println("en prueba");
+    @FXML
+    private TableColumn<Pedido,Integer> idPedidoColumn;
 
-    }
+    @FXML
+    private TableColumn<Pedido,Double> TotalPedidoColumn;
+
+    @FXML
+    private TableColumn<Pedido,LocalDateTime> FechaPedidoColumn;
+
+    @FXML
+    private TableColumn<Pedido, Usuario> usuarioPedidoColumn;
+
+    @Autowired
+    private MostrarPedidoController mostrarPedidoController;
+
 
     public void cambiarFrom(ActionEvent event) {
         if (event.getSource() == BinicioMenu) {
             fromAddProducto.setVisible(false);
             fromCartProducto.setVisible(false);
             fromMenuProducto.setVisible(true);
+            fromPedidos.setVisible(false);
+
         } else if (event.getSource() == BinventarioMenu) {
             fromAddProducto.setVisible(true);
             fromCartProducto.setVisible(false);
             fromMenuProducto.setVisible(false);
+            fromPedidos.setVisible(false);
+
         } else if (event.getSource() == BCartProducto) {
 
             fromAddProducto.setVisible(false);
             fromCartProducto.setVisible(true);
             fromMenuProducto.setVisible(false);
+            fromPedidos.setVisible(false);
 
+        } else if (event.getSource()==BclientesMenu) {
+            fromAddProducto.setVisible(false);
+            fromCartProducto.setVisible(false);
+            fromMenuProducto.setVisible(false);
+            fromPedidos.setVisible(true);
         }
 
     }
@@ -493,6 +522,8 @@ public class ControllerMenu implements Initializable {
                     columnPrecioPedido,
                     columnProductoPedido);
             logger.info("Test mombre: {}", getNombreUsuario());
+            mostrarPedidoController.mostrarTablaPedido(pedidosTable,idPedidoColumn,
+                    TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
         });
 
     }
@@ -500,6 +531,8 @@ public class ControllerMenu implements Initializable {
     @FXML
     void montoPagar(ActionEvent event) {
         comprarPedidoController.pagar(TxtcantidadPedido, TotalVenta(), cambioPedido);
+        mostrarPedidoController.mostrarTablaPedido(pedidosTable,idPedidoColumn,
+                TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
     }
 
     @FXML
@@ -549,6 +582,9 @@ public class ControllerMenu implements Initializable {
                 columnStockPedido,
                 columnPrecioPedido,
                 columnProductoPedido);
+
+        mostrarPedidoController.mostrarTablaPedido(pedidosTable,idPedidoColumn,
+                TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
 
         TotalVenta();
 
