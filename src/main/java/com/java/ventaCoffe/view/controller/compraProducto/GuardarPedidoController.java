@@ -1,13 +1,7 @@
 package com.java.ventaCoffe.view.controller.compraProducto;
 
-import com.java.ventaCoffe.controller.impl.DetallePedidoServiceImpl;
-import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
-import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
-import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
-import com.java.ventaCoffe.model.entity.DetallePedido;
-import com.java.ventaCoffe.model.entity.Pedido;
-import com.java.ventaCoffe.model.entity.PedidoTemporal;
-import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.controller.impl.*;
+import com.java.ventaCoffe.model.entity.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -37,6 +31,9 @@ public class GuardarPedidoController {
 
     @Autowired
     private DetallePedidoServiceImpl detallePedidoService;
+
+    @Autowired
+    private ProductoServiceImpl productoService;
 
     public void guardarPedido(Double totalPedido, String usuario, TextField montoUsuario, Label totalVenta, Label totalCambio) {
         Optional<Usuario> user = usuarioService.findByCorreoUsuario(usuario);
@@ -92,7 +89,7 @@ public class GuardarPedidoController {
                 montoUsuario.setText("");
                 totalVenta.setText("$0.0");
                 totalCambio.setText("$0.0");
-                guardarDetallePedido();
+                guardarDetallePedido(pedido);
                 pedidoTempService.eliminarRegistroTablaPedido();
 
             }
@@ -110,7 +107,7 @@ public class GuardarPedidoController {
         alert.showAndWait();
     }
 
-    public void guardarDetallePedido() {
+    public void guardarDetallePedido(Pedido pedido) {
         logger.info("Entrando al detalle del pedido");
         List<PedidoTemporal> pedidoTemporals = pedidoTempService.mostrarPedidos();
         for (PedidoTemporal pedidoTemporal : pedidoTemporals) {
@@ -120,6 +117,9 @@ public class GuardarPedidoController {
             detallePedido.setCantidadDetallePedido(pedidoTemporal.getCantidadPedidoTemp());
             detallePedido.setNombreDetallePedido(pedidoTemporal.getNombrePedidoTemp());
             detallePedido.setTotalDetallePedido(pedidoTemporal.getPrecioPedidoTemp());
+            detallePedido.setPedido(pedido);
+            Optional<Producto> producto=productoService.findByNombreProducto(pedidoTemporal.getNombrePedidoTemp());
+            detallePedido.setProducto(producto.get());
             detallePedidoService.guardarPedido(detallePedido);
         }
         pedidoTemporals.clear();
