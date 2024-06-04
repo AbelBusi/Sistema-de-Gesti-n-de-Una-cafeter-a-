@@ -1,9 +1,12 @@
 package com.java.ventaCoffe.view.controller.compraProducto;
 
+import com.java.ventaCoffe.controller.impl.DetallePedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
+import com.java.ventaCoffe.model.entity.DetallePedido;
 import com.java.ventaCoffe.model.entity.Pedido;
+import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Usuario;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -14,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -29,6 +34,9 @@ public class GuardarPedidoController {
 
     @Autowired
     private PedidoTempServiceImpl pedidoTempService;
+
+    @Autowired
+    private DetallePedidoServiceImpl detallePedidoService;
 
     public void guardarPedido(Double totalPedido, String usuario, TextField montoUsuario, Label totalVenta, Label totalCambio) {
         Optional<Usuario> user = usuarioService.findByCorreoUsuario(usuario);
@@ -84,6 +92,7 @@ public class GuardarPedidoController {
                 montoUsuario.setText("");
                 totalVenta.setText("$0.0");
                 totalCambio.setText("$0.0");
+                guardarDetallePedido();
                 pedidoTempService.eliminarRegistroTablaPedido();
 
             }
@@ -99,6 +108,21 @@ public class GuardarPedidoController {
         alert.setTitle(titulo);
         alert.setContentText(contenido);
         alert.showAndWait();
+    }
+
+    public void guardarDetallePedido() {
+        logger.info("Entrando al detalle del pedido");
+        List<PedidoTemporal> pedidoTemporals = pedidoTempService.mostrarPedidos();
+        for (PedidoTemporal pedidoTemporal : pedidoTemporals) {
+            logger.info("Entrando al foreach");
+            DetallePedido detallePedido = new DetallePedido(); // Crear un nuevo objeto en cada iteración
+            System.out.println(pedidoTemporal);
+            detallePedido.setCantidadDetallePedido(pedidoTemporal.getCantidadPedidoTemp());
+            detallePedido.setNombreDetallePedido(pedidoTemporal.getNombrePedidoTemp());
+            detallePedido.setTotalDetallePedido(pedidoTemporal.getPrecioPedidoTemp());
+            detallePedidoService.guardarPedido(detallePedido);
+        }
+        pedidoTemporals.clear();
     }
 
 

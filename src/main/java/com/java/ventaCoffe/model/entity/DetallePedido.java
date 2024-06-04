@@ -17,10 +17,12 @@ public class DetallePedido {
 
     private String nombreDetallePedido;
     private Integer cantidadDetallePedido;
-    private double precioDetallePedido;
     private double totalDetallePedido;
 
     @ManyToOne
     private Pedido pedido;
+
+    @ManyToOne
+    private Producto producto;
 
 }
