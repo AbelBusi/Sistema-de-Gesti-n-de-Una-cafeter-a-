@@ -28,6 +28,16 @@ public class PedidoServiceImpl implements IPedidoService {
     }
 
     @Override
+    public Double ventaDelDia() {
+        return pedidoRepository.totalVentasDelDia();
+    }
+
+    @Override
+    public Double totalVentasPedidos() {
+        return pedidoRepository.totalVentas();
+    }
+
+    @Override
     public List<Pedido> findAll() {
         return pedidoRepository.findAll();
     }

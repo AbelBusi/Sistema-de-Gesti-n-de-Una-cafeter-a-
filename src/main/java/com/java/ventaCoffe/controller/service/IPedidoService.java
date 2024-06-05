@@ -8,6 +8,10 @@ public interface IPedidoService {
 
     Pedido guardarPedido(Pedido pedido);
 
+    Double ventaDelDia();
+
+    Double totalVentasPedidos();
+
     List<Pedido> findAll();
 
 }

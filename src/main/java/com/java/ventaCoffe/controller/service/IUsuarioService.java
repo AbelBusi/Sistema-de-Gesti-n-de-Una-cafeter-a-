@@ -17,5 +17,7 @@ public interface IUsuarioService {
 
     Optional<Usuario> idUsuario (Integer id);
 
+    Integer totalDeUsuarios();
+
 
 }

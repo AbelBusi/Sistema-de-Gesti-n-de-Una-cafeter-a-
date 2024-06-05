@@ -1,7 +1,9 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
+import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
+import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
 import com.java.ventaCoffe.model.entity.Pedido;
 import com.java.ventaCoffe.model.entity.PedidoTemporal;
 import com.java.ventaCoffe.model.entity.Producto;
@@ -294,6 +296,24 @@ public class ControllerMenu implements Initializable {
     private MostrarPedidoController mostrarPedidoController;
 
 
+    //Mostrar el menu principal
+
+    @FXML
+    private Label LTotalUsuarios;
+
+    @FXML
+    private Label LVentaHoy;
+
+    @FXML
+    private Label LVentaTotal;
+
+    @Autowired
+    private UsuarioServiceImpl usuarioService;
+
+    @Autowired
+    private PedidoServiceImpl pedidoService;
+
+
     public void cambiarFrom(ActionEvent event) {
         if (event.getSource() == BinicioMenu) {
             fromAddProducto.setVisible(false);
@@ -510,7 +530,6 @@ public class ControllerMenu implements Initializable {
 
     }
 
-
     //Aqui debes chambear abel
     @FXML
     void totalPedido(ActionEvent event) {
@@ -524,6 +543,8 @@ public class ControllerMenu implements Initializable {
             logger.info("Test mombre: {}", getNombreUsuario());
             mostrarPedidoController.mostrarTablaPedido(pedidosTable,idPedidoColumn,
                     TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
+            ventaHoy();
+            ventaTotal();
         });
 
     }
@@ -553,11 +574,76 @@ public class ControllerMenu implements Initializable {
         }
     }
 
+    public void totalUsuarios(){
+        try {
+            Integer testTotalUsuario = usuarioService.totalDeUsuarios();
+            logger.info("Total usuarios: {}",testTotalUsuario);
+            if(testTotalUsuario==null){
+                logger.info("Error de null");
+                return;
+            }
+            LTotalUsuarios.setText(String.valueOf(testTotalUsuario));
+
+        }catch (Exception exception){
+            logger.info("Error count");
+            LTotalUsuarios.setText("0");
+            System.out.println("Error: "+exception.getMessage());
+        }
+
+    }
+
+    //  Esta clase mostrara el total de las ventas del dia
+    public void ventaHoy(){
+
+        try {
+            Double totalVentaHoy= pedidoService.ventaDelDia();
+            if(totalVentaHoy ==null){
+                LVentaHoy.setText("$0.0");
+                logger.info("No hay ventas hoy");
+                return;
+            }if (totalVentaHoy==0){
+                LVentaHoy.setText("$0.0");
+                return;
+            }
+            LVentaHoy.setText("$"+String.valueOf(totalVentaHoy));
+
+        }catch (Exception exception){
+            LVentaHoy.setText("$0.0");
+            System.out.println("Error: "+exception.getMessage());
+        }
+
+    }
+
+    public void ventaTotal(){
+
+        try {
+            Double totalVentaHoy= pedidoService.totalVentasPedidos();
+            if(totalVentaHoy ==null){
+                LVentaTotal.setText("$0.0");
+                logger.info("No hay ventas hoy");
+                return;
+            }if (totalVentaHoy==0){
+                LVentaTotal.setText("$0.0");
+                return;
+            }
+            LVentaTotal.setText("$"+String.valueOf(totalVentaHoy));
+
+        }catch (Exception exception){
+            LVentaTotal.setText("$0.0");
+            System.out.println("Error: "+exception.getMessage());
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
 
             labelUsuarioLogeado.setText(getNombreUsuario());
+            totalUsuarios();
+            ventaHoy();
+            ventaTotal();
+
 
         });
         agregarProducto.fijarlogitudMaximo(txtStockProducto, 4);
@@ -587,6 +673,7 @@ public class ControllerMenu implements Initializable {
                 TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
 
         TotalVenta();
+
 
 
     }

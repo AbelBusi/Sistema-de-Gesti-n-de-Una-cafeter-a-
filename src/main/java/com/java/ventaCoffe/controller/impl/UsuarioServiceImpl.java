@@ -18,11 +18,18 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
+    @Transactional
     @Override
     public Optional<Usuario> idUsuario(Integer id) {
 
 
         return usuarioRepository.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public Integer totalDeUsuarios() {
+        return usuarioRepository.totalUsuarios();
     }
 
 

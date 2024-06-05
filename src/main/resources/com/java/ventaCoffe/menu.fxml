@@ -89,7 +89,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="fromMenuProducto" layoutX="265.0" layoutY="184.0" prefHeight="600.0" prefWidth="847.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromMenuProducto" layoutX="265.0" layoutY="184.0" prefHeight="600.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="19.0" layoutY="23.0" prefHeight="143.0" prefWidth="809.0" stylesheets="@css/menu.css" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="23.0">
                                  <styleClass>
@@ -114,7 +114,7 @@
                                                             <Font name="Times New Roman" size="17.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="LTotalUsuarios" alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font name="Times New Roman" size="25.0" />
                                                          </font>
@@ -133,7 +133,7 @@
                                                             <Font name="Times New Roman" size="17.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="\$0.0" textFill="WHITE">
+                                                      <Label fx:id="LVentaHoy" alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="\$0.0" textFill="WHITE">
                                                          <font>
                                                             <Font name="Times New Roman" size="25.0" />
                                                          </font>
@@ -152,7 +152,7 @@
                                                             <Font name="Times New Roman" size="17.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="\$0.0" textFill="WHITE">
+                                                      <Label fx:id="LVentaTotal" alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="\$0.0" textFill="WHITE">
                                                          <font>
                                                             <Font name="Times New Roman" size="25.0" />
                                                          </font>
@@ -412,7 +412,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="fromPedidos" layoutX="224.0" layoutY="143.0" prefHeight="600.0" prefWidth="847.0" styleClass="nav-form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="fromPedidos" layoutX="224.0" layoutY="143.0" prefHeight="600.0" prefWidth="847.0" styleClass="nav-form" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="36.0" layoutY="22.0" prefHeight="59.0" prefWidth="145.0" stylesheets="@css/menu.css" text="PEDIDOS" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="22.0">
                                  <font>
