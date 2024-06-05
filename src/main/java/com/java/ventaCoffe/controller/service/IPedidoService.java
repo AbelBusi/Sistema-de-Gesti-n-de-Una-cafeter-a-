@@ -1,6 +1,8 @@
 package com.java.ventaCoffe.controller.service;
 
 import com.java.ventaCoffe.model.entity.Pedido;
+import com.java.ventaCoffe.model.entity.PedidoDto;
+import jakarta.persistence.Tuple;
 
 import java.util.List;
 
@@ -13,5 +15,7 @@ public interface IPedidoService {
     Double totalVentasPedidos();
 
     List<Pedido> findAll();
+
+    List<Pedido> pedidoDia();
 
 }

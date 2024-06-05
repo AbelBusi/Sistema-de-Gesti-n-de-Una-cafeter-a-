@@ -5,10 +5,7 @@ import com.java.ventaCoffe.controller.impl.DetallePedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
-import com.java.ventaCoffe.model.entity.Pedido;
-import com.java.ventaCoffe.model.entity.PedidoTemporal;
-import com.java.ventaCoffe.model.entity.Producto;
-import com.java.ventaCoffe.model.entity.Usuario;
+import com.java.ventaCoffe.model.entity.*;
 import com.java.ventaCoffe.view.controller.cartProducto.EliminarPedidoTempController;
 import com.java.ventaCoffe.view.controller.cartProducto.PedidoController;
 import com.java.ventaCoffe.view.controller.cartProducto.ViewPedidoTempController;
@@ -16,8 +13,10 @@ import com.java.ventaCoffe.view.controller.cartProducto.mostrarCartProductoContr
 import com.java.ventaCoffe.view.controller.compraProducto.ComprarPedidoController;
 import com.java.ventaCoffe.view.controller.compraProducto.GuardarPedidoController;
 import com.java.ventaCoffe.view.controller.compraProducto.MostrarPedidoController;
+import com.java.ventaCoffe.view.controller.graficos.VentasDiariasController;
 import com.java.ventaCoffe.view.controller.inventario.*;
 import com.java.ventaCoffe.view.controller.reportePedidoPdf.DetallePedidoPdf;
+import jakarta.persistence.Tuple;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +41,7 @@ import org.springframework.stereotype.Controller;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -297,6 +297,9 @@ public class ControllerMenu implements Initializable {
     @Autowired
     private MostrarPedidoController mostrarPedidoController;
 
+    @Autowired
+    private VentasDiariasController ventasDiariasController;
+
 
     //Mostrar el menu principal
 
@@ -314,6 +317,7 @@ public class ControllerMenu implements Initializable {
 
     @FXML
     private BarChart<?, ?> dhasboardVentasDiarias;
+
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
@@ -708,6 +712,8 @@ public class ControllerMenu implements Initializable {
                 TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
 
         TotalVenta();
+
+        ventasDiariasController.mostrarGraficaVentaDiaria(dhasboardVentasDiarias);
 
 
 

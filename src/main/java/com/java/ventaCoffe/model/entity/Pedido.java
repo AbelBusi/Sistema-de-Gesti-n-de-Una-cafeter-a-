@@ -24,6 +24,13 @@ public class Pedido {
 
     private double totalPedido;
 
+    public Pedido(Integer idPedido, String numeroPedido, LocalDateTime fechaPedido, double totalPedido) {
+        this.idPedido = idPedido;
+        this.numeroPedido = numeroPedido;
+        this.fechaPedido = fechaPedido;
+        this.totalPedido = totalPedido;
+    }
+
     @ManyToOne
     private Usuario usuario;
 
