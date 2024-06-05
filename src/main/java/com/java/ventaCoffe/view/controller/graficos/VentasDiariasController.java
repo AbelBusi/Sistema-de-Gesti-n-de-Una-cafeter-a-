@@ -1,13 +1,15 @@
 package com.java.ventaCoffe.view.controller.graficos;
 
 import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
-import com.java.ventaCoffe.model.entity.Pedido;
+import com.java.ventaCoffe.model.dto.PedidoDtoProjection;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -16,19 +18,22 @@ public class VentasDiariasController {
     @Autowired
     private PedidoServiceImpl pedidoService;
 
-    public void mostrarGraficaVentaDiaria(BarChart dhasboardVentasDiarias) {
+    public void mostrarGraficaVentaDiaria(BarChart<String, Number> dhasboardVentasDiarias) {
         dhasboardVentasDiarias.getData().clear();
         try {
-            List<Pedido> pedidos = pedidoService.pedidoDia();
+            List<PedidoDtoProjection> pedidos = pedidoService.pedidoDia();
 
-            XYChart.Series chart = new XYChart.Series<>();
+            XYChart.Series<String, Number> chart = new XYChart.Series<>();
 
-            for (Pedido p : pedidos) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-                LocalDateTime fecha = p.getFechaPedido();
+            for (PedidoDtoProjection p : pedidos) {
+                Date fecha = p.getDia();
                 Double totalPedido = p.getTotalPedido();
-                chart.getData().add(new XYChart.Data<>(fecha, totalPedido));
-
+                if (totalPedido != null) {
+                    String formattedDate = dateFormat.format(fecha);
+                    chart.getData().add(new XYChart.Data<>(formattedDate, totalPedido));
+                }
             }
             dhasboardVentasDiarias.getData().add(chart);
 

@@ -2,9 +2,8 @@ package com.java.ventaCoffe.controller.impl;
 
 import com.java.ventaCoffe.controller.repository.IPedidoRepository;
 import com.java.ventaCoffe.controller.service.IPedidoService;
+import com.java.ventaCoffe.model.dto.PedidoDtoProjection;
 import com.java.ventaCoffe.model.entity.Pedido;
-import com.java.ventaCoffe.model.entity.PedidoDto;
-import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +48,7 @@ public class PedidoServiceImpl implements IPedidoService {
 
     @Transactional
     @Override
-    public List<Pedido> pedidoDia() {
+    public List<PedidoDtoProjection> pedidoDia() {
         return pedidoRepository.getPedido();
     }
 

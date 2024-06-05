@@ -316,7 +316,7 @@ public class ControllerMenu implements Initializable {
     private Label LtotalPorductosVendidos;
 
     @FXML
-    private BarChart<?, ?> dhasboardVentasDiarias;
+    private BarChart<String, Number> dhasboardVentasDiarias;
 
 
     @Autowired
