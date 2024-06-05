@@ -27,19 +27,6 @@ Este programa administra la venta de los empleados, así como la fecha y muestra
 
 Es importante ya que sirve para administrar las ventas de una cafetería, el programa incluye  una interfaz de usuario  para registrar y procesar pedidos, y un panel de administración para gestionar productos, precios y reportes. Cuenta con una base de datos que almacena información de productos, ventas y control de inventario. Las funcionalidades clave incluyen la gestión de pedidos, actualización automática del inventario tras cada venta, seguimiento de ventas con historial, generación de reportes diarios, gestión de usuarios con diferentes permisos, y notificaciones de stock bajo. Este programa facilita las operaciones diarias, mejora la eficiencia y proporciona datos valiosos para decisiones estratégicas en la cafetería.
 
-### Programa
-- Convert all section headings to titlecase with a single click
-- Togggle to view detailed article metrics at the bottom of the editor
-- Generate Table of Contents
-- Dictate and add content using speech recognition
-- Find writing issues
-  - Profanity issues
-  - Inequality issues
-  - Contractions issues
-  - Passive voice
-  - Redundant acronyms
-  - Readability issues 
-
 ### Visualización del programa
 
 - Ventana del login
