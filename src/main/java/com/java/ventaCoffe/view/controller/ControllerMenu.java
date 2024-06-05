@@ -1,6 +1,7 @@
 package com.java.ventaCoffe.view.controller;
 
 import com.java.ventaCoffe.VentaCoffeApplication;
+import com.java.ventaCoffe.controller.impl.DetallePedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoServiceImpl;
 import com.java.ventaCoffe.controller.impl.PedidoTempServiceImpl;
 import com.java.ventaCoffe.controller.impl.UsuarioServiceImpl;
@@ -307,11 +308,17 @@ public class ControllerMenu implements Initializable {
     @FXML
     private Label LVentaTotal;
 
+    @FXML
+    private Label LtotalPorductosVendidos;
+
     @Autowired
     private UsuarioServiceImpl usuarioService;
 
     @Autowired
     private PedidoServiceImpl pedidoService;
+
+    @Autowired
+    private DetallePedidoServiceImpl detallePedidoService;
 
 
     public void cambiarFrom(ActionEvent event) {
@@ -545,6 +552,7 @@ public class ControllerMenu implements Initializable {
                     TotalPedidoColumn,FechaPedidoColumn,usuarioPedidoColumn);
             ventaHoy();
             ventaTotal();
+            productosTotalVendidos();
         });
 
     }
@@ -635,6 +643,28 @@ public class ControllerMenu implements Initializable {
 
     }
 
+    public void productosTotalVendidos(){
+
+        try {
+            Integer totalProductos= detallePedidoService.cantidadVendidaProductos();
+            if(totalProductos ==null){
+                LtotalPorductosVendidos.setText("0");
+                logger.info("No hay ventas hoy");
+                return;
+            }if (totalProductos==0){
+                LtotalPorductosVendidos.setText("0");
+                return;
+            }
+            LtotalPorductosVendidos.setText(String.valueOf(totalProductos));
+
+        }catch (Exception exception){
+            LtotalPorductosVendidos.setText("0");
+            System.out.println("Error: "+exception.getMessage());
+        }
+
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -643,6 +673,7 @@ public class ControllerMenu implements Initializable {
             totalUsuarios();
             ventaHoy();
             ventaTotal();
+            productosTotalVendidos();
 
 
         });

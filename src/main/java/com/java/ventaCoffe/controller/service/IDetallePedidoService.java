@@ -11,4 +11,6 @@ public interface IDetallePedidoService {
 
     DetallePedido guardarPedido(DetallePedido detallePedidos);
 
+    Integer cantidadVendidaProductos();
+
 }

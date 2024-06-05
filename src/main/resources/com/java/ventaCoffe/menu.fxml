@@ -171,7 +171,7 @@
                                                             <Font name="Times New Roman" size="17.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="LtotalPorductosVendidos" alignment="CENTER" contentDisplay="CENTER" layoutX="298.0" layoutY="15.0" prefHeight="34.0" prefWidth="62.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font name="Times New Roman" size="25.0" />
                                                          </font>

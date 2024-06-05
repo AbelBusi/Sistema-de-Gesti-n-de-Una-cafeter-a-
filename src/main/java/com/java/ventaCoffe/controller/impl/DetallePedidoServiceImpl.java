@@ -27,4 +27,9 @@ public class DetallePedidoServiceImpl implements IDetallePedidoService {
     public DetallePedido guardarPedido(DetallePedido detallePedidos) {
         return pedidoRepository.save(detallePedidos);
     }
+
+    @Override
+    public Integer cantidadVendidaProductos() {
+        return pedidoRepository.totalProductosVendidos();
+    }
 }
