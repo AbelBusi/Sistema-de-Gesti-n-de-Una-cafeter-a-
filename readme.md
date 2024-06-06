@@ -90,7 +90,7 @@ spring.datasource.username='root'
 
 spring.datasource.password='abelbustamante24'
 
-- Ejecutar el programa y usarlo, puedo usar gestor de bd para amdinistrar sus datos
+- Ejecutar el programa y usarlo, puedo usar gestor de bd para administrar sus datos
 
 
 ![](https://i.makeagif.com/media/7-14-2021/XOazFD.gif)
