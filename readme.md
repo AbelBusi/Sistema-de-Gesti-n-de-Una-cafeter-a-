@@ -60,12 +60,12 @@ Es importante ya que sirve para administrar las ventas de una cafetería, el pro
 
 
 
-### DER del sistema de la cafeteria
+### DER del sistema de la cafetería
 
 ![Captura de pantalla 2024-06-05 180658.png](https://mdedit.s3.us-west-2.amazonaws.com/cf4786ce-3f7b-426b-9dd8-c97013d46786.png)
 
 
-# TECNOLOGÍAS Y COMPLEMENTOS USADOSS:  
+# TECNOLOGÍAS Y COMPLEMENTOS USADOS:  
 
 - Java 17
 - Librería JavaFx [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)
@@ -74,7 +74,7 @@ Es importante ya que sirve para administrar las ventas de una cafetería, el pro
 - JPA
 - Scene Builder [Scene Builder - Gluon](https://gluonhq.com/products/scene-builder/)
 
-### Tutorial de instalacion
+### Tutorial de instalación
 
 - Descargar proyecto [GitHub - AbelBusi/Administracion-de-una-cafeteria](https://github.com/AbelBusi/Administracion-de-una-cafeteria.git)
 
